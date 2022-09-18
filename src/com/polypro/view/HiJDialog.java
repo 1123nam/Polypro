@@ -1,6 +1,10 @@
 package com.polypro.view;
 
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.Timer;
 
 /**
  *
@@ -14,7 +18,7 @@ public class HiJDialog extends javax.swing.JDialog {
     public HiJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
     }
 
     /**
@@ -27,14 +31,23 @@ public class HiJDialog extends javax.swing.JDialog {
     private void initComponents() {
 
         prbLoading = new javax.swing.JProgressBar();
+        lblMsg = new javax.swing.JLabel();
+        lblLoadingPercent = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        setUndecorated(true);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
             }
         });
+
+        lblMsg.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        lblMsg.setText("Đang khởi động");
+
+        lblLoadingPercent.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        lblLoadingPercent.setText("0%");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -42,13 +55,22 @@ public class HiJDialog extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(prbLoading, javax.swing.GroupLayout.DEFAULT_SIZE, 1074, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(prbLoading, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblMsg)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 891, Short.MAX_VALUE)
+                        .addComponent(lblLoadingPercent, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(445, Short.MAX_VALUE)
+                .addContainerGap(369, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblMsg, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblLoadingPercent, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(prbLoading, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -58,7 +80,52 @@ public class HiJDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        // TODO add your handling code here:
+        new Timer(50, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int value = prbLoading.getValue();
+                if (value < 100) {
+                    try {
+                        if (value == 10) {
+                            lblMsg.setText("Đang khởi động.");
+                        }
+                        if (value == 20) {
+                            lblMsg.setText("Đang khởi động..");
+                        }
+                        if (value == 30) {
+                            lblMsg.setText("Đang khởi động...");
+                        }
+                        if (value == 40) {
+                            Thread.sleep(300);
+                            lblMsg.setText("Đang tải cơ sở dữ liệu.");
+                        }
+                        if (value == 55) {
+                            Thread.sleep(600);
+                            lblMsg.setText("Đang tải cơ sở dữ liệu..");
+                        }
+                        if (value == 700) {
+                            Thread.sleep(400);
+
+                            lblMsg.setText("Đang tải cơ sở dữ liệu...");
+                        }
+                        if (value == 80) {
+                            Thread.sleep(800);
+                            lblMsg.setText("Hoàn thành tải tài nguyên người dùng...");
+                            Thread.sleep(800);
+                        }
+                        if (value == 90) {
+                            lblMsg.setText("Đang mở ứng dụng");
+                        }
+                        prbLoading.setValue(value + 1);
+                        lblLoadingPercent.setText(String.valueOf(value) + "%");
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(HiJDialog.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    HiJDialog.this.dispose();
+                }
+            }
+        }).start();
     }//GEN-LAST:event_formWindowActivated
 
     /**
@@ -107,6 +174,8 @@ public class HiJDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel lblLoadingPercent;
+    private javax.swing.JLabel lblMsg;
     private javax.swing.JProgressBar prbLoading;
     // End of variables declaration//GEN-END:variables
 }
