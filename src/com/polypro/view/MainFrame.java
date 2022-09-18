@@ -673,6 +673,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        //dang nhap
         goToSystemFrame("Login");
 
     }//GEN-LAST:event_jMenuItem1ActionPerformed
