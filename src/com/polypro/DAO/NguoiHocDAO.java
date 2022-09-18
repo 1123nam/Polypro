@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NguoiHocDAO {
-
+//test commit
     public void insert(NguoiHoc model) {
         String sql
                 = "INSERT INTO NguoiHoc (MaNH, HoTen, NgaySinh, GioiTinh, DienThoai, Email, GhiChu, MaNV)VALUES( ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?)";
