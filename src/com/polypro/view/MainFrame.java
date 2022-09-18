@@ -71,10 +71,10 @@ public class MainFrame extends javax.swing.JFrame {
         pnlMainPanel = new javax.swing.JPanel();
         pnlLogo = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        pnlNguoiHoc = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         pnlChuyenDe = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        pnlNguoiHoc = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         pnlKhoaHoc = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         pnlNhanVien = new javax.swing.JPanel();
@@ -268,28 +268,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         pnlMainPanel.add(pnlLogo, "card_Logo");
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        jLabel1.setText("QUẢN LÝ NGƯỜI HỌC");
-
-        javax.swing.GroupLayout pnlNguoiHocLayout = new javax.swing.GroupLayout(pnlNguoiHoc);
-        pnlNguoiHoc.setLayout(pnlNguoiHocLayout);
-        pnlNguoiHocLayout.setHorizontalGroup(
-            pnlNguoiHocLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlNguoiHocLayout.createSequentialGroup()
-                .addGap(144, 144, 144)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        pnlNguoiHocLayout.setVerticalGroup(
-            pnlNguoiHocLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlNguoiHocLayout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        pnlMainPanel.add(pnlNguoiHoc, "card_NguoiHoc");
-
         jLabel4.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         jLabel4.setText("QUẢN LÝ CHUYÊN ĐỀ");
 
@@ -311,6 +289,28 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         pnlMainPanel.add(pnlChuyenDe, "card_ChuyenDe");
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        jLabel1.setText("QUẢN LÝ NGƯỜI HỌC");
+
+        javax.swing.GroupLayout pnlNguoiHocLayout = new javax.swing.GroupLayout(pnlNguoiHoc);
+        pnlNguoiHoc.setLayout(pnlNguoiHocLayout);
+        pnlNguoiHocLayout.setHorizontalGroup(
+            pnlNguoiHocLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlNguoiHocLayout.createSequentialGroup()
+                .addGap(144, 144, 144)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnlNguoiHocLayout.setVerticalGroup(
+            pnlNguoiHocLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlNguoiHocLayout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        pnlMainPanel.add(pnlNguoiHoc, "card_NguoiHoc");
 
         jLabel5.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         jLabel5.setText("QUẢN LÝ KHÓA HỌC");
@@ -695,7 +695,9 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        
         exitProgram();
+        
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void exitProgram() throws HeadlessException {
