@@ -247,6 +247,7 @@ public class MainFrame extends javax.swing.JFrame {
         pnlMainPanel.setLayout(new java.awt.CardLayout());
 
         jLabel13.setFont(new java.awt.Font("Dialog", 0, 48)); // NOI18N
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/buyproduct_hover.png"))); // NOI18N
         jLabel13.setText("Logo");
 
         javax.swing.GroupLayout pnlLogoLayout = new javax.swing.GroupLayout(pnlLogo);
@@ -254,14 +255,14 @@ public class MainFrame extends javax.swing.JFrame {
         pnlLogoLayout.setHorizontalGroup(
             pnlLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlLogoLayout.createSequentialGroup()
-                .addContainerGap(555, Short.MAX_VALUE)
+                .addContainerGap(699, Short.MAX_VALUE)
                 .addComponent(jLabel13)
-                .addContainerGap(405, Short.MAX_VALUE))
+                .addGap(233, 233, 233))
         );
         pnlLogoLayout.setVerticalGroup(
             pnlLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlLogoLayout.createSequentialGroup()
-                .addContainerGap(255, Short.MAX_VALUE)
+            .addGroup(pnlLogoLayout.createSequentialGroup()
+                .addGap(255, 255, 255)
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(238, Short.MAX_VALUE))
         );
