@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KhoaHocDao {
-
+public class KhoaHocDao extends abstractDAO<KhoaHoc, Integer>{
+    @Override
     public void insert(KhoaHoc model) {
         String sql = "INSERT INTO KhoaHoc (MaCD, HocPhi, ThoiLuong, NgayKG, GhiChu, MaNV) VALUES (?, ?, ?, ?, ?,?)";
         JdbcHelper.executeUpdate(sql,
@@ -19,7 +19,7 @@ public class KhoaHocDao {
                 model.getGhiChu(),
                 model.getMaNV());
     }
-
+    @Override
     public void update(KhoaHoc model) {
         String sql = "UPDATE KhoaHoc SET MaCD=?, HocPhi=?, ThoiLuong=?, NgayKG=?, GhiChu=?, MaNV=? WHEREMaKH=?";
         JdbcHelper.executeUpdate(sql,
@@ -31,12 +31,12 @@ public class KhoaHocDao {
                 model.getMaNV(),
                 model.getMaKH());
     }
-
+    @Override
     public void delete(Integer MaKH) {
         String sql = "DELETE FROM KhoaHoc WHERE MaKH=?";
         JdbcHelper.executeUpdate(sql, MaKH);
     }
-
+    @Override
     public List<KhoaHoc> select() {
         String sql = "SELECT * FROM KhoaHoc";
         return select(sql);

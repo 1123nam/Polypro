@@ -16,7 +16,8 @@ import java.util.List;
  *
  * @author Lenovo
  */
-public class NhanVienDAO {
+public class NhanVienDAO extends abstractDAO<NhanVien, String>{
+@Override
  public void insert(NhanVien model){
     String sql="INSERT INTO NhanVien (MaNV, MatKhau, HoTen, VaiTro) VALUES (?, ?, ?, ?)";
     JdbcHelper.executeUpdate(sql, 
@@ -25,6 +26,7 @@ public class NhanVienDAO {
     model.getHoTen(), 
     model.isVaiTro());
 }
+@Override
  public void update(NhanVien model){
     String sql="UPDATE NhanVien SET MatKhau=?, HoTen=?, VaiTro=? WHERE MaNV=?";
     JdbcHelper.executeUpdate(sql, 
@@ -34,12 +36,12 @@ public class NhanVienDAO {
     model.getMaNV());
    
  }
- 
+ @Override
  public void delete(String MaNV){
     String sql="DELETE FROM NhanVien WHERE MaNV=?";
     JdbcHelper.executeUpdate(sql, MaNV);
  }
- 
+ @Override
  public List<NhanVien> select(){
     String sql="SELECT * FROM NhanVien";
     return select(sql);

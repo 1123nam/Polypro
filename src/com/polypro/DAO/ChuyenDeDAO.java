@@ -14,12 +14,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Lenovo
- */
-public class ChuyenDeDAO {
- public void insert(ChuyenDe model){
+public class ChuyenDeDAO extends abstractDAO <ChuyenDe , String> {
+
+  @Override
+  public void insert(ChuyenDe model){
     String sql="INSERT INTO ChuyenDe (MaCD, TenCD, HocPhi, ThoiLuong, Hinh, MoTa) VALUES (?, ?, ?, ?, ?, ?)";
     JdbcHelper.executeUpdate(sql, 
     model.getMaCD(), 
@@ -29,7 +27,7 @@ public class ChuyenDeDAO {
     model.getHinh(),
     model.getMoTa());
  }
- 
+ @Override
  public void update(ChuyenDe model){
     String sql="UPDATE ChuyenDe SET TenCD=?, HocPhi=?, ThoiLuong=?, Hinh=?, MoTa=? WHERE MaCD=?";
     JdbcHelper.executeUpdate(sql, 
@@ -41,12 +39,12 @@ public class ChuyenDeDAO {
     model.getMaCD()
     );
  }
- 
+ @Override
  public void delete(String MaCD){
     String sql="DELETE FROM ChuyenDe WHERE MaCD=?";
     JdbcHelper.executeUpdate(sql, MaCD);
  }
- 
+ @Override
  public List<ChuyenDe> select(){
     String sql="SELECT * FROM ChuyenDe";
     return select(sql);
