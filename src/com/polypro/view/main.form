@@ -75,7 +75,6 @@
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new RoundedPanel(50)"/>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="pnlMenu.setOpaque(false);"/>
           </AuxValues>
 

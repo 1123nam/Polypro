@@ -40,7 +40,7 @@ public class main extends javax.swing.JFrame {
     private void initComponents() {
 
         pnlLeft = new javax.swing.JPanel();
-        pnlMenu = new RoundedPanel(50);
+        pnlMenu = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
