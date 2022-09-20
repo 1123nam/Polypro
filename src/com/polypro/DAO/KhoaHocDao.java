@@ -11,7 +11,7 @@ public class KhoaHocDAO extends abstractDAO<KhoaHoc, Integer>{
     @Override
     public void insert(KhoaHoc model) {
         String sql = "INSERT INTO KhoaHoc (MaCD, HocPhi, ThoiLuong, NgayKG, GhiChu, MaNV) VALUES (?, ?, ?, ?, ?,?)";
-        JdbcHelper.executeUpdate(sql,
+        JdbcHelper.update(sql,
                 model.getMaCD(),
                 model.getHocPhi(),
                 model.getThoiLuong(),
@@ -22,7 +22,7 @@ public class KhoaHocDAO extends abstractDAO<KhoaHoc, Integer>{
     @Override
     public void update(KhoaHoc model) {
         String sql = "UPDATE KhoaHoc SET MaCD=?, HocPhi=?, ThoiLuong=?, NgayKG=?, GhiChu=?, MaNV=? WHEREMaKH=?";
-        JdbcHelper.executeUpdate(sql,
+        JdbcHelper.update(sql,
                 model.getMaCD(),
                 model.getHocPhi(),
                 model.getThoiLuong(),
@@ -34,7 +34,7 @@ public class KhoaHocDAO extends abstractDAO<KhoaHoc, Integer>{
     @Override
     public void delete(Integer MaKH) {
         String sql = "DELETE FROM KhoaHoc WHERE MaKH=?";
-        JdbcHelper.executeUpdate(sql, MaKH);
+        JdbcHelper.update(sql, MaKH);
     }
     @Override
     public List<KhoaHoc> select() {
@@ -53,7 +53,7 @@ public class KhoaHocDAO extends abstractDAO<KhoaHoc, Integer>{
         try {
             ResultSet rs = null;
             try {
-                rs = JdbcHelper.executeQuery(sql, args);
+                rs = JdbcHelper.query(sql, args);
                 while (rs.next()) {
                     KhoaHoc model = readFromResultSet(rs);
                     list.add(model);

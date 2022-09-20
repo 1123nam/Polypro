@@ -13,7 +13,7 @@ public class NguoiHocDAO extends abstractDAO<NguoiHoc,String >{
     public void insert(NguoiHoc model) {
         String sql
                 = "INSERT INTO NguoiHoc (MaNH, HoTen, NgaySinh, GioiTinh, DienThoai, Email, GhiChu, MaNV)VALUES( ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?)";
-        JdbcHelper.executeUpdate(sql,
+        JdbcHelper.update(sql,
                 model.getMaNH(),
                 model.getHoTen(),
                 model.getNgaySinh(),
@@ -26,7 +26,7 @@ public class NguoiHocDAO extends abstractDAO<NguoiHoc,String >{
     @Override
     public void update(NguoiHoc model) {
         String sql = "UPDATE NguoiHoc SET HoTen=?, NgaySinh=?, GioiTinh=?, DienThoai=?, Email=?, GhiChu=?,MaNV =  ? WHERE  MaNH =  ? ";
-        JdbcHelper.executeUpdate(sql,
+        JdbcHelper.update(sql,
                 model.getHoTen(),
                 model.getNgaySinh(),
                 model.isGioiTinh(),
@@ -39,7 +39,7 @@ public class NguoiHocDAO extends abstractDAO<NguoiHoc,String >{
     @Override
     public void delete(String id) {
         String sql = "DELETE FROM NguoiHoc WHERE MaNH=?";
-        JdbcHelper.executeUpdate(sql, id);
+        JdbcHelper.update(sql, id);
     }
     @Override
     public List<NguoiHoc> select() {
@@ -68,7 +68,7 @@ public class NguoiHocDAO extends abstractDAO<NguoiHoc,String >{
         try {
             ResultSet rs = null;
             try {
-                rs = JdbcHelper.executeQuery(sql, args);
+                rs = JdbcHelper.query(sql, args);
                 while (rs.next()) {
                     NguoiHoc model = readFromResultSet(rs);
                     list.add(model);

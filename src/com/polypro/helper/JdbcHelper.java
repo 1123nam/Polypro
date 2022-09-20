@@ -34,7 +34,7 @@ public class JdbcHelper {
      * @return PreparedStatement tạo được
      * @throws java.sql.SQLException lỗi sai cú pháp
      */
-    public static PreparedStatement prepareStatement(String sql, Object... args) throws SQLException {
+    public static PreparedStatement getStmt(String sql, Object... args) throws SQLException {
         Connection connection = DriverManager.getConnection(dburl, username, password);
         PreparedStatement pstmt = null;
         if (sql.trim().startsWith("{")) {
@@ -57,11 +57,11 @@ public class JdbcHelper {
      * @param args là danh sách các giá trị được cung cấp cho các tham số trong
      * câu lệnh sql *
      */
-    public static void executeUpdate(String sql, Object... args) {
+    public static int update(String sql, Object... args) {
         try {
-            PreparedStatement stmt = prepareStatement(sql, args);
+            PreparedStatement stmt = getStmt(sql, args);
             try {
-                stmt.executeUpdate();
+            return   stmt.executeUpdate();
             } finally {
                 stmt.getConnection().close();
             }
@@ -79,13 +79,27 @@ public class JdbcHelper {
      * @param args là danh sách các giá trị được cung cấp cho các tham số trong
      * câu lệnh sql
      */
-    public static ResultSet executeQuery(String sql, Object... args) {
+    //query: lay toan bo du lieu
+    public static ResultSet query(String sql, Object... args) {
         try {
-            PreparedStatement stmt = prepareStatement(sql, args);
+            PreparedStatement stmt = getStmt(sql, args);
             return stmt.executeQuery();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
+    //lay 1 record 
+    public static Object value(String sql, Object... args) {
+        try {
+            ResultSet rs = JdbcHelper.query(sql, args);
+            if (rs.next()) {
+                return rs.getObject(0);
+            }
+            rs.getStatement().getConnection().close();
+            return null;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

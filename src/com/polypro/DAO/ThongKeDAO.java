@@ -22,7 +22,7 @@ public class ThongKeDAO {
             ResultSet rs = null;
             try {
                 String sql = "{call sp_ThongKeNguoiHoc}";
-                rs = JdbcHelper.executeQuery(sql);
+                rs = JdbcHelper.query(sql);
 
                 while (rs.next()) {
                     Object[] model = {rs.getInt("Nam"), rs.getInt("SoLuong"), rs.getDate("DauTien"), rs.getDate("CuoiCung")};
@@ -43,7 +43,7 @@ public class ThongKeDAO {
             ResultSet rs = null;
             try {
                 String sql = "{call sp_BangDiem (?)}";
-                rs = JdbcHelper.executeQuery(sql, makh);
+                rs = JdbcHelper.query(sql, makh);
                 while (rs.next()) {
                     double diem = rs.getDouble("Diem");
                     String xepLoai = "Xuáº¥t sáº¯c";
@@ -81,7 +81,7 @@ public class ThongKeDAO {
             ResultSet rs = null;
             try {
                 String sql = "{call sp_ThongKeDiem}";
-                rs = JdbcHelper.executeQuery(sql);
+                rs = JdbcHelper.query(sql);
                 while (rs.next()) {
                     Object[] model = {rs.getString("ChuyenDe"), rs.getInt("SoHV"), rs.getDouble("ThapNhat"), rs.getDouble("CaoNhat"), rs.getDouble("TrungBinh")};
                     list.add(model);
@@ -101,7 +101,7 @@ public class ThongKeDAO {
             ResultSet rs = null;
             try {
                 String sql = "{call sp_ThongKeDoanhThu (?)}";
-                rs = JdbcHelper.executeQuery(sql, nam);
+                rs = JdbcHelper.query(sql, nam);
                 while (rs.next()) {
                     Object[] model = {rs.getString("ChuyenDe"),
                         rs.getInt("SoKH"), rs.getInt("SoHV"), rs.getDouble("DoanhThu"), rs.getDouble("ThapNhat"), rs.getDouble("CaoNhat"), rs.getDouble("TrungBinh")};

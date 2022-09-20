@@ -19,7 +19,7 @@ public class ChuyenDeDAO extends abstractDAO <ChuyenDe , String> {
   @Override
   public void insert(ChuyenDe model){
     String sql="INSERT INTO ChuyenDe (MaCD, TenCD, HocPhi, ThoiLuong, Hinh, MoTa) VALUES (?, ?, ?, ?, ?, ?)";
-    JdbcHelper.executeUpdate(sql, 
+    JdbcHelper.update(sql, 
     model.getMaCD(), 
     model.getTenCD(), 
     model.getHocPhi(), 
@@ -30,7 +30,7 @@ public class ChuyenDeDAO extends abstractDAO <ChuyenDe , String> {
  @Override
  public void update(ChuyenDe model){
     String sql="UPDATE ChuyenDe SET TenCD=?, HocPhi=?, ThoiLuong=?, Hinh=?, MoTa=? WHERE MaCD=?";
-    JdbcHelper.executeUpdate(sql, 
+    JdbcHelper.update(sql, 
     model.getTenCD(), 
     model.getHocPhi(), 
     model.getThoiLuong(), 
@@ -42,7 +42,7 @@ public class ChuyenDeDAO extends abstractDAO <ChuyenDe , String> {
  @Override
  public void delete(String MaCD){
     String sql="DELETE FROM ChuyenDe WHERE MaCD=?";
-    JdbcHelper.executeUpdate(sql, MaCD);
+    JdbcHelper.update(sql, MaCD);
  }
  @Override
  public List<ChuyenDe> select(){
@@ -61,7 +61,7 @@ public class ChuyenDeDAO extends abstractDAO <ChuyenDe , String> {
     try {
         ResultSet rs = null;
         try {
-            rs = JdbcHelper.executeQuery(sql, args);
+            rs = JdbcHelper.query(sql, args);
             while(rs.next()){
             ChuyenDe model=readFromResultSet(rs);
             list.add(model);

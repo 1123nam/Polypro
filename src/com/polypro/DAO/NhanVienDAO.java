@@ -20,7 +20,7 @@ public class NhanVienDAO extends abstractDAO<NhanVien, String>{
 @Override
  public void insert(NhanVien model){
     String sql="INSERT INTO NhanVien (MaNV, MatKhau, HoTen, VaiTro) VALUES (?, ?, ?, ?)";
-    JdbcHelper.executeUpdate(sql, 
+    JdbcHelper.update(sql, 
     model.getMaNV(), 
     model.getMatKhau(),
     model.getHoTen(), 
@@ -29,7 +29,7 @@ public class NhanVienDAO extends abstractDAO<NhanVien, String>{
 @Override
  public void update(NhanVien model){
     String sql="UPDATE NhanVien SET MatKhau=?, HoTen=?, VaiTro=? WHERE MaNV=?";
-    JdbcHelper.executeUpdate(sql, 
+    JdbcHelper.update(sql, 
     model.getMatKhau(), 
     model.getHoTen(), 
     model.isVaiTro(),
@@ -39,7 +39,7 @@ public class NhanVienDAO extends abstractDAO<NhanVien, String>{
  @Override
  public void delete(String MaNV){
     String sql="DELETE FROM NhanVien WHERE MaNV=?";
-    JdbcHelper.executeUpdate(sql, MaNV);
+    JdbcHelper.update(sql, MaNV);
  }
  @Override
  public List<NhanVien> select(){
@@ -58,7 +58,7 @@ public class NhanVienDAO extends abstractDAO<NhanVien, String>{
     try {
     ResultSet rs = null;
     try {
-    rs = JdbcHelper.executeQuery(sql, args);
+    rs = JdbcHelper.query(sql, args);
     while(rs.next()){
     NhanVien model=readFromResultSet(rs);
     list.add(model);
