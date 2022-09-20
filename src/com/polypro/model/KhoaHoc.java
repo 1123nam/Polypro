@@ -17,6 +17,19 @@ public class KhoaHoc {
     private String maNV;
     private Date ngayTao = DateHelper.now();
 
+    public KhoaHoc() {
+    }
+
+    public KhoaHoc(int maKH, String maCD, double hocPhi, int thoiLuong, Date ngayKG, String ghiChu, String maNV) {
+        this.maKH = maKH;
+        this.maCD = maCD;
+        this.hocPhi = hocPhi;
+        this.thoiLuong = thoiLuong;
+        this.ngayKG = ngayKG;
+        this.ghiChu = ghiChu;
+        this.maNV = maNV;
+    }
+
     @Override
     public String toString() {
         return "KhoaHoc{" + "maKH=" + maKH + ", maCD=" + maCD + ", hocPhi=" + hocPhi + ", thoiLuong=" + thoiLuong + ", ngayKG=" + ngayKG + ", ghiChu=" + ghiChu + ", maNV=" + maNV + ", ngayTao=" + ngayTao + '}';

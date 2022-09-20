@@ -5,7 +5,7 @@ package com.polypro.DAO;
 import java.util.List;
 //import javax.swing.text.html.parser.Entity;
 //import org.w3c.dom.Entity;
-import com.sun.xml.internal.stream.Entity;
+//import com.sun.xml.internal.stream.Entity;
 
 
 abstract class abstractDAO <E , K> {

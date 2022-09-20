@@ -18,6 +18,20 @@ public class NguoiHoc {
     private String maNV;
     private Date ngayDK = DateHelper.now();
 
+    public NguoiHoc() {
+    }
+
+    public NguoiHoc(String maNH, String hoTen, Date ngaySinh, boolean gioiTinh, String dienThoai, String email, String ghiChu, String maNV) {
+        this.maNH = maNH;
+        this.hoTen = hoTen;
+        this.ngaySinh = ngaySinh;
+        this.gioiTinh = gioiTinh;
+        this.dienThoai = dienThoai;
+        this.email = email;
+        this.ghiChu = ghiChu;
+        this.maNV = maNV;
+    }
+
     @Override
     public String toString() {
         return "NguoiHoc{" + "maNH=" + maNH + ", hoTen=" + hoTen + ", ngaySinh=" + ngaySinh + ", gioiTinh=" + gioiTinh + ", dienThoai=" + dienThoai + ", email=" + email + ", ghiChu=" + ghiChu + ", maNV=" + maNV + ", ngayDK=" + ngayDK + '}';

@@ -10,6 +10,15 @@ public class HocVien {
     private String maNH;
     private double diem = -1.0;
 
+    public HocVien() {
+    }
+
+    public HocVien(int maHV, int maKH, String maNH) {
+        this.maHV = maHV;
+        this.maKH = maKH;
+        this.maNH = maNH;
+    }
+    
     @Override
     public String toString() {
         return "HocVien{" + "maHV=" + maHV + ", maKH=" + maKH + ", maNH=" + maNH + ", diem=" + diem + '}';

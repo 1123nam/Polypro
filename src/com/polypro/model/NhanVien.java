@@ -10,6 +10,15 @@ public class NhanVien {
     private String hoTen;
     private boolean vaiTro = false;
 
+    public NhanVien() {
+    }
+
+    public NhanVien(String maNV, String matKhau, String hoTen) {
+        this.maNV = maNV;
+        this.matKhau = matKhau;
+        this.hoTen = hoTen;
+    }
+
     @Override
     public String toString() {
         return "NhanVien{" + "maNV=" + maNV + ", matKhau=" + matKhau + ", hoTen=" + hoTen + ", vaiTro=" + vaiTro + '}';

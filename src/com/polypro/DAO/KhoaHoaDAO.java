@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+//đổi tên file lại vì bị lỗi 16h44 ngày 20/9/2022
 
 public class KhoaHocDAO extends abstractDAO<KhoaHoc, Integer>{
     @Override
@@ -31,11 +32,13 @@ public class KhoaHocDAO extends abstractDAO<KhoaHoc, Integer>{
                 model.getMaNV(),
                 model.getMaKH());
     }
+    
     @Override
     public void delete(Integer MaKH) {
         String sql = "DELETE FROM KhoaHoc WHERE MaKH=?";
         JdbcHelper.update(sql, MaKH);
     }
+    
     @Override
     public List<KhoaHoc> select() {
         String sql = "SELECT * FROM KhoaHoc";

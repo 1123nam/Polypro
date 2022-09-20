@@ -16,6 +16,18 @@ public class ChuyenDe {
     private String hinh;
     private String moTa;
 
+    public ChuyenDe() {
+    }
+
+    public ChuyenDe(String maCD, String tenCD, double hocPhi, int thoiLuong, String hinh, String moTa) {
+        this.maCD = maCD;
+        this.tenCD = tenCD;
+        this.hocPhi = hocPhi;
+        this.thoiLuong = thoiLuong;
+        this.hinh = hinh;
+        this.moTa = moTa;
+    }
+
     @Override
     public String toString() {
         return "ChuyenDe{" + "maCD=" + maCD + ", tenCD=" + tenCD + ", "
