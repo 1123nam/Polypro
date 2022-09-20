@@ -35,8 +35,8 @@ public class main2 extends javax.swing.JFrame {
 
         menu.setFont(new Font("Cambria", Font.BOLD, 18));
 //        menu.setHeaderGradient(false);
-        menu.addItem("              Home   ");
-        menu.addItem(" Quản Lý ", "Chuyên Đề", "Khóa Học", "Người Học", "Học Viên", "Nhân Viên");
+        menu.addItem("Home");
+        menu.addItem("Quản Lý", "Chuyên Đề", "Khóa Học", "Người Học", "Học Viên", "Nhân Viên");
         menu.addItem("Thống Kê", "Bảng Điểm", "Lượng Người Học", "Điểm Chuyên Đề", "Doanh Thu");
         menu.addItem("Trợ Giúp", "Hướng Dẫn Sử Dụng", "Giới Thiệu Sản Phẩm");
         menu.addItem(" Hệ Thống ", "Đổi Mật Khẩu", "Đăng Xuất", "Kết Thúc");
