@@ -49,7 +49,7 @@ public class main2 extends javax.swing.JFrame {
             public void selected(int index, int subIndex, boolean menuItem) {
                 if (menuItem) {
                     // Nếu click vào menu theo tên nào truy cập đến card đó
-                    switch (menu.getMenuNameAt(index, subIndex).trim()) {                       
+                    switch (menu.getMenuNameAt(index, subIndex).trim()) {
                         case "Home":
                             cardLayout.show(main, "cardRoot");
                             break;
@@ -76,7 +76,6 @@ public class main2 extends javax.swing.JFrame {
         });
     }
 
-
     private void entered_Button_Menu(JButton btn) {
         btn.setBorder(new MatteBorder(0, 0, 2, 0, Color.white));
         btn.setBorderPainted(true);
@@ -91,10 +90,16 @@ public class main2 extends javax.swing.JFrame {
         btn.setBorder(new MatteBorder(0, 10, 0, 0, Color.red));
         btn.setBorderPainted(true);
     }
-    
+
     private void dontclicked_Button_Menu(JButton btn) {
 //        btn.setBorder(new MatteBorder(0, 0, 0, 0, Color.black));
         btn.setBorderPainted(false);
+    }
+
+    //Hoai Nam
+    public boolean isConfirm(String msg, String tittle) {
+        int result = JOptionPane.showConfirmDialog(this, msg, tittle, JOptionPane.YES_NO_OPTION);
+       return result == JOptionPane.YES_OPTION;
     }
 
     @SuppressWarnings("unchecked")
@@ -268,10 +273,10 @@ public class main2 extends javax.swing.JFrame {
         btnLogout = new javax.swing.JButton();
         pnlExit = new javax.swing.JPanel();
         btnExit = new javax.swing.JButton();
-        pnlTopic = new javax.swing.JPanel();
-        btnTopic = new javax.swing.JButton();
         pnlLearner = new javax.swing.JPanel();
         btnLearner = new javax.swing.JButton();
+        pnlTopic = new javax.swing.JPanel();
+        btnTopic = new javax.swing.JButton();
         jPanel34 = new javax.swing.JPanel();
         btnCourse = new javax.swing.JButton();
         jPanel35 = new javax.swing.JPanel();
@@ -279,6 +284,7 @@ public class main2 extends javax.swing.JFrame {
         jPanel29 = new javax.swing.JPanel();
         btnGuide = new javax.swing.JButton();
         pnlMenu = new javax.swing.JPanel();
+        jLabel31 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(243, 246, 255));
@@ -309,9 +315,9 @@ public class main2 extends javax.swing.JFrame {
         pnlRootLayout.setVerticalGroup(
             pnlRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlRootLayout.createSequentialGroup()
-                .addGap(0, 45, Short.MAX_VALUE)
+                .addGap(0, 46, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(0, 668, Short.MAX_VALUE))
+                .addGap(0, 667, Short.MAX_VALUE))
         );
 
         main.add(pnlRoot, "cardRoot");
@@ -471,6 +477,7 @@ public class main2 extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("Quản Lý Chuyên Đề");
+        jLabel12.setPreferredSize(new java.awt.Dimension(233, 35));
         pnlQLChuyenDe.add(jLabel12, java.awt.BorderLayout.PAGE_START);
 
         main.add(pnlQLChuyenDe, "cardQLChuyenDe");
@@ -618,7 +625,7 @@ public class main2 extends javax.swing.JFrame {
         );
         jPanel18Layout.setVerticalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 663, Short.MAX_VALUE)
         );
 
         jTabbedPane4.addTab("   Danh Sách   ", jPanel18);
@@ -629,7 +636,6 @@ public class main2 extends javax.swing.JFrame {
 
         jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.setBorder(null);
         jComboBox1.setOpaque(false);
         jPanel16.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 990, 60));
 
@@ -676,7 +682,7 @@ public class main2 extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 666, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -795,6 +801,7 @@ public class main2 extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Quản Lý Nhân Viên Quản Trị");
+        jLabel2.setPreferredSize(new java.awt.Dimension(334, 35));
         pnlQLNhanVien.add(jLabel2, java.awt.BorderLayout.PAGE_START);
 
         main.add(pnlQLNhanVien, "cardQLNhanVien");
@@ -804,6 +811,7 @@ public class main2 extends javax.swing.JFrame {
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel18.setText("Quản Lý Người Học");
+        jLabel18.setPreferredSize(new java.awt.Dimension(230, 35));
         pnlQLNguoiHoc.add(jLabel18, java.awt.BorderLayout.NORTH);
 
         jTabbedPane3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -851,7 +859,7 @@ public class main2 extends javax.swing.JFrame {
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 611, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 31, Short.MAX_VALUE))
+                .addGap(0, 27, Short.MAX_VALUE))
         );
 
         jPanel10.add(jPanel13, java.awt.BorderLayout.CENTER);
@@ -1004,7 +1012,7 @@ public class main2 extends javax.swing.JFrame {
 
         jComboBox2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel21.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 520, 50));
+        jPanel21.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, -1, 520, 50));
 
         jPanel22.add(jPanel21);
 
@@ -1123,7 +1131,7 @@ public class main2 extends javax.swing.JFrame {
         jPanel28Layout.setHorizontalGroup(
             jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel28Layout.createSequentialGroup()
-                .addContainerGap(1074, Short.MAX_VALUE)
+                .addContainerGap(1075, Short.MAX_VALUE)
                 .addComponent(jButton43, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -1207,9 +1215,31 @@ public class main2 extends javax.swing.JFrame {
         btnExit.setFocusPainted(false);
         btnExit.setOpaque(true);
         btnExit.setPreferredSize(new java.awt.Dimension(60, 50));
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
         pnlExit.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, -1));
 
         pnlDashboard.add(pnlExit);
+
+        pnlLearner.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnLearner.setBackground(new java.awt.Color(67, 73, 97));
+        btnLearner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/learner.png"))); // NOI18N
+        btnLearner.setToolTipText("Người Học");
+        btnLearner.setAlignmentY(2.0F);
+        btnLearner.setBorder(null);
+        btnLearner.setBorderPainted(false);
+        btnLearner.setContentAreaFilled(false);
+        btnLearner.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLearner.setFocusPainted(false);
+        btnLearner.setOpaque(true);
+        btnLearner.setPreferredSize(new java.awt.Dimension(60, 50));
+        pnlLearner.add(btnLearner, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, -1));
+
+        pnlDashboard.add(pnlLearner);
 
         pnlTopic.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1228,24 +1258,10 @@ public class main2 extends javax.swing.JFrame {
 
         pnlDashboard.add(pnlTopic);
 
-        pnlLearner.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnLearner.setBackground(new java.awt.Color(67, 73, 97));
-        btnLearner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/learner.png"))); // NOI18N
-        btnLearner.setToolTipText("Người Học");
-        btnLearner.setAlignmentY(2.0F);
-        btnLearner.setBorder(null);
-        btnLearner.setBorderPainted(false);
-        btnLearner.setContentAreaFilled(false);
-        btnLearner.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnLearner.setFocusPainted(false);
-        btnLearner.setOpaque(true);
-        btnLearner.setPreferredSize(new java.awt.Dimension(60, 50));
-        pnlLearner.add(btnLearner, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, -1));
-
+        jPanel34.setBackground(new java.awt.Color(67, 73, 97));
         jPanel34.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnCourse.setBackground(new java.awt.Color(245, 145, 146));
+        btnCourse.setBackground(new java.awt.Color(67, 73, 97));
         btnCourse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/course.png"))); // NOI18N
         btnCourse.setToolTipText("Khóa Học");
         btnCourse.setAlignmentY(2.0F);
@@ -1255,11 +1271,14 @@ public class main2 extends javax.swing.JFrame {
         btnCourse.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCourse.setFocusPainted(false);
         btnCourse.setPreferredSize(new java.awt.Dimension(60, 50));
+        btnCourse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCourseActionPerformed(evt);
+            }
+        });
         jPanel34.add(btnCourse, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, -1));
 
-        pnlLearner.add(jPanel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
-        pnlDashboard.add(pnlLearner);
+        pnlDashboard.add(jPanel34);
 
         jPanel35.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1297,17 +1316,28 @@ public class main2 extends javax.swing.JFrame {
 
         jPanel2.add(pnlDashboard, java.awt.BorderLayout.WEST);
 
+        pnlMenu.setBackground(new java.awt.Color(204, 102, 0));
         pnlMenu.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        jLabel31.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel31.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel31.setText("Thanh này để menu ròi nên không design trên đay");
 
         javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
         pnlMenu.setLayout(pnlMenuLayout);
         pnlMenuLayout.setHorizontalGroup(
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
+            .addGroup(pnlMenuLayout.createSequentialGroup()
+                .addGap(459, 459, 459)
+                .addComponent(jLabel31)
+                .addContainerGap(552, Short.MAX_VALUE))
         );
         pnlMenuLayout.setVerticalGroup(
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMenuLayout.createSequentialGroup()
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addComponent(jLabel31)
+                .addContainerGap())
         );
 
         jPanel2.add(pnlMenu, java.awt.BorderLayout.PAGE_START);
@@ -1317,6 +1347,17 @@ public class main2 extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        if (isConfirm( "Bạn có thực sự muốn thoát chương trình ??", "Xác nhận thoát ?")) {
+            System.exit(0);
+        }
+
+    }//GEN-LAST:event_btnExitActionPerformed
+
+    private void btnCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCourseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCourseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1426,6 +1467,7 @@ public class main2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
