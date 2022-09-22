@@ -1,19 +1,37 @@
 package com.polypro.view;
 
+import com.polypro.DAO.ChuyenDeDAO;
+import com.polypro.helper.DiaLogHelper;
+import com.polypro.helper.ShareHelper;
+import com.polypro.helper.XImage;
+import com.polypro.model.ChuyenDe;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Insets;
+import java.io.File;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
+import java.util.List;
 import javaswingdev.GradientDropdownMenu;
 import javaswingdev.MenuEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
 
 public class main2 extends javax.swing.JFrame {
 
@@ -25,6 +43,14 @@ public class main2 extends javax.swing.JFrame {
         cardLayout = (CardLayout) (main.getLayout());
         initMenu();
         addEvent();
+        initloadData();
+    }
+
+    public void initloadData() {
+// set model cho bản
+        setModelTableChuyenDe();
+// load data chuyen de
+        fillTableChuyenDe();
     }
 
     public void initMenu() {
@@ -99,7 +125,7 @@ public class main2 extends javax.swing.JFrame {
     //Hoai Nam
     public boolean isConfirm(String msg, String tittle) {
         int result = JOptionPane.showConfirmDialog(this, msg, tittle, JOptionPane.YES_NO_OPTION);
-       return result == JOptionPane.YES_OPTION;
+        return result == JOptionPane.YES_OPTION;
     }
 
     @SuppressWarnings("unchecked")
@@ -116,31 +142,31 @@ public class main2 extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblDanhSach_ChuyenDe = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lblHinhAnh_ChuyenDe = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtMaCD_ChuyenDe = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        txtTenChuyenDe_ChuyenDe = new javax.swing.JTextField();
+        txtThoiGian_ChuyenDe = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtHocPhi_ChuyenDe = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtMoTa_ChuyenDe = new javax.swing.JTextArea();
         jPanel4 = new javax.swing.JPanel();
-        jButton10 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
+        btnThem_ChuyenDe = new javax.swing.JButton();
+        btnSua_ChuyenDe = new javax.swing.JButton();
+        btnXoa_ChuyenDe = new javax.swing.JButton();
+        btnLamMoi_ChuyenDe = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
-        jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
-        jButton16 = new javax.swing.JButton();
+        btnFirst_ChuyenDe = new javax.swing.JButton();
+        btnPre_ChuyenDe = new javax.swing.JButton();
+        btnNext_ChuyenDe = new javax.swing.JButton();
+        btnLast_ChuyenDe = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         pnlQLKhoaHoc = new javax.swing.JPanel();
         jTabbedPane4 = new javax.swing.JTabbedPane();
@@ -325,26 +351,36 @@ public class main2 extends javax.swing.JFrame {
         pnlQLChuyenDe.setLayout(new java.awt.BorderLayout());
 
         jTabbedPane1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTabbedPane1MouseClicked(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblDanhSach_ChuyenDe.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Mã CD", "Tên CD", "Học Phí", "Thời Lượng", "Hình"
             }
         ));
-        jTable1.setFillsViewportHeight(true);
-        jTable1.setGridColor(new java.awt.Color(255, 255, 255));
-        jTable1.setRowHeight(25);
-        jTable1.setSelectionBackground(new java.awt.Color(0, 204, 153));
-        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jTable1.getTableHeader().setResizingAllowed(false);
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
+        tblDanhSach_ChuyenDe.setFillsViewportHeight(true);
+        tblDanhSach_ChuyenDe.setGridColor(new java.awt.Color(255, 255, 255));
+        tblDanhSach_ChuyenDe.setRowHeight(25);
+        tblDanhSach_ChuyenDe.setSelectionBackground(new java.awt.Color(0, 204, 153));
+        tblDanhSach_ChuyenDe.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblDanhSach_ChuyenDe.getTableHeader().setResizingAllowed(false);
+        tblDanhSach_ChuyenDe.getTableHeader().setReorderingAllowed(false);
+        tblDanhSach_ChuyenDe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tblDanhSach_ChuyenDeMousePressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblDanhSach_ChuyenDe);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -365,27 +401,32 @@ public class main2 extends javax.swing.JFrame {
         jLabel5.setText("Hình Logo");
         jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/fpt-32px.png"))); // NOI18N
-        jLabel6.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 51, 51)));
-        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 210, 230));
+        lblHinhAnh_ChuyenDe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblHinhAnh_ChuyenDe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/fpt-32px.png"))); // NOI18N
+        lblHinhAnh_ChuyenDe.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 51, 51)));
+        lblHinhAnh_ChuyenDe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblHinhAnh_ChuyenDeMouseClicked(evt);
+            }
+        });
+        jPanel3.add(lblHinhAnh_ChuyenDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 210, 230));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel7.setText("Mã chuyên đề");
         jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, -1, -1));
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jPanel3.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 730, 42));
+        txtMaCD_ChuyenDe.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jPanel3.add(txtMaCD_ChuyenDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 730, 42));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel8.setText("Tên chuyên đề");
         jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, -1, -1));
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jPanel3.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, 730, 42));
+        txtTenChuyenDe_ChuyenDe.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jPanel3.add(txtTenChuyenDe_ChuyenDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, 730, 42));
 
-        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jPanel3.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, 730, 42));
+        txtThoiGian_ChuyenDe.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jPanel3.add(txtThoiGian_ChuyenDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, 730, 42));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel9.setText("Thời lượng (giờ)");
@@ -395,78 +436,118 @@ public class main2 extends javax.swing.JFrame {
         jLabel10.setText("Học phí");
         jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 260, -1, -1));
 
-        jTextField4.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jPanel3.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, 730, 42));
+        txtHocPhi_ChuyenDe.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jPanel3.add(txtHocPhi_ChuyenDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, 730, 42));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel11.setText("Mô tả chuyên đề");
         jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, -1, -1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        txtMoTa_ChuyenDe.setColumns(20);
+        txtMoTa_ChuyenDe.setRows(5);
+        jScrollPane2.setViewportView(txtMoTa_ChuyenDe);
 
         jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 1010, 150));
 
         jPanel4.setPreferredSize(new java.awt.Dimension(150, 50));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton10.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/return-32px.png"))); // NOI18N
-        jButton10.setText("Thêm");
-        jButton10.setBorder(null);
-        jButton10.setMargin(new java.awt.Insets(2, 1, 2, 1));
-        jButton10.setMaximumSize(new java.awt.Dimension(150, 50));
-        jButton10.setPreferredSize(new java.awt.Dimension(100, 50));
-        jButton10.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/change-pass-24px.png"))); // NOI18N
-        jPanel4.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 102, 49));
+        btnThem_ChuyenDe.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        btnThem_ChuyenDe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/return-32px.png"))); // NOI18N
+        btnThem_ChuyenDe.setText("Thêm");
+        btnThem_ChuyenDe.setBorder(null);
+        btnThem_ChuyenDe.setMargin(new java.awt.Insets(2, 1, 2, 1));
+        btnThem_ChuyenDe.setMaximumSize(new java.awt.Dimension(150, 50));
+        btnThem_ChuyenDe.setPreferredSize(new java.awt.Dimension(100, 50));
+        btnThem_ChuyenDe.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/change-pass-24px.png"))); // NOI18N
+        btnThem_ChuyenDe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThem_ChuyenDeActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btnThem_ChuyenDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 102, 49));
 
-        jButton9.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/diem-tung-khoa-hoc-32px.png"))); // NOI18N
-        jButton9.setText("Sửa");
-        jButton9.setMargin(new java.awt.Insets(2, 1, 2, 1));
-        jButton9.setMaximumSize(new java.awt.Dimension(150, 50));
-        jButton9.setPreferredSize(new java.awt.Dimension(100, 50));
-        jButton9.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/change-pass-24px.png"))); // NOI18N
-        jPanel4.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 102, 49));
+        btnSua_ChuyenDe.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        btnSua_ChuyenDe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/diem-tung-khoa-hoc-32px.png"))); // NOI18N
+        btnSua_ChuyenDe.setText("Sửa");
+        btnSua_ChuyenDe.setMargin(new java.awt.Insets(2, 1, 2, 1));
+        btnSua_ChuyenDe.setMaximumSize(new java.awt.Dimension(150, 50));
+        btnSua_ChuyenDe.setPreferredSize(new java.awt.Dimension(100, 50));
+        btnSua_ChuyenDe.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/change-pass-24px.png"))); // NOI18N
+        btnSua_ChuyenDe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSua_ChuyenDeActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btnSua_ChuyenDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 102, 49));
 
-        jButton12.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/exit-32px.png"))); // NOI18N
-        jButton12.setText("Xóa");
-        jButton12.setMargin(new java.awt.Insets(2, 1, 2, 1));
-        jButton12.setMaximumSize(new java.awt.Dimension(150, 50));
-        jButton12.setPreferredSize(new java.awt.Dimension(100, 50));
-        jButton12.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/change-pass-24px.png"))); // NOI18N
-        jPanel4.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 102, 49));
+        btnXoa_ChuyenDe.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        btnXoa_ChuyenDe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/exit-32px.png"))); // NOI18N
+        btnXoa_ChuyenDe.setText("Xóa");
+        btnXoa_ChuyenDe.setMargin(new java.awt.Insets(2, 1, 2, 1));
+        btnXoa_ChuyenDe.setMaximumSize(new java.awt.Dimension(150, 50));
+        btnXoa_ChuyenDe.setPreferredSize(new java.awt.Dimension(100, 50));
+        btnXoa_ChuyenDe.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/change-pass-24px.png"))); // NOI18N
+        btnXoa_ChuyenDe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoa_ChuyenDeActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btnXoa_ChuyenDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 102, 49));
 
-        jButton11.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/income-32px.png"))); // NOI18N
-        jButton11.setText("Mới");
-        jButton11.setMargin(new java.awt.Insets(2, 1, 2, 1));
-        jButton11.setMaximumSize(new java.awt.Dimension(150, 50));
-        jButton11.setPreferredSize(new java.awt.Dimension(100, 50));
-        jButton11.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/change-pass-24px.png"))); // NOI18N
-        jPanel4.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, 102, 49));
+        btnLamMoi_ChuyenDe.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        btnLamMoi_ChuyenDe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/income-32px.png"))); // NOI18N
+        btnLamMoi_ChuyenDe.setText("Mới");
+        btnLamMoi_ChuyenDe.setMargin(new java.awt.Insets(2, 1, 2, 1));
+        btnLamMoi_ChuyenDe.setMaximumSize(new java.awt.Dimension(150, 50));
+        btnLamMoi_ChuyenDe.setPreferredSize(new java.awt.Dimension(100, 50));
+        btnLamMoi_ChuyenDe.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/change-pass-24px.png"))); // NOI18N
+        btnLamMoi_ChuyenDe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLamMoi_ChuyenDeActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btnLamMoi_ChuyenDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, 102, 49));
 
         jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 510, 430, 50));
 
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton13.setText("<<");
-        jButton13.setMargin(new java.awt.Insets(0, 10, 0, 10));
-        jPanel5.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 75, 50));
+        btnFirst_ChuyenDe.setText("<<");
+        btnFirst_ChuyenDe.setMargin(new java.awt.Insets(0, 10, 0, 10));
+        btnFirst_ChuyenDe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFirst_ChuyenDeActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnFirst_ChuyenDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 75, 50));
 
-        jButton14.setText("<");
-        jButton14.setMargin(new java.awt.Insets(0, 10, 0, 10));
-        jPanel5.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 75, 50));
+        btnPre_ChuyenDe.setText("<");
+        btnPre_ChuyenDe.setMargin(new java.awt.Insets(0, 10, 0, 10));
+        btnPre_ChuyenDe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPre_ChuyenDeActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnPre_ChuyenDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 75, 50));
 
-        jButton15.setText(">");
-        jButton15.setMargin(new java.awt.Insets(0, 10, 0, 10));
-        jPanel5.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 75, 50));
+        btnNext_ChuyenDe.setText(">");
+        btnNext_ChuyenDe.setMargin(new java.awt.Insets(0, 10, 0, 10));
+        btnNext_ChuyenDe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNext_ChuyenDeActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnNext_ChuyenDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 75, 50));
 
-        jButton16.setText(">>");
-        jButton16.setMargin(new java.awt.Insets(0, 10, 0, 10));
-        jPanel5.add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 70, 50));
+        btnLast_ChuyenDe.setText(">>");
+        btnLast_ChuyenDe.setMargin(new java.awt.Insets(0, 10, 0, 10));
+        btnLast_ChuyenDe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLast_ChuyenDeActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnLast_ChuyenDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 70, 50));
 
         jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 510, 340, 50));
 
@@ -1348,7 +1429,7 @@ public class main2 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        if (isConfirm( "Bạn có thực sự muốn thoát chương trình ??", "Xác nhận thoát ?")) {
+        if (isConfirm("Bạn có thực sự muốn thoát chương trình ??", "Xác nhận thoát ?")) {
             System.exit(0);
         }
 
@@ -1357,6 +1438,58 @@ public class main2 extends javax.swing.JFrame {
     private void btnCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCourseActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCourseActionPerformed
+
+    private void btnLamMoi_ChuyenDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoi_ChuyenDeActionPerformed
+        clearChuyenDe();
+        
+    }//GEN-LAST:event_btnLamMoi_ChuyenDeActionPerformed
+
+    private void lblHinhAnh_ChuyenDeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHinhAnh_ChuyenDeMouseClicked
+        chonAnh();
+    }//GEN-LAST:event_lblHinhAnh_ChuyenDeMouseClicked
+
+    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
+
+    }//GEN-LAST:event_jTabbedPane1MouseClicked
+
+    private void btnThem_ChuyenDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem_ChuyenDeActionPerformed
+         isUpdate = false;
+        if (checkFormChuyenDe()) {
+            insertChuyenDe();
+        }
+    }//GEN-LAST:event_btnThem_ChuyenDeActionPerformed
+
+    private void btnSua_ChuyenDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSua_ChuyenDeActionPerformed
+        isUpdate = true;
+        if (checkFormChuyenDe()) {
+            updateChuyenDe();
+        }
+    }//GEN-LAST:event_btnSua_ChuyenDeActionPerformed
+
+    private void btnXoa_ChuyenDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa_ChuyenDeActionPerformed
+        deleteChuyenDe();
+    }//GEN-LAST:event_btnXoa_ChuyenDeActionPerformed
+
+    private void tblDanhSach_ChuyenDeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDanhSach_ChuyenDeMousePressed
+        index = tblDanhSach_ChuyenDe.getSelectedRow();
+        editChuyenDe();
+    }//GEN-LAST:event_tblDanhSach_ChuyenDeMousePressed
+
+    private void btnFirst_ChuyenDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirst_ChuyenDeActionPerformed
+      first();
+    }//GEN-LAST:event_btnFirst_ChuyenDeActionPerformed
+
+    private void btnLast_ChuyenDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLast_ChuyenDeActionPerformed
+      last();
+    }//GEN-LAST:event_btnLast_ChuyenDeActionPerformed
+
+    private void btnNext_ChuyenDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNext_ChuyenDeActionPerformed
+        next();
+    }//GEN-LAST:event_btnNext_ChuyenDeActionPerformed
+
+    private void btnPre_ChuyenDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPre_ChuyenDeActionPerformed
+       prev();
+    }//GEN-LAST:event_btnPre_ChuyenDeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1398,19 +1531,20 @@ public class main2 extends javax.swing.JFrame {
     private javax.swing.ButtonGroup btgSex;
     private javax.swing.JButton btnCourse;
     private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnFirst_ChuyenDe;
     private javax.swing.JButton btnGuide;
+    private javax.swing.JButton btnLamMoi_ChuyenDe;
+    private javax.swing.JButton btnLast_ChuyenDe;
     private javax.swing.JButton btnLearner;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnMenubar_showhide;
+    private javax.swing.JButton btnNext_ChuyenDe;
+    private javax.swing.JButton btnPre_ChuyenDe;
     private javax.swing.JButton btnStudent;
+    private javax.swing.JButton btnSua_ChuyenDe;
+    private javax.swing.JButton btnThem_ChuyenDe;
     private javax.swing.JButton btnTopic;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
+    private javax.swing.JButton btnXoa_ChuyenDe;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
@@ -1438,7 +1572,6 @@ public class main2 extends javax.swing.JFrame {
     private javax.swing.JButton jButton41;
     private javax.swing.JButton jButton42;
     private javax.swing.JButton jButton43;
-    private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
@@ -1476,7 +1609,6 @@ public class main2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -1529,16 +1661,13 @@ public class main2 extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTabbedPane jTabbedPane4;
     private javax.swing.JTabbedPane jTabbedPane5;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
     private javax.swing.JTable jTable6;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
@@ -1546,19 +1675,17 @@ public class main2 extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField19;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField20;
     private javax.swing.JTextField jTextField21;
     private javax.swing.JTextField jTextField23;
     private javax.swing.JTextField jTextField24;
     private javax.swing.JTextField jTextField25;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JLabel lblHinhAnh_ChuyenDe;
     private javax.swing.JPanel main;
     private javax.swing.JPanel pnlDashboard;
     private javax.swing.JPanel pnlExit;
@@ -1573,5 +1700,235 @@ public class main2 extends javax.swing.JFrame {
     private javax.swing.JPanel pnlRoot;
     private javax.swing.JPanel pnlTopic;
     private javax.swing.JPanel pnlTrangThai;
+    private javax.swing.JTable tblDanhSach_ChuyenDe;
+    private javax.swing.JTextField txtHocPhi_ChuyenDe;
+    private javax.swing.JTextField txtMaCD_ChuyenDe;
+    private javax.swing.JTextArea txtMoTa_ChuyenDe;
+    private javax.swing.JTextField txtTenChuyenDe_ChuyenDe;
+    private javax.swing.JTextField txtThoiGian_ChuyenDe;
     // End of variables declaration//GEN-END:variables
+//
+
+    // xu ly chuyen de thai
+//
+//
+    JFileChooser filenChooser = new JFileChooser();
+    static ChuyenDeDAO dao = new ChuyenDeDAO();
+    int index = -1;
+    boolean isUpdate = false;
+    static DefaultTableModel modelChuyenDe;
+
+    public void setModelTableChuyenDe() {
+        modelChuyenDe = new DefaultTableModel(new Object[][]{}, new Object[]{"Mã chuyên đề", "Tên chuyên đề", "Học phí", "Thời lượng", "Mô tả", "Ảnh"});
+        tblDanhSach_ChuyenDe.setModel(modelChuyenDe);
+
+    }
+
+    void chonAnh() {
+        if (filenChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            File file = filenChooser.getSelectedFile();
+            XImage.save(file);
+            ImageIcon icon = XImage.read(file.getName());
+            lblHinhAnh_ChuyenDe.setIcon(icon);
+            lblHinhAnh_ChuyenDe.setToolTipText(file.getName());
+        }
+    }
+
+    static public void fillTableChuyenDe() {
+        //DefaultTableModel model = (DefaultTableModel) tblChuyenDe.getModel();
+        modelChuyenDe.setRowCount(0);
+
+        try {
+            List<ChuyenDe> list;
+            
+                list = dao.select();
+           
+            
+            for (ChuyenDe cd : list) {
+                Object[] row = {
+                    cd.getMaCD(),
+                    cd.getTenCD(),
+                    (long) cd.getHocPhi(),
+                    cd.getThoiLuong(),
+                    cd.getMoTa(),
+                    cd.getHinh()
+                };
+                modelChuyenDe.addRow(row);
+            }
+        } catch (Exception e) {
+        }
+    }
+
+    void setFormChuyenDe(ChuyenDe cd) {
+        txtMaCD_ChuyenDe.setText(cd.getMaCD());
+        txtTenChuyenDe_ChuyenDe.setText(cd.getTenCD());
+        txtHocPhi_ChuyenDe.setText(String.valueOf((long) cd.getHocPhi()));
+        txtThoiGian_ChuyenDe.setText(String.valueOf(cd.getThoiLuong()));
+        lblHinhAnh_ChuyenDe.setToolTipText(cd.getHinh());
+        if (cd.getHinh()!= null) {
+            lblHinhAnh_ChuyenDe.setIcon(XImage.read(cd.getHinh()));
+        }
+        txtMoTa_ChuyenDe.setText(cd.getMoTa());
+    }
+
+    ChuyenDe getFormChuyenDe() {
+        ChuyenDe cd = new ChuyenDe();
+        cd.setMaCD(txtMaCD_ChuyenDe.getText());
+        cd.setTenCD(txtTenChuyenDe_ChuyenDe.getText());
+        cd.setHocPhi(Float.parseFloat(txtHocPhi_ChuyenDe.getText()));
+        cd.setThoiLuong(Integer.valueOf(txtThoiGian_ChuyenDe.getText()));
+        cd.setHinh(lblHinhAnh_ChuyenDe.getToolTipText());
+        cd.setMoTa(txtMoTa_ChuyenDe.getText());
+        return cd;
+    }
+
+    void editChuyenDe() {
+        try {
+            String macd = (String) tblDanhSach_ChuyenDe.getValueAt(this.index, 0);
+            ChuyenDe model = dao.selectID(macd);
+            if (model != null) {
+                setFormChuyenDe(model);//lỗi chưa bk sửa
+                this.updateStatusChuyenDe();
+            }
+        } catch (Exception e) {
+            DiaLogHelper.alert(this, "Lỗi truy vấn dữ liệu!");
+        }
+    }
+
+    void insertChuyenDe() {
+        ChuyenDe model = getFormChuyenDe();
+        if (model.getHinh() == null) {
+            DiaLogHelper.alert(this, "Hình Không Được Để Trống");
+            return;
+        }
+        try {
+            dao.insert(model);
+            this.fillTableChuyenDe();
+            //MsgBox.alert(this, "Thêm mới thành công!");
+        } catch (Exception e) {
+            DiaLogHelper.alert(this, "Thêm mới thất bại!");
+        }
+    }
+
+    void updateChuyenDe() {
+        ChuyenDe model = getFormChuyenDe();
+        if (DiaLogHelper.confirm(this, "Bạn có chắc muốn cập nhật chuyên đề này không?")) {
+            try {
+                dao.update(model);
+                this.fillTableChuyenDe();
+                clearChuyenDe();
+                DiaLogHelper.alert(this, "Cập nhật thành công");
+            } catch (Exception e) {
+           }
+
+        }
+    }
+
+    void deleteChuyenDe() {
+        ChuyenDe cd = dao.selectID(String.valueOf(tblDanhSach_ChuyenDe.getValueAt(index, 0)));
+        if (DiaLogHelper.confirm(this, "Bạn có chắc muốn xóa chuyên đề này không?")) {
+            try {
+                String maCD = txtMaCD_ChuyenDe.getText();
+                dao.delete(maCD);
+                this.fillTableChuyenDe();
+                DiaLogHelper.alert(this, "Xóa thành công!");
+            } catch (Exception e) {
+                DiaLogHelper.alert(this, "Không thể xóa chuyên đề đã tồn tại khóa học!");
+            }
+        }
+
+    }
+
+    void updateStatusChuyenDe() {
+        boolean edit = (index >= 0);
+        boolean first = this.index == 0;
+        boolean last = this.index == tblDanhSach_ChuyenDe.getRowCount() - 1;
+        txtMaCD_ChuyenDe.setEditable(!edit);
+        btnThem_ChuyenDe.setEnabled(!edit);
+        btnSua_ChuyenDe.setEnabled(edit);
+        btnXoa_ChuyenDe.setEnabled(edit);
+
+        btnFirst_ChuyenDe.setEnabled(edit && !first);
+        btnPre_ChuyenDe.setEnabled(edit && !first);
+        btnNext_ChuyenDe.setEnabled(edit && !last);
+        btnLast_ChuyenDe.setEnabled(edit && !last);
+    }
+
+    public void first() {
+        index = 0;
+        tblDanhSach_ChuyenDe.setRowSelectionInterval(index, index);
+        editChuyenDe();
+    }
+
+    public void prev() {
+        if (index > 0) {
+            index--;
+            tblDanhSach_ChuyenDe.setRowSelectionInterval(index, index);
+            editChuyenDe();
+        }
+    }
+
+    public void next() {
+        if (index < tblDanhSach_ChuyenDe.getRowCount() - 1) {
+            index++;
+            tblDanhSach_ChuyenDe.setRowSelectionInterval(index, index);
+            editChuyenDe();
+        }
+    }
+
+    public void last() {
+        index = tblDanhSach_ChuyenDe.getRowCount() - 1;
+        tblDanhSach_ChuyenDe.setRowSelectionInterval(index, index);
+        editChuyenDe();
+    }
+
+    void clearChuyenDe() {
+        txtMaCD_ChuyenDe.setText("");
+        txtTenChuyenDe_ChuyenDe.setText("");
+        txtThoiGian_ChuyenDe.setText("");
+        txtHocPhi_ChuyenDe.setText("");
+        txtMoTa_ChuyenDe.setText("");
+      
+        lblHinhAnh_ChuyenDe.setIcon(null);
+        index = -1;
+        updateStatusChuyenDe();
+    }
+
+
+  public boolean checkFormChuyenDe() {
+        
+        if (txtMaCD_ChuyenDe.getText().equals("") || txtMaCD_ChuyenDe.getText().equals("") || txtThoiGian_ChuyenDe.getText().equals("")
+                || txtHocPhi_ChuyenDe.getText().equals("") || txtMoTa_ChuyenDe.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Hãy nhập đủ dữ liệu sau đó ấn Thêm", "Error", 1);
+            return false;
+        } else if (!(txtMaCD_ChuyenDe.getText()).matches("CD[0-9]{1,5}")) {
+            JOptionPane.showMessageDialog(this, "Sai định dạng mã \n VD : CD07", "Error", 1);
+            txtMaCD_ChuyenDe.requestFocus();
+            return false;
+        } else if (!(txtThoiGian_ChuyenDe.getText()).matches("[0-9]{1,99}")) {
+            JOptionPane.showMessageDialog(this, "Thời lượng phải nhập số dương", "Error", 1);
+            txtThoiGian_ChuyenDe.requestFocus();
+            return false;
+        } else if (!(txtHocPhi_ChuyenDe.getText()).matches("[0-9]{1,99}")) {
+            JOptionPane.showMessageDialog(this, "Học phí phải nhập số dương", "Error", 1);
+            txtHocPhi_ChuyenDe.requestFocus();
+            return false;
+        } 
+        List<ChuyenDe> list = dao.select();
+        for (int i = 0; i < list.size(); i++) {
+            if (isUpdate) {
+            } else {
+                if (txtMaCD_ChuyenDe.getText().equalsIgnoreCase(list.get(i).getMaCD())) {
+                    JOptionPane.showMessageDialog(this, "Trùng Mã Chuyên Đề", "Error", 1);
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    
+
+    
 }

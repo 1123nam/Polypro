@@ -12,18 +12,23 @@ public class KhoaHocDAO extends abstractDAO<KhoaHoc, Integer>{
     @Override
     public void insert(KhoaHoc model) {
         String sql = "INSERT INTO KhoaHoc (MaCD, HocPhi, ThoiLuong, NgayKG, GhiChu, MaNV) VALUES (?, ?, ?, ?, ?,?)";
-        JdbcHelper.update(sql,
+        try {
+             JdbcHelper.update(sql,
                 model.getMaCD(),
                 model.getHocPhi(),
                 model.getThoiLuong(),
                 model.getNgayKG(),
                 model.getGhiChu(),
                 model.getMaNV());
+        } catch (Exception e) {
+        }
+       
     }
     @Override
     public void update(KhoaHoc model) {
         String sql = "UPDATE KhoaHoc SET MaCD=?, HocPhi=?, ThoiLuong=?, NgayKG=?, GhiChu=?, MaNV=? WHEREMaKH=?";
-        JdbcHelper.update(sql,
+        try {
+             JdbcHelper.update(sql,
                 model.getMaCD(),
                 model.getHocPhi(),
                 model.getThoiLuong(),
@@ -31,12 +36,19 @@ public class KhoaHocDAO extends abstractDAO<KhoaHoc, Integer>{
                 model.getGhiChu(),
                 model.getMaNV(),
                 model.getMaKH());
+        } catch (Exception e) {
+        }
+       
     }
     
     @Override
     public void delete(Integer MaKH) {
         String sql = "DELETE FROM KhoaHoc WHERE MaKH=?";
-        JdbcHelper.update(sql, MaKH);
+        try {
+             JdbcHelper.update(sql, MaKH);
+        } catch (Exception e) {
+        }
+       
     }
     
     @Override

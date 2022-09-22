@@ -13,7 +13,8 @@ public class NguoiHocDAO extends abstractDAO<NguoiHoc,String >{
     public void insert(NguoiHoc model) {
         String sql
                 = "INSERT INTO NguoiHoc (MaNH, HoTen, NgaySinh, GioiTinh, DienThoai, Email, GhiChu, MaNV)VALUES( ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?)";
-        JdbcHelper.update(sql,
+       try {
+           JdbcHelper.update(sql,
                 model.getMaNH(),
                 model.getHoTen(),
                 model.getNgaySinh(),
@@ -22,11 +23,16 @@ public class NguoiHocDAO extends abstractDAO<NguoiHoc,String >{
                 model.getEmail(),
                 model.getGhiChu(),
                 model.getMaNV());
+       } catch (Exception e) {
+       }
+        
+
     }
     @Override
     public void update(NguoiHoc model) {
         String sql = "UPDATE NguoiHoc SET HoTen=?, NgaySinh=?, GioiTinh=?, DienThoai=?, Email=?, GhiChu=?,MaNV =  ? WHERE  MaNH =  ? ";
-        JdbcHelper.update(sql,
+        try {
+            JdbcHelper.update(sql,
                 model.getHoTen(),
                 model.getNgaySinh(),
                 model.isGioiTinh(),
@@ -35,11 +41,19 @@ public class NguoiHocDAO extends abstractDAO<NguoiHoc,String >{
                 model.getGhiChu(),
                 model.getMaNV(),
                 model.getMaNH());
+        } catch (Exception e) {
+        }
+       
+ 
     }
     @Override
     public void delete(String id) {
         String sql = "DELETE FROM NguoiHoc WHERE MaNH=?";
-        JdbcHelper.update(sql, id);
+        try {
+            JdbcHelper.update(sql, id);
+        } catch (Exception e) {
+        }
+        
     }
     @Override
     public List<NguoiHoc> select() {

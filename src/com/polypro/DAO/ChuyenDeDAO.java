@@ -11,50 +11,63 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ChuyenDeDAO extends abstractDAO<ChuyenDe, String> {
 
+    String INSERT_SQL = "INSERT INTO CHUYENDE(MACD, TENCD, HOCPHI, THOILUONG, HINH, MOTA) VALUES (?, ?, ?, ?, ?, ?)";
+    String UPDATE_SQL = "UPDATE CHUYENDE SET TENCD = ?, HOCPHI = ?, THOILUONG = ?, HINH=?, MOTA =? WHERE MACD = ?";
+    String DELETE_SQL = "DELETE FROM CHUYENDE WHERE MACD = ?";
+    String SELECT_ALL_SQL = "SELECT * FROM CHUYENDE";
+    String SELECT_BY_ID_SQL = "SELECT * FROM CHUYENDE WHERE MACD = ?";
+
     @Override
-    public void insert(ChuyenDe model) {
-        String sql = "INSERT INTO ChuyenDe (MaCD, TenCD, HocPhi, ThoiLuong, Hinh, MoTa) VALUES (?, ?, ?, ?, ?, ?)";
-        JdbcHelper.update(sql,
-                model.getMaCD(),
-                model.getTenCD(),
-                model.getHocPhi(),
-                model.getThoiLuong(),
-                model.getHinh(),
-                model.getMoTa());
+    public void insert(ChuyenDe entity) {
+       
+        try {
+            JdbcHelper.update(INSERT_SQL, entity.getMaCD(), entity.getTenCD(), entity.getHocPhi(), entity.getThoiLuong(), entity.getHinh(), entity.getMoTa());
+        } catch (Exception ex) {
+            Logger.getLogger(ChuyenDeDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public void update(ChuyenDe model) {
-        String sql = "UPDATE ChuyenDe SET TenCD=?, HocPhi=?, ThoiLuong=?, Hinh=?, MoTa=? WHERE MaCD=?";
-        JdbcHelper.update(sql,
-                model.getTenCD(),
-                model.getHocPhi(),
-                model.getThoiLuong(),
-                model.getHinh(),
-                model.getMoTa(),
-                model.getMaCD()
-        );
+      
+        try {
+            JdbcHelper.update(UPDATE_SQL,
+                    model.getTenCD(),
+                    model.getHocPhi(),
+                    model.getThoiLuong(),
+                    model.getHinh(),
+                    model.getMoTa(),
+                    model.getMaCD()
+            );
+        } catch (Exception e) {
+        }
+
     }
 
     @Override
     public void delete(String MaCD) {
-        String sql = "DELETE FROM ChuyenDe WHERE MaCD=?";
-        JdbcHelper.update(sql, MaCD);
+        try {
+            JdbcHelper.update(DELETE_SQL, MaCD);
+        } catch (Exception e) {
+        }
+
     }
 
     @Override
     public List<ChuyenDe> select() {
-        String sql = "SELECT * FROM ChuyenDe";
-        return this.selectBySql(sql);
+        
+        return this.selectBySql(SELECT_ALL_SQL);
     }
 
     @Override
     public ChuyenDe selectID(String id) {
-        String sql = "SELECT * FROM ChuyenDe WHERE MaCD=?";
-          List<ChuyenDe> list = this.selectBySql(sql, id);
+        
+        List<ChuyenDe> list = this.selectBySql(SELECT_BY_ID_SQL, id);
         if (list.isEmpty()) {
             return null;
         }
@@ -63,7 +76,7 @@ public class ChuyenDeDAO extends abstractDAO<ChuyenDe, String> {
 
     @Override
     public List<ChuyenDe> selectBySql(String sql, Object... args) {
-         List<ChuyenDe> list = new ArrayList<ChuyenDe>();
+        List<ChuyenDe> list = new ArrayList<ChuyenDe>();
         try {
             ResultSet result = JdbcHelper.query(sql, args);
             while (result.next()) {
@@ -82,6 +95,5 @@ public class ChuyenDeDAO extends abstractDAO<ChuyenDe, String> {
             throw new RuntimeException(e);
         }
     }
-
 
 }

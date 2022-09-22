@@ -20,17 +20,29 @@ public class HocVienDAO extends abstractDAO<HocVien, Integer> {
    @Override
     public void insert(HocVien model) {
         String sql = "INSERT INTO HocVien(MaKH, MaNH, Diem) VALUES(?, ?, ?)";
-        JdbcHelper.update(sql, model.getMaKH(), model.getMaNH(), model.getDiem());
+        try {
+           JdbcHelper.update(sql, model.getMaKH(), model.getMaNH(), model.getDiem());
+       } catch (Exception e) {
+       }
+        
     }
     @Override
     public void update(HocVien model) {
         String sql = "UPDATE HocVien SET MaKH=?, MaNH=?, Diem=? WHERE MaHV=?";
-        JdbcHelper.update(sql, model.getMaKH(), model.getMaNH(), model.getDiem(), model.getMaHV());
+        try {
+            JdbcHelper.update(sql, model.getMaKH(), model.getMaNH(), model.getDiem(), model.getMaHV());
+        } catch (Exception e) {
+        }
+        
     }
     @Override
     public void delete(Integer MaHV) {
         String sql = "DELETE FROM HocVien WHERE MaHV=?";
-        JdbcHelper.update(sql, MaHV);
+        try {
+             JdbcHelper.update(sql, MaHV);
+        } catch (Exception e) {
+        }
+       
     }
     @Override
     public List<HocVien> select() {

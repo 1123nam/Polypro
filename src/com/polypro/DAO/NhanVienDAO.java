@@ -20,26 +20,38 @@ public class NhanVienDAO extends abstractDAO<NhanVien, String>{
 @Override
  public void insert(NhanVien model){
     String sql="INSERT INTO NhanVien (MaNV, MatKhau, HoTen, VaiTro) VALUES (?, ?, ?, ?)";
-    JdbcHelper.update(sql, 
+    try {
+        JdbcHelper.update(sql, 
     model.getMaNV(), 
     model.getMatKhau(),
     model.getHoTen(), 
     model.isVaiTro());
+    } catch (Exception e) {
+    }
+    
 }
 @Override
  public void update(NhanVien model){
     String sql="UPDATE NhanVien SET MatKhau=?, HoTen=?, VaiTro=? WHERE MaNV=?";
-    JdbcHelper.update(sql, 
+    try {
+         JdbcHelper.update(sql, 
     model.getMatKhau(), 
     model.getHoTen(), 
     model.isVaiTro(),
     model.getMaNV());
+    } catch (Exception e) {
+    }
+   
    
  }
  @Override
  public void delete(String MaNV){
     String sql="DELETE FROM NhanVien WHERE MaNV=?";
-    JdbcHelper.update(sql, MaNV);
+     try {
+         JdbcHelper.update(sql, MaNV);
+     } catch (Exception e) {
+     }
+    
  }
  @Override
  public List<NhanVien> select(){

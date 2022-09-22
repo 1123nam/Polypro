@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public class JdbcHelper {
 
     private static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    private static String dburl = "jdbc:sqlserver://localhost;database=edusys";
+    private static String dburl = "jdbc:sqlserver://localhost;database=EduSys";
     private static String username = "sa";
     private static String password = "12345";
 
@@ -24,48 +24,31 @@ public class JdbcHelper {
         }
     }
 
-    /**
-     * Xây dựng PreparedStatement
-     *
-     * @param sql là câu lệnh SQL chứa có thể chứa tham số. Nó có thể là một lời
-     * gọi thủ tục lưu
-     * @param args là danh sách các giá trị được cung cấp cho các tham số trong
-     * câu lệnh sql
-     * @return PreparedStatement tạo được
-     * @throws java.sql.SQLException lỗi sai cú pháp
-     */
+
     public static PreparedStatement getStmt(String sql, Object... args) throws SQLException {
-        Connection connection = DriverManager.getConnection(dburl, username, password);
-        PreparedStatement pstmt = null;
+           Connection conn = DriverManager.getConnection(dburl, username, password);
+        PreparedStatement stmt;
         if (sql.trim().startsWith("{")) {
-            pstmt = connection.prepareCall(sql);
+            stmt = conn.prepareCall(sql);
         } else {
-            pstmt = connection.prepareStatement(sql);
+            stmt = conn.prepareStatement(sql);
         }
         for (int i = 0; i < args.length; i++) {
-            pstmt.setObject(i + 1, args[i]);
+            stmt.setObject(i + 1, args[i]);
         }
-        return pstmt;
+        return stmt;
     }
 
-    /**
-     * Thực hiện câu lệnh SQL thao tác (INSERT, UPDATE, DELETE) hoặc thủ tục lưu
-     * thao tác dữ liệu
-     *
-     * @param sql là câu lệnh SQL chứa có thể chứa tham số. Nó có thể là một lời
-     * gọi thủ tục lưu
-     * @param args là danh sách các giá trị được cung cấp cho các tham số trong
-     * câu lệnh sql *
-     */
-    public static int update(String sql, Object... args) {
-        try {
-            PreparedStatement stmt = getStmt(sql, args);
+
+    public static int update(String sql, Object... args)throws SQLException {
+    try {
+            PreparedStatement stmt = JdbcHelper.getStmt(sql, args);
             try {
-            return   stmt.executeUpdate();
+                return stmt.executeUpdate();
             } finally {
                 stmt.getConnection().close();
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
