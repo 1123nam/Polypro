@@ -10,11 +10,16 @@ import java.util.List;
 
 abstract class abstractDAO <E , K> {
 // them
-  public abstract void insert(E entity);
+   abstract public void insert(E entity);
 // xoa
-  public abstract void delete(K id);
+   abstract public void delete(K id);
 // sua
-  public abstract  void update(E entity);
+   abstract public  void update(E entity);
 //truy van
-  public abstract  List<E> select();
+   abstract public  List<E> select();
+// select id
+   abstract public E selectID(K id); 
+// select 
+   abstract protected List<E> selectBySql(String sql, Object... args);
+ 
 }

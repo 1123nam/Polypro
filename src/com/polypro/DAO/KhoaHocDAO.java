@@ -42,46 +42,44 @@ public class KhoaHocDAO extends abstractDAO<KhoaHoc, Integer>{
     @Override
     public List<KhoaHoc> select() {
         String sql = "SELECT * FROM KhoaHoc";
-        return select(sql);
+        return this.selectBySql(sql);
     }
 
-    public KhoaHoc findById(Integer makh) {
+
+    @Override
+    public KhoaHoc selectID(Integer id) {
         String sql = "SELECT * FROM KhoaHoc WHERE MaKH=?";
-        List<KhoaHoc> list = select(sql, makh);
-        return list.size() > 0 ? list.get(0) : null;
-    }
-
-    private List<KhoaHoc> select(String sql, Object... args) {
-        List<KhoaHoc> list = new ArrayList<>();
-        try {
-            ResultSet rs = null;
-            try {
-                rs = JdbcHelper.query(sql, args);
-                while (rs.next()) {
-                    KhoaHoc model = readFromResultSet(rs);
-                    list.add(model);
-                }
-            } finally {
-                rs.getStatement().getConnection().close();
-            }
-        } catch (SQLException ex) {
-            throw new RuntimeException(ex);
+        List<KhoaHoc> list = this.selectBySql(sql, id); // đang lỗi 
+        if (list.isEmpty()) {
+            return null;
         }
-        return list;
+        return list.get(0);
+    }
+   @Override
+    public List<KhoaHoc> selectBySql(String sql, Object... args) {
+       List<KhoaHoc> list = new ArrayList<>();
+        try {
+            ResultSet result = JdbcHelper.query(sql, args);
+            while (result.next()) {
+                KhoaHoc entity = new KhoaHoc();
+                entity.setMaKH(result.getInt("MAKH"));
+                entity.setHocPhi(result.getFloat("HOCPHI"));
+                entity.setThoiLuong(result.getInt("THOILUONG"));
+                entity.setNgayKG(result.getDate("NGAYKG"));
+                entity.setGhiChu(result.getString("GHICHU"));
+                entity.setMaNV(result.getString("MaNV"));
+                entity.setNgayTao(result.getDate("NgayTao"));
+
+                entity.setMaCD(result.getString("MACD"));
+
+                list.add(entity);
+            }
+            result.getStatement().getConnection().close();
+            return list;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    private KhoaHoc readFromResultSet(ResultSet rs) throws SQLException {
-        KhoaHoc model = new KhoaHoc();
-        model.setMaKH(rs.getInt("MaKH"));
-        model.setHocPhi(rs.getDouble("HocPhi"));
-        model.setThoiLuong(rs.getInt("ThoiLuong"));
-        model.setNgayKG(rs.getDate("NgayKG"));
-        model.setGhiChu(rs.getString("GhiChu"));
 
-        model.setMaNV(rs.getString("MaNV"));
-        model.setNgayTao(rs.getDate("NgayTao"));
-        model.setMaCD(rs.getString("MaCD"));
-
-        return model;
-    }
 }
