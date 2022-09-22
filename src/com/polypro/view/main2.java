@@ -357,7 +357,7 @@ public class main2 extends javax.swing.JFrame {
             .addComponent(jScrollPane1)
         );
 
-        jTabbedPane1.addTab("   Cập Nhật    ", jPanel1);
+        jTabbedPane1.addTab("Danh sách", jPanel1);
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -470,7 +470,7 @@ public class main2 extends javax.swing.JFrame {
 
         jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 510, 340, 50));
 
-        jTabbedPane1.addTab("   Danh Sách   ", jPanel3);
+        jTabbedPane1.addTab("Cập nhật", jPanel3);
 
         pnlQLChuyenDe.add(jTabbedPane1, java.awt.BorderLayout.CENTER);
 
@@ -1320,7 +1320,6 @@ public class main2 extends javax.swing.JFrame {
         pnlMenu.setPreferredSize(new java.awt.Dimension(50, 50));
 
         jLabel31.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jLabel31.setForeground(new java.awt.Color(0, 0, 0));
         jLabel31.setText("Thanh này để menu ròi nên không design trên đay");
 
         javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
@@ -1335,7 +1334,7 @@ public class main2 extends javax.swing.JFrame {
         pnlMenuLayout.setVerticalGroup(
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMenuLayout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel31)
                 .addContainerGap())
         );
