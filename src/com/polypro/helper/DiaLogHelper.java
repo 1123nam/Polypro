@@ -44,5 +44,4 @@ public class DiaLogHelper {
     return JOptionPane.showInputDialog(parent, message, 
     "Hệ thống quản lý đào tạo", JOptionPane.INFORMATION_MESSAGE);
     }
-
 }

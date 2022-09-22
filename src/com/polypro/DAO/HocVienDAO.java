@@ -72,4 +72,14 @@ public class HocVienDAO extends abstractDAO<HocVien, Integer> {
         return model;
     }
 
+    @Override
+    public HocVien selectID(Integer id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    protected List<HocVien> selectBySql(String sql, Object... args) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

@@ -83,4 +83,14 @@ public class NhanVienDAO extends abstractDAO<NhanVien, String>{
     return model;
  }
 
+    @Override
+    public NhanVien selectID(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    protected List<NhanVien> selectBySql(String sql, Object... args) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
