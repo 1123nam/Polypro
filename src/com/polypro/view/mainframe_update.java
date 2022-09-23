@@ -289,8 +289,10 @@ public class mainframe_update extends javax.swing.JFrame {
         jPanel51 = new RoundedPanel(15);
         jLabel72 = new javax.swing.JLabel();
         jPanel16 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel27 = new javax.swing.JLabel();
+        jPanel75 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
         pnlQLNhanVien = new javax.swing.JPanel();
         tbpNhanVien = new javax.swing.JTabbedPane();
         jPanel6 = new javax.swing.JPanel();
@@ -317,11 +319,11 @@ public class mainframe_update extends javax.swing.JFrame {
         btnMoi_NhanVien = new javax.swing.JButton();
         jPanel52 = new RoundedPanel(30);
         jLabel13 = new javax.swing.JLabel();
-        txtMaNV_NhanVien = new RoundJTextField(10);
+        txtMaNV_NhanVien = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        txtHoTen_NhanVien = new RoundJTextField(10);
+        txtHoTen_NhanVien = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         rdoTruongPhong_NhanVien = new javax.swing.JRadioButton();
         rdoNhanVien_NhanVien = new javax.swing.JRadioButton();
@@ -454,11 +456,12 @@ public class mainframe_update extends javax.swing.JFrame {
         pnlQLHocVien = new javax.swing.JPanel();
         jPanel22 = new javax.swing.JPanel();
         jPanel21 = new javax.swing.JPanel();
-        jLabel28 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jLabel166 = new javax.swing.JLabel();
         jPanel23 = new javax.swing.JPanel();
         jLabel29 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jLabel28 = new javax.swing.JLabel();
         jTabbedPane5 = new javax.swing.JTabbedPane();
         jPanel24 = new javax.swing.JPanel();
         jScrollPane8 = new javax.swing.JScrollPane();
@@ -504,7 +507,7 @@ public class mainframe_update extends javax.swing.JFrame {
         jPanel2.setLayout(new java.awt.BorderLayout());
 
         main.setBackground(new java.awt.Color(255, 255, 255));
-        main.setPreferredSize(new java.awt.Dimension(1400, 800));
+        main.setPreferredSize(new java.awt.Dimension(1400, 900));
         main.setLayout(new java.awt.CardLayout());
 
         pnlRoot.setBackground(new java.awt.Color(255, 255, 255));
@@ -741,7 +744,7 @@ public class mainframe_update extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
         );
 
         tbpChuyenDe.addTab("   Danh sách   ", jPanel1);
@@ -1019,12 +1022,12 @@ public class mainframe_update extends javax.swing.JFrame {
         pnlQLChuyenDe.add(tbpChuyenDe, java.awt.BorderLayout.CENTER);
 
         jLabel12.setBackground(new java.awt.Color(71, 102, 102));
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("Quản Lý Chuyên Đề");
+        jLabel12.setText("QUẢN LÝ CHUYÊN ĐỀ");
         jLabel12.setOpaque(true);
-        jLabel12.setPreferredSize(new java.awt.Dimension(233, 35));
+        jLabel12.setPreferredSize(new java.awt.Dimension(430, 40));
         pnlQLChuyenDe.add(jLabel12, java.awt.BorderLayout.PAGE_START);
 
         main.add(pnlQLChuyenDe, "cardQLChuyenDe");
@@ -1057,7 +1060,7 @@ public class mainframe_update extends javax.swing.JFrame {
         );
         jPanel18Layout.setVerticalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 666, Short.MAX_VALUE)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE)
         );
 
         jTabbedPane4.addTab("   Danh Sách   ", jPanel18);
@@ -1067,7 +1070,7 @@ public class mainframe_update extends javax.swing.JFrame {
 
         jPanel19.setBackground(new java.awt.Color(255, 255, 255));
         jPanel19.setPreferredSize(new java.awt.Dimension(150, 50));
-        jPanel19.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel19.setLayout(new java.awt.GridLayout(0, 2, 10, 5));
 
         jButton33.setBackground(new java.awt.Color(255, 255, 255));
         jButton33.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
@@ -1079,42 +1082,50 @@ public class mainframe_update extends javax.swing.JFrame {
         jButton33.setMaximumSize(new java.awt.Dimension(150, 50));
         jButton33.setPreferredSize(new java.awt.Dimension(100, 50));
         jButton33.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/change-pass-24px.png"))); // NOI18N
-        jPanel19.add(jButton33, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 60));
+        jPanel19.add(jButton33);
 
         jButton34.setBackground(new java.awt.Color(255, 255, 255));
         jButton34.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jButton34.setForeground(new java.awt.Color(0, 153, 153));
         jButton34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/update.png"))); // NOI18N
         jButton34.setText("Sửa");
+        jButton34.setBorder(null);
         jButton34.setMargin(new java.awt.Insets(2, 1, 2, 1));
         jButton34.setMaximumSize(new java.awt.Dimension(150, 50));
         jButton34.setPreferredSize(new java.awt.Dimension(100, 50));
         jButton34.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/change-pass-24px.png"))); // NOI18N
-        jPanel19.add(jButton34, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 69, 140, 60));
+        jPanel19.add(jButton34);
 
         jButton35.setBackground(new java.awt.Color(255, 255, 255));
         jButton35.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jButton35.setForeground(new java.awt.Color(0, 153, 153));
         jButton35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/delete.png"))); // NOI18N
         jButton35.setText("Xóa");
+        jButton35.setBorder(null);
         jButton35.setMargin(new java.awt.Insets(2, 1, 2, 1));
         jButton35.setMaximumSize(new java.awt.Dimension(150, 50));
         jButton35.setPreferredSize(new java.awt.Dimension(100, 50));
         jButton35.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/change-pass-24px.png"))); // NOI18N
-        jPanel19.add(jButton35, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 140, 60));
+        jPanel19.add(jButton35);
 
         jButton36.setBackground(new java.awt.Color(255, 255, 255));
         jButton36.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jButton36.setForeground(new java.awt.Color(0, 153, 153));
         jButton36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/refresh.png"))); // NOI18N
         jButton36.setText("Mới");
+        jButton36.setBorder(null);
         jButton36.setMargin(new java.awt.Insets(2, 1, 2, 1));
         jButton36.setMaximumSize(new java.awt.Dimension(150, 50));
         jButton36.setPreferredSize(new java.awt.Dimension(100, 50));
         jButton36.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/change-pass-24px.png"))); // NOI18N
-        jPanel19.add(jButton36, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 69, 140, 60));
+        jButton36.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton36ActionPerformed(evt);
+            }
+        });
+        jPanel19.add(jButton36);
 
-        jPanel17.add(jPanel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 510, 330, 130));
+        jPanel17.add(jPanel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 510, 330, 110));
 
         jPanel20.setBackground(new java.awt.Color(255, 255, 255));
         jPanel20.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1257,7 +1268,7 @@ public class mainframe_update extends javax.swing.JFrame {
         jLabel90.setText("được phát triển bởi");
         jPanel46.add(jLabel90, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, -1, -1));
 
-        jPanel17.add(jPanel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 460, 160));
+        jPanel17.add(jPanel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 460, 160));
 
         jPanel47.setBackground(new java.awt.Color(52, 86, 86));
         jPanel47.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1301,7 +1312,7 @@ public class mainframe_update extends javax.swing.JFrame {
         jLabel94.setText("viết cho máy chủ");
         jPanel47.add(jLabel94, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, -1, 30));
 
-        jPanel17.add(jPanel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 460, 160));
+        jPanel17.add(jPanel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 460, 160));
 
         jPanel48.setBackground(new java.awt.Color(52, 86, 86));
         jPanel48.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1345,7 +1356,7 @@ public class mainframe_update extends javax.swing.JFrame {
         jLabel98.setText("lần đầu ra mắt vào năm 1991");
         jPanel48.add(jLabel98, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, -1, 30));
 
-        jPanel17.add(jPanel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 490, 460, 150));
+        jPanel17.add(jPanel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, 460, 150));
 
         jPanel49.setOpaque(false);
         jPanel49.setBackground(new java.awt.Color(52, 86, 86));
@@ -1357,7 +1368,7 @@ public class mainframe_update extends javax.swing.JFrame {
         jLabel70.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/html-5.png"))); // NOI18N
         jPanel49.add(jLabel70, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 141, 130));
 
-        jPanel17.add(jPanel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 141, 130));
+        jPanel17.add(jPanel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 141, 120));
 
         jPanel50.setBackground(new java.awt.Color(52, 86, 86));
         jPanel50.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1367,7 +1378,7 @@ public class mainframe_update extends javax.swing.JFrame {
         jLabel71.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/javascript.png"))); // NOI18N
         jPanel50.add(jLabel71, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 141, 130));
 
-        jPanel17.add(jPanel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 141, 130));
+        jPanel17.add(jPanel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 141, 120));
 
         jPanel51.setOpaque(false);
         jPanel51.setBackground(new java.awt.Color(52, 86, 86));
@@ -1378,27 +1389,74 @@ public class mainframe_update extends javax.swing.JFrame {
         jLabel72.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/java.png"))); // NOI18N
         jPanel51.add(jLabel72, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 141, 130));
 
-        jPanel17.add(jPanel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 141, 130));
+        jPanel17.add(jPanel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 141, 120));
 
         jTabbedPane4.addTab("   Cập Nhật   ", jPanel17);
 
         pnlQLKhoaHoc.add(jTabbedPane4, java.awt.BorderLayout.LINE_START);
 
         jPanel16.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel16.setPreferredSize(new java.awt.Dimension(1230, 100));
+
+        jLabel27.setBackground(new java.awt.Color(71, 102, 102));
+        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel27.setText("QUẢN LÝ KHÓA HỌC");
+        jLabel27.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        jLabel27.setOpaque(true);
+        jLabel27.setPreferredSize(new java.awt.Dimension(340, 60));
+        jLabel27.setVerifyInputWhenFocusTarget(false);
+
+        jPanel75.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel6.setBackground(new java.awt.Color(67, 73, 97));
+        jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Chọn chuyên đề:");
+        jLabel6.setOpaque(true);
 
         jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox1.setOpaque(false);
-        jPanel16.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 580, 60));
 
-        jLabel27.setBackground(new java.awt.Color(52, 86, 86));
-        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel27.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel27.setText("Quản lý khóa học / Chuyên đề");
-        jLabel27.setOpaque(true);
-        jPanel16.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, 60));
+        javax.swing.GroupLayout jPanel75Layout = new javax.swing.GroupLayout(jPanel75);
+        jPanel75.setLayout(jPanel75Layout);
+        jPanel75Layout.setHorizontalGroup(
+            jPanel75Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel75Layout.createSequentialGroup()
+                .addGap(133, 133, 133)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 783, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(239, Short.MAX_VALUE))
+        );
+        jPanel75Layout.setVerticalGroup(
+            jPanel75Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel75Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel75, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(jPanel75, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         pnlQLKhoaHoc.add(jPanel16, java.awt.BorderLayout.PAGE_START);
 
@@ -1441,7 +1499,7 @@ public class mainframe_update extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 665, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 666, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1682,7 +1740,7 @@ public class mainframe_update extends javax.swing.JFrame {
                 .addGroup(jPanel52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(rdoTruongPhong_NhanVien)
                     .addComponent(rdoNhanVien_NhanVien))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         jPanel7.add(jPanel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 460, 460));
@@ -1993,7 +2051,7 @@ public class mainframe_update extends javax.swing.JFrame {
                 .addGroup(jPanel56Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel112)
                     .addComponent(jLabel111))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         jPanel9.add(jPanel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 300, 120));
@@ -2022,7 +2080,7 @@ public class mainframe_update extends javax.swing.JFrame {
             jPanel57Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel57Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel114, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addComponent(jLabel114, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -2050,23 +2108,26 @@ public class mainframe_update extends javax.swing.JFrame {
 
         pnlQLNhanVien.add(tbpNhanVien, java.awt.BorderLayout.CENTER);
 
-        jLabel2.setBackground(new java.awt.Color(52, 86, 86));
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel2.setBackground(new java.awt.Color(71, 102, 102));
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Quản Lý Nhân Viên Quản Trị");
+        jLabel2.setText("QUẢN LÝ NHÂN VIÊN QUẢN TRỊ");
         jLabel2.setOpaque(true);
-        jLabel2.setPreferredSize(new java.awt.Dimension(334, 35));
+        jLabel2.setPreferredSize(new java.awt.Dimension(430, 40));
         pnlQLNhanVien.add(jLabel2, java.awt.BorderLayout.PAGE_START);
 
         main.add(pnlQLNhanVien, "cardQLNhanVien");
 
         pnlQLNguoiHoc.setLayout(new java.awt.BorderLayout());
 
-        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel18.setBackground(new java.awt.Color(71, 102, 102));
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel18.setText("Quản Lý Người Học");
-        jLabel18.setPreferredSize(new java.awt.Dimension(230, 35));
+        jLabel18.setText("QUẢN LÝ NGƯỜI HỌC");
+        jLabel18.setOpaque(true);
+        jLabel18.setPreferredSize(new java.awt.Dimension(340, 40));
         pnlQLNguoiHoc.add(jLabel18, java.awt.BorderLayout.NORTH);
 
         jTabbedPane3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -2113,9 +2174,7 @@ public class mainframe_update extends javax.swing.JFrame {
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 611, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 143, Short.MAX_VALUE))
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)
         );
 
         jPanel10.add(jPanel13, java.awt.BorderLayout.CENTER);
@@ -2405,27 +2464,26 @@ public class mainframe_update extends javax.swing.JFrame {
 
         pnlQLHocVien.setLayout(new java.awt.BorderLayout());
 
-        jPanel22.setPreferredSize(new java.awt.Dimension(681, 50));
-        jPanel22.setLayout(new java.awt.GridLayout(1, 0));
+        jPanel22.setPreferredSize(new java.awt.Dimension(681, 100));
+        jPanel22.setLayout(new java.awt.GridLayout(0, 1));
 
-        jPanel21.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel21.setPreferredSize(new java.awt.Dimension(630, 40));
+        jPanel21.setLayout(new java.awt.GridLayout());
 
-        jLabel28.setBackground(new java.awt.Color(67, 73, 97));
-        jLabel28.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel28.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel28.setText("Chuyên đề");
-        jLabel28.setOpaque(true);
-        jPanel21.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 130, 50));
-
-        jComboBox2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel21.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, -1, 470, 50));
+        jLabel166.setBackground(new java.awt.Color(71, 102, 102));
+        jLabel166.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        jLabel166.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel166.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel166.setText("QUẢN LÝ HỌC VIÊN");
+        jLabel166.setOpaque(true);
+        jLabel166.setPreferredSize(new java.awt.Dimension(340, 40));
+        jLabel166.setRequestFocusEnabled(false);
+        jPanel21.add(jLabel166);
 
         jPanel22.add(jPanel21);
 
         jPanel23.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel23.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel23.setPreferredSize(new java.awt.Dimension(1404, 60));
 
         jLabel29.setBackground(new java.awt.Color(67, 73, 97));
         jLabel29.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -2433,11 +2491,51 @@ public class mainframe_update extends javax.swing.JFrame {
         jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel29.setText("Khóa học");
         jLabel29.setOpaque(true);
-        jPanel23.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 130, 50));
 
         jComboBox3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel23.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 450, 50));
+
+        jComboBox2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel28.setBackground(new java.awt.Color(67, 73, 97));
+        jLabel28.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel28.setText("Chuyên đề");
+        jLabel28.setOpaque(true);
+
+        javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
+        jPanel23.setLayout(jPanel23Layout);
+        jPanel23Layout.setHorizontalGroup(
+            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel23Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
+                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel23Layout.setVerticalGroup(
+            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel23Layout.createSequentialGroup()
+                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel23Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel23Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         jPanel22.add(jPanel23);
 
@@ -2480,7 +2578,7 @@ public class mainframe_update extends javax.swing.JFrame {
         jPanel27Layout.setHorizontalGroup(
             jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel27Layout.createSequentialGroup()
-                .addContainerGap(924, Short.MAX_VALUE)
+                .addContainerGap(923, Short.MAX_VALUE)
                 .addComponent(jButton41)
                 .addGap(29, 29, 29)
                 .addComponent(jButton42, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2548,13 +2646,15 @@ public class mainframe_update extends javax.swing.JFrame {
         jPanel28Layout.setHorizontalGroup(
             jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel28Layout.createSequentialGroup()
-                .addContainerGap(1091, Short.MAX_VALUE)
+                .addContainerGap(1090, Short.MAX_VALUE)
                 .addComponent(jButton43, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
+                .addGap(37, 37, 37))
         );
         jPanel28Layout.setVerticalGroup(
             jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton43, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+            .addGroup(jPanel28Layout.createSequentialGroup()
+                .addComponent(jButton43, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel25.add(jPanel28, java.awt.BorderLayout.PAGE_END);
@@ -2572,9 +2672,11 @@ public class mainframe_update extends javax.swing.JFrame {
         pnlTrangThai.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/info-24px.png"))); // NOI18N
         jLabel3.setText(" Hệ quản lý đào tạo");
-        pnlTrangThai.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, -1, 40));
+        jLabel3.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        pnlTrangThai.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, -1, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/stopwatch.png"))); // NOI18N
@@ -2860,6 +2962,10 @@ public class mainframe_update extends javax.swing.JFrame {
         chonAnh();
     }//GEN-LAST:event_lblHinhAnh_ChuyenDeMouseClicked
 
+    private void jButton36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton36ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton36ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3025,6 +3131,7 @@ public class mainframe_update extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel163;
     private javax.swing.JLabel jLabel164;
     private javax.swing.JLabel jLabel165;
+    private javax.swing.JLabel jLabel166;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -3072,6 +3179,7 @@ public class mainframe_update extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
@@ -3187,6 +3295,7 @@ public class mainframe_update extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel72;
     private javax.swing.JPanel jPanel73;
     private javax.swing.JPanel jPanel74;
+    private javax.swing.JPanel jPanel75;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JRadioButton jRadioButton3;
