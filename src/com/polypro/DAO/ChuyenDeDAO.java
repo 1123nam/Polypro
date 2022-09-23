@@ -26,23 +26,29 @@ public class ChuyenDeDAO extends EduSysDAO<ChuyenDe, String> {
     public void insert(ChuyenDe entity) {
        
         try {
-            JdbcHelper.update(INSERT_SQL, entity.getMaCD(), entity.getTenCD(), entity.getHocPhi(), entity.getThoiLuong(), entity.getHinh(), entity.getMoTa());
+            JdbcHelper.update(INSERT_SQL,
+                    entity.getMaCD(), 
+                    entity.getTenCD(), 
+                    entity.getHocPhi(),
+                    entity.getThoiLuong(), 
+                    entity.getHinh(), 
+                    entity.getMoTa());
         } catch (Exception ex) {
             Logger.getLogger(ChuyenDeDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
-    public void update(ChuyenDe model) {
+    public void update(ChuyenDe entity) {
       
         try {
             JdbcHelper.update(UPDATE_SQL,
-                    model.getTenCD(),
-                    model.getHocPhi(),
-                    model.getThoiLuong(),
-                    model.getHinh(),
-                    model.getMoTa(),
-                    model.getMaCD()
+                    entity.getTenCD(),
+                    entity.getHocPhi(),
+                    entity.getThoiLuong(),
+                    entity.getHinh(),
+                    entity.getMoTa(),
+                    entity.getMaCD()
             );
         } catch (Exception e) {
         }
@@ -75,7 +81,7 @@ public class ChuyenDeDAO extends EduSysDAO<ChuyenDe, String> {
     }
 
     @Override
-    public List<ChuyenDe> selectBySql(String sql, Object... args) {
+    protected List<ChuyenDe> selectBySql(String sql, Object... args) {
         List<ChuyenDe> list = new ArrayList<ChuyenDe>();
         try {
             ResultSet result = JdbcHelper.query(sql, args);

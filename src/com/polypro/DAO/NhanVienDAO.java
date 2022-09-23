@@ -25,7 +25,7 @@ public class NhanVienDAO extends EduSysDAO<NhanVien, String>{
     public void insert(NhanVien entity) {
         try {
             JdbcHelper.update(INSERT_SQL,
-                    entity.getMaNV(), entity.getHoTen(), entity.getMatKhau(), entity.isVaiTro());
+                    entity.getMaNV(), entity.getHoTen(), entity.getMatKhau(), entity.isVaiTro());   
         } catch (SQLException ex) {
             Logger.getLogger(NhanVienDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
