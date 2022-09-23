@@ -4,7 +4,7 @@
  */
 package com.polypro.model;
 
-import com.polypro.helper.DateHelper;
+import com.polypro.utils.XDate;
 import java.util.Date;
 
 public class KhoaHoc {
@@ -15,8 +15,8 @@ public class KhoaHoc {
     private Date ngayKG;
     private String ghiChu;
     private String maNV;
-    private Date ngayTao = DateHelper.now();
-
+    private Date ngayTao = XDate.now();
+    
     public KhoaHoc() {
     }
 

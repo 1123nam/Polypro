@@ -6,7 +6,7 @@ package com.polypro.DAO;
  * and open the template in the editor.
  */
 import com.polypro.model.ChuyenDe;
-import com.polypro.helper.JdbcHelper;
+import com.polypro.utils.JdbcHelper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;

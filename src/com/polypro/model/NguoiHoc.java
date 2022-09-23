@@ -4,7 +4,7 @@
  */
 package com.polypro.model;
 
-import com.polypro.helper.DateHelper;
+import com.polypro.utils.XDate;
 import java.util.Date;
 
 public class NguoiHoc {
@@ -16,7 +16,7 @@ public class NguoiHoc {
     private String email;
     private String ghiChu;
     private String maNV;
-    private Date ngayDK = DateHelper.now();
+    private Date ngayDK = XDate.now();
 
     public NguoiHoc() {
     }

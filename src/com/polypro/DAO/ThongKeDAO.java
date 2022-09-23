@@ -6,7 +6,7 @@
 package com.polypro.DAO;
 
 
-import com.polypro.helper.JdbcHelper;
+import com.polypro.utils.JdbcHelper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;

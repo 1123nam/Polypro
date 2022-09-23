@@ -1,6 +1,6 @@
 package com.polypro.DAO;
 
-import com.polypro.helper.JdbcHelper;
+import com.polypro.utils.JdbcHelper;
 import com.polypro.model.NguoiHoc;
 import java.sql.ResultSet;
 import java.sql.SQLException;
