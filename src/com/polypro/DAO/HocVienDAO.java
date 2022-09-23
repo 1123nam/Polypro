@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author luong
  */
-public class HocVienDAO extends abstractDAO<HocVien, Integer> {
+public class HocVienDAO extends EduSysDAO<HocVien, Integer> {
    @Override
     public void insert(HocVien model) {
         String sql = "INSERT INTO HocVien(MaKH, MaNH, Diem) VALUES(?, ?, ?)";

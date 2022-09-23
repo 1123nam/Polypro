@@ -7,45 +7,46 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NguoiHocDAO extends abstractDAO<NguoiHoc,String >{
+public class NguoiHocDAO extends EduSysDAO<NguoiHoc, String> {
 //test commit
-   @Override
+
+    @Override
     public void insert(NguoiHoc model) {
         String sql
                 = "INSERT INTO NguoiHoc (MaNH, HoTen, NgaySinh, GioiTinh, DienThoai, Email, GhiChu, MaNV)VALUES( ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?)";
-       try {
-           JdbcHelper.update(sql,
-                model.getMaNH(),
-                model.getHoTen(),
-                model.getNgaySinh(),
-                model.isGioiTinh(),
-                model.getDienThoai(),
-                model.getEmail(),
-                model.getGhiChu(),
-                model.getMaNV());
-       } catch (Exception e) {
-       }
-        
+        try {
+            JdbcHelper.update(sql,
+                    model.getMaNH(),
+                    model.getHoTen(),
+                    model.getNgaySinh(),
+                    model.isGioiTinh(),
+                    model.getDienThoai(),
+                    model.getEmail(),
+                    model.getGhiChu(),
+                    model.getMaNV());
+        } catch (Exception e) {
+        }
 
     }
+
     @Override
     public void update(NguoiHoc model) {
         String sql = "UPDATE NguoiHoc SET HoTen=?, NgaySinh=?, GioiTinh=?, DienThoai=?, Email=?, GhiChu=?,MaNV =  ? WHERE  MaNH =  ? ";
         try {
             JdbcHelper.update(sql,
-                model.getHoTen(),
-                model.getNgaySinh(),
-                model.isGioiTinh(),
-                model.getDienThoai(),
-                model.getEmail(),
-                model.getGhiChu(),
-                model.getMaNV(),
-                model.getMaNH());
+                    model.getHoTen(),
+                    model.getNgaySinh(),
+                    model.isGioiTinh(),
+                    model.getDienThoai(),
+                    model.getEmail(),
+                    model.getGhiChu(),
+                    model.getMaNV(),
+                    model.getMaNH());
         } catch (Exception e) {
         }
-       
- 
+
     }
+
     @Override
     public void delete(String id) {
         String sql = "DELETE FROM NguoiHoc WHERE MaNH=?";
@@ -53,23 +54,25 @@ public class NguoiHocDAO extends abstractDAO<NguoiHoc,String >{
             JdbcHelper.update(sql, id);
         } catch (Exception e) {
         }
-        
+
     }
+
     @Override
     public List<NguoiHoc> select() {
         String sql = "SELECT * FROM NguoiHoc";
-          return this.selectBySql(sql);
+        return this.selectBySql(sql);
     }
 
     public List<NguoiHoc> selectByKeyword(String keyword) {
         String sql = "SELECT * FROM NguoiHoc WHERE HoTen LIKE ?";
-       return this.selectBySql(sql, "%" + keyword + "%");
+        return this.selectBySql(sql, "%" + keyword + "%");
     }
 
     public List<NguoiHoc> selectByCourse(Integer makh) {
         String sql = "SELECT * FROM NguoiHoc WHERE MaNH NOT IN (SELECT MaNH FROM HocVien WHERE MaKH=?)";
         return this.selectBySql(sql, makh);
     }
+
     @Override
     public NguoiHoc selectID(String id) {
         String sql = "SELECT * FROM NguoiHoc WHERE MaNH=?";
@@ -79,9 +82,10 @@ public class NguoiHocDAO extends abstractDAO<NguoiHoc,String >{
         }
         return list.get(0);
     }
+
     @Override
     public List<NguoiHoc> selectBySql(String sql, Object... args) {
-         List<NguoiHoc> list = new ArrayList<NguoiHoc>();
+        List<NguoiHoc> list = new ArrayList<NguoiHoc>();
         try {
             ResultSet result = JdbcHelper.query(sql, args);
             while (result.next()) {
@@ -103,5 +107,4 @@ public class NguoiHocDAO extends abstractDAO<NguoiHoc,String >{
         }
     }
 
-   
 }

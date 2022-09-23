@@ -8,7 +8,7 @@ import java.util.List;
 //import com.sun.xml.internal.stream.Entity;
 
 
-abstract class abstractDAO <E , K> {
+abstract class EduSysDAO <E , K> {
 // them
    abstract public void insert(E entity);
 // xoa

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 //đổi tên file lại vì bị lỗi 16h44 ngày 20/9/2022
 
-public class KhoaHocDAO extends abstractDAO<KhoaHoc, Integer>{
+public class KhoaHocDAO extends EduSysDAO<KhoaHoc, Integer>{
     @Override
     public void insert(KhoaHoc model) {
         String sql = "INSERT INTO KhoaHoc (MaCD, HocPhi, ThoiLuong, NgayKG, GhiChu, MaNV) VALUES (?, ?, ?, ?, ?,?)";

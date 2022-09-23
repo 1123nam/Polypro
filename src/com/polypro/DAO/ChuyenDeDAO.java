@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ChuyenDeDAO extends abstractDAO<ChuyenDe, String> {
+public class ChuyenDeDAO extends EduSysDAO<ChuyenDe, String> {
 
     String INSERT_SQL = "INSERT INTO CHUYENDE(MACD, TENCD, HOCPHI, THOILUONG, HINH, MOTA) VALUES (?, ?, ?, ?, ?, ?)";
     String UPDATE_SQL = "UPDATE CHUYENDE SET TENCD = ?, HOCPHI = ?, THOILUONG = ?, HINH=?, MOTA =? WHERE MACD = ?";
