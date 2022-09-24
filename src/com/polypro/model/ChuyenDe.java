@@ -1,8 +1,10 @@
+package com.polypro.model;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.polypro.model;
+
 
 /**
  *
@@ -30,9 +32,12 @@ public class ChuyenDe {
 
     @Override
     public String toString() {
+        return tenCD;
+        /*
         return "ChuyenDe{" + "maCD=" + maCD + ", tenCD=" + tenCD + ", "
                 + "hocPhi=" + hocPhi + ", thoiLuong=" + thoiLuong + ", "
                 + "hinh=" + hinh + ", moTa=" + moTa + '}';
+        */
     }
 
     public String getMaCD() {

@@ -1,5 +1,7 @@
 package com.polypro.DAO;
 
+
+
 import com.polypro.utils.JdbcHelper;
 import com.polypro.model.NguoiHoc;
 import java.sql.ResultSet;
@@ -9,13 +11,18 @@ import java.util.List;
 
 public class NguoiHocDAO extends EduSysDAO<NguoiHoc, String> {
 //test commit
-
+    String INSERT_SQL = "INSERT INTO NguoiHoc (MaNH, HoTen, NgaySinh, GioiTinh, DienThoai, Email, GhiChu, MaNV)VALUES( ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?)";
+    String UPDATE_SQL = "UPDATE NguoiHoc SET HoTen=?, NgaySinh=?, GioiTinh=?, DienThoai=?, Email=?, GhiChu=?,MaNV =  ? WHERE  MaNH =  ? ";
+    String DELETE_SQL = "DELETE FROM NguoiHoc WHERE MaNH=?";
+    String SELECT_ALL_SQL = "SELECT * FROM NguoiHoc";
+    String SELECT_BY_KEYWORD = "SELECT * FROM NguoiHoc WHERE HoTen LIKE ?";
+    String selectByCourse = "SELECT * FROM NguoiHoc WHERE MaNH NOT IN (SELECT MaNH FROM HocVien WHERE MaKH=?)";
+    String selectById = "SELECT * FROM NguoiHoc WHERE MaNH=?";
+    String selectNotInCourse ="SELECT * FROM NguoiHoc WHERE HoTen LIKE ? and MaNH NOT IN (SELECT MaNH FROM HocVien WHERE MaKH = ?)";
     @Override
     public void insert(NguoiHoc model) {
-        String sql
-                = "INSERT INTO NguoiHoc (MaNH, HoTen, NgaySinh, GioiTinh, DienThoai, Email, GhiChu, MaNV)VALUES( ?,  ?,  ?,  ?,  ?,  ?,  ?,  ?)";
         try {
-            JdbcHelper.update(sql,
+            JdbcHelper.update(INSERT_SQL,
                     model.getMaNH(),
                     model.getHoTen(),
                     model.getNgaySinh(),
@@ -24,16 +31,15 @@ public class NguoiHocDAO extends EduSysDAO<NguoiHoc, String> {
                     model.getEmail(),
                     model.getGhiChu(),
                     model.getMaNV());
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
 
     }
 
     @Override
     public void update(NguoiHoc model) {
-        String sql = "UPDATE NguoiHoc SET HoTen=?, NgaySinh=?, GioiTinh=?, DienThoai=?, Email=?, GhiChu=?,MaNV =  ? WHERE  MaNH =  ? ";
         try {
-            JdbcHelper.update(sql,
+            JdbcHelper.update(UPDATE_SQL,
                     model.getHoTen(),
                     model.getNgaySinh(),
                     model.isGioiTinh(),
@@ -42,41 +48,36 @@ public class NguoiHocDAO extends EduSysDAO<NguoiHoc, String> {
                     model.getGhiChu(),
                     model.getMaNV(),
                     model.getMaNH());
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
 
     }
 
     @Override
     public void delete(String id) {
-        String sql = "DELETE FROM NguoiHoc WHERE MaNH=?";
         try {
-            JdbcHelper.update(sql, id);
-        } catch (Exception e) {
+            JdbcHelper.update(DELETE_SQL, id);
+        } catch (SQLException e) {
         }
 
     }
 
     @Override
     public List<NguoiHoc> select() {
-        String sql = "SELECT * FROM NguoiHoc";
-        return this.selectBySql(sql);
+        return this.selectBySql(SELECT_ALL_SQL);
     }
 
     public List<NguoiHoc> selectByKeyword(String keyword) {
-        String sql = "SELECT * FROM NguoiHoc WHERE HoTen LIKE ?";
-        return this.selectBySql(sql, "%" + keyword + "%");
+        return this.selectBySql(SELECT_BY_KEYWORD, "%" + keyword + "%");
     }
 
     public List<NguoiHoc> selectByCourse(Integer makh) {
-        String sql = "SELECT * FROM NguoiHoc WHERE MaNH NOT IN (SELECT MaNH FROM HocVien WHERE MaKH=?)";
-        return this.selectBySql(sql, makh);
+        return this.selectBySql(selectByCourse, makh);
     }
 
     @Override
     public NguoiHoc selectID(String id) {
-        String sql = "SELECT * FROM NguoiHoc WHERE MaNH=?";
-        List<NguoiHoc> list = this.selectBySql(sql, id);
+        List<NguoiHoc> list = this.selectBySql(selectById, id);
         if (list.isEmpty()) {
             return null;
         }
@@ -102,9 +103,14 @@ public class NguoiHocDAO extends EduSysDAO<NguoiHoc, String> {
                 list.add(entity);
             }
             return list;
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
     }
 
+        public List<NguoiHoc> selectNotInCourse(int makh, String keyword){
+        
+        return this.selectBySql(selectNotInCourse, "%"+keyword+"%",makh);
+    }
+    
 }

@@ -1,8 +1,10 @@
+package com.polypro.model;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.polypro.model;
+
 
 public class HocVien {
     private int maHV;
@@ -21,7 +23,10 @@ public class HocVien {
     
     @Override
     public String toString() {
-        return "HocVien{" + "maHV=" + maHV + ", maKH=" + maKH + ", maNH=" + maNH + ", diem=" + diem + '}';
+        return maHV + maNH + diem;
+        /*
+        "HocVien{" + "maHV=" + maHV + ", maKH=" + maKH + ", maNH=" + maNH + ", diem=" + diem + '}'
+        */
     }
 
     public int getMaHV() {

@@ -1,8 +1,10 @@
+package com.polypro.model;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.polypro.model;
+
 
 import com.polypro.utils.XDate;
 import java.util.Date;
@@ -34,7 +36,12 @@ public class NguoiHoc {
 
     @Override
     public String toString() {
-        return "NguoiHoc{" + "maNH=" + maNH + ", hoTen=" + hoTen + ", ngaySinh=" + ngaySinh + ", gioiTinh=" + gioiTinh + ", dienThoai=" + dienThoai + ", email=" + email + ", ghiChu=" + ghiChu + ", maNV=" + maNV + ", ngayDK=" + ngayDK + '}';
+        return maNH;
+        /*
+        "NguoiHoc{" + "maNH=" + maNH + ", hoTen=" + hoTen + ",
+        ngaySinh=" + ngaySinh + ", gioiTinh=" + gioiTinh + ", dienThoai=" + dienThoai + ", email=" + email + ",
+        ghiChu=" + ghiChu + ", maNV=" + maNV + ", ngayDK=" + ngayDK + '}'
+        */
     }
 
     public String getMaNH() {
