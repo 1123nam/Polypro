@@ -64,6 +64,8 @@ public class mainframe_update extends javax.swing.JFrame {
 
 // set model cho bản
         setModelTableChuyenDe();
+        setModelTableHocVien_HocVien();
+        setModelTableNguoiHoc_HocVien();
 // load data chuyen de
         fillTableChuyenDe();
         //load data lên combo box
