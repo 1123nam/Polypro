@@ -1,8 +1,14 @@
 package com.polypro.view;
 
 import com.polypro.DAO.ChuyenDeDAO;
+import com.polypro.DAO.HocVienDAO;
+import com.polypro.DAO.KhoaHocDAO;
+import com.polypro.DAO.NguoiHocDAO;
 import com.polypro.DAO.NhanVienDAO;
 import com.polypro.model.ChuyenDe;
+import com.polypro.model.HocVien;
+import com.polypro.model.KhoaHoc;
+import com.polypro.model.NguoiHoc;
 import com.polypro.model.NhanVien;
 import com.polypro.utils.Auth;
 import com.polypro.utils.MsgBox;
@@ -23,6 +29,7 @@ import java.io.File;
 import java.util.List;
 import javaswingdev.GradientDropdownMenu;
 import javaswingdev.MenuEvent;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -59,6 +66,8 @@ public class mainframe_update extends javax.swing.JFrame {
         setModelTableChuyenDe();
 // load data chuyen de
         fillTableChuyenDe();
+        //load data lên combo box
+        fillComboBoxChuyenDe();
     }
 
     public void initMenu() {
@@ -466,24 +475,24 @@ public class mainframe_update extends javax.swing.JFrame {
         jLabel166 = new javax.swing.JLabel();
         jPanel23 = new javax.swing.JPanel();
         jLabel29 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cboKhoaHoc_HocVien = new javax.swing.JComboBox<>();
+        cboChuyenDe_HocVien = new javax.swing.JComboBox<>();
         jLabel28 = new javax.swing.JLabel();
-        jTabbedPane5 = new javax.swing.JTabbedPane();
+        tabs = new javax.swing.JTabbedPane();
         jPanel24 = new javax.swing.JPanel();
         jScrollPane8 = new javax.swing.JScrollPane();
-        jTable5 = new javax.swing.JTable();
+        tblHocVien_HocVien = new javax.swing.JTable();
         jPanel27 = new javax.swing.JPanel();
-        jButton41 = new javax.swing.JButton();
-        jButton42 = new javax.swing.JButton();
+        btnRemove_HocVien = new javax.swing.JButton();
+        btnUpdate_HocVien = new javax.swing.JButton();
         jPanel25 = new javax.swing.JPanel();
         jPanel26 = new javax.swing.JPanel();
-        jLabel30 = new javax.swing.JLabel();
-        jTextField15 = new javax.swing.JTextField();
+        lblTimKiem_HocVien = new javax.swing.JLabel();
+        txtTimKiem_HocVien = new javax.swing.JTextField();
         jScrollPane9 = new javax.swing.JScrollPane();
-        jTable6 = new javax.swing.JTable();
+        tblNguoiHoc_HocVien = new javax.swing.JTable();
         jPanel28 = new javax.swing.JPanel();
-        jButton43 = new javax.swing.JButton();
+        btnAdd_HocVien = new javax.swing.JButton();
         pnlThongKe = new javax.swing.JPanel();
         jLabel167 = new javax.swing.JLabel();
         jPanel77 = new javax.swing.JPanel();
@@ -1463,7 +1472,7 @@ public class mainframe_update extends javax.swing.JFrame {
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel16Layout.createSequentialGroup()
                 .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel75, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -2478,7 +2487,7 @@ public class mainframe_update extends javax.swing.JFrame {
         jPanel22.setLayout(new java.awt.GridLayout(0, 1));
 
         jPanel21.setPreferredSize(new java.awt.Dimension(630, 40));
-        jPanel21.setLayout(new java.awt.GridLayout());
+        jPanel21.setLayout(new java.awt.GridLayout(1, 0));
 
         jLabel166.setBackground(new java.awt.Color(71, 102, 102));
         jLabel166.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
@@ -2502,11 +2511,16 @@ public class mainframe_update extends javax.swing.JFrame {
         jLabel29.setText("Khóa học");
         jLabel29.setOpaque(true);
 
-        jComboBox3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboKhoaHoc_HocVien.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        cboKhoaHoc_HocVien.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboChuyenDe_HocVien.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        cboChuyenDe_HocVien.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboChuyenDe_HocVien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboChuyenDe_HocVienActionPerformed(evt);
+            }
+        });
 
         jLabel28.setBackground(new java.awt.Color(67, 73, 97));
         jLabel28.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -2523,27 +2537,24 @@ public class mainframe_update extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cboChuyenDe_HocVien, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(3, 3, 3)
-                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cboKhoaHoc_HocVien, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel23Layout.setVerticalGroup(
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel23Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboKhoaHoc_HocVien, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel23Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(jPanel23Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboChuyenDe_HocVien, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -2551,13 +2562,13 @@ public class mainframe_update extends javax.swing.JFrame {
 
         pnlQLHocVien.add(jPanel22, java.awt.BorderLayout.PAGE_START);
 
-        jTabbedPane5.setBackground(new java.awt.Color(255, 255, 255));
-        jTabbedPane5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jTabbedPane5.setOpaque(true);
+        tabs.setBackground(new java.awt.Color(255, 255, 255));
+        tabs.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        tabs.setOpaque(true);
 
         jPanel24.setLayout(new java.awt.BorderLayout());
 
-        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+        tblHocVien_HocVien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -2568,20 +2579,30 @@ public class mainframe_update extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane8.setViewportView(jTable5);
+        jScrollPane8.setViewportView(tblHocVien_HocVien);
 
         jPanel24.add(jScrollPane8, java.awt.BorderLayout.CENTER);
 
         jPanel27.setBackground(new java.awt.Color(255, 255, 255));
         jPanel27.setPreferredSize(new java.awt.Dimension(1399, 60));
 
-        jButton41.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jButton41.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/delete.png"))); // NOI18N
-        jButton41.setText("Xóa khỏi khóa học");
+        btnRemove_HocVien.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnRemove_HocVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/delete.png"))); // NOI18N
+        btnRemove_HocVien.setText("Xóa khỏi khóa học");
+        btnRemove_HocVien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemove_HocVienActionPerformed(evt);
+            }
+        });
 
-        jButton42.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jButton42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/update.png"))); // NOI18N
-        jButton42.setText("Cập nhật điểm");
+        btnUpdate_HocVien.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnUpdate_HocVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/update.png"))); // NOI18N
+        btnUpdate_HocVien.setText("Cập nhật điểm");
+        btnUpdate_HocVien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdate_HocVienActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
         jPanel27.setLayout(jPanel27Layout);
@@ -2589,9 +2610,9 @@ public class mainframe_update extends javax.swing.JFrame {
             jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel27Layout.createSequentialGroup()
                 .addContainerGap(896, Short.MAX_VALUE)
-                .addComponent(jButton41)
+                .addComponent(btnRemove_HocVien)
                 .addGap(29, 29, 29)
-                .addComponent(jButton42, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnUpdate_HocVien, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel27Layout.setVerticalGroup(
@@ -2599,14 +2620,14 @@ public class mainframe_update extends javax.swing.JFrame {
             .addGroup(jPanel27Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton42, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton41, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnUpdate_HocVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnRemove_HocVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         jPanel24.add(jPanel27, java.awt.BorderLayout.PAGE_END);
 
-        jTabbedPane5.addTab("   Học Viên   ", jPanel24);
+        tabs.addTab("   Học Viên   ", jPanel24);
 
         jPanel25.setLayout(new java.awt.BorderLayout());
 
@@ -2614,23 +2635,33 @@ public class mainframe_update extends javax.swing.JFrame {
         jPanel26.setPreferredSize(new java.awt.Dimension(1399, 50));
         jPanel26.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel30.setBackground(new java.awt.Color(67, 73, 97));
-        jLabel30.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel30.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/search.png"))); // NOI18N
-        jLabel30.setText("Tìm kiếm");
-        jLabel30.setOpaque(true);
-        jPanel26.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 0, 200, 50));
+        lblTimKiem_HocVien.setBackground(new java.awt.Color(67, 73, 97));
+        lblTimKiem_HocVien.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblTimKiem_HocVien.setForeground(new java.awt.Color(255, 255, 255));
+        lblTimKiem_HocVien.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTimKiem_HocVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/search.png"))); // NOI18N
+        lblTimKiem_HocVien.setText("Tìm kiếm");
+        lblTimKiem_HocVien.setOpaque(true);
+        jPanel26.add(lblTimKiem_HocVien, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 0, 200, 50));
 
-        jTextField15.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jTextField15.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jPanel26.add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1190, 50));
+        txtTimKiem_HocVien.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtTimKiem_HocVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtTimKiem_HocVien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTimKiem_HocVienActionPerformed(evt);
+            }
+        });
+        txtTimKiem_HocVien.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTimKiem_HocVienKeyReleased(evt);
+            }
+        });
+        jPanel26.add(txtTimKiem_HocVien, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1190, 50));
 
         jPanel25.add(jPanel26, java.awt.BorderLayout.PAGE_START);
 
-        jTable6.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 0, 0, 0));
-        jTable6.setModel(new javax.swing.table.DefaultTableModel(
+        tblNguoiHoc_HocVien.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 0, 0, 0));
+        tblNguoiHoc_HocVien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -2641,15 +2672,20 @@ public class mainframe_update extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane9.setViewportView(jTable6);
+        jScrollPane9.setViewportView(tblNguoiHoc_HocVien);
 
         jPanel25.add(jScrollPane9, java.awt.BorderLayout.CENTER);
 
         jPanel28.setPreferredSize(new java.awt.Dimension(1399, 60));
 
-        jButton43.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton43.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/add.png"))); // NOI18N
-        jButton43.setText("Thêm vào khóa học");
+        btnAdd_HocVien.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnAdd_HocVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/add.png"))); // NOI18N
+        btnAdd_HocVien.setText("Thêm vào khóa học");
+        btnAdd_HocVien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdd_HocVienActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
         jPanel28.setLayout(jPanel28Layout);
@@ -2657,21 +2693,21 @@ public class mainframe_update extends javax.swing.JFrame {
             jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel28Layout.createSequentialGroup()
                 .addContainerGap(1063, Short.MAX_VALUE)
-                .addComponent(jButton43, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAdd_HocVien, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
         );
         jPanel28Layout.setVerticalGroup(
             jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel28Layout.createSequentialGroup()
-                .addComponent(jButton43, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                .addComponent(btnAdd_HocVien, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jPanel25.add(jPanel28, java.awt.BorderLayout.PAGE_END);
 
-        jTabbedPane5.addTab("   Người Học   ", jPanel25);
+        tabs.addTab("   Người Học   ", jPanel25);
 
-        pnlQLHocVien.add(jTabbedPane5, java.awt.BorderLayout.CENTER);
+        pnlQLHocVien.add(tabs, java.awt.BorderLayout.CENTER);
 
         main.add(pnlQLHocVien, "cardQLHocVien");
 
@@ -3009,6 +3045,35 @@ public class mainframe_update extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton36ActionPerformed
 
+    private void btnAdd_HocVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd_HocVienActionPerformed
+        // TODO add your handling code here:
+        addHocVien();
+    }//GEN-LAST:event_btnAdd_HocVienActionPerformed
+
+    private void cboChuyenDe_HocVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboChuyenDe_HocVienActionPerformed
+        // TODO add your handling code here:
+        fillComboBoxKhoaHoc();
+    }//GEN-LAST:event_cboChuyenDe_HocVienActionPerformed
+
+    private void txtTimKiem_HocVienKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKiem_HocVienKeyReleased
+        // TODO add your handling code here:
+        fillTableNguoiHoc();
+    }//GEN-LAST:event_txtTimKiem_HocVienKeyReleased
+
+    private void btnRemove_HocVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemove_HocVienActionPerformed
+        // TODO add your handling code here:
+        removeHocVien();
+    }//GEN-LAST:event_btnRemove_HocVienActionPerformed
+
+    private void btnUpdate_HocVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdate_HocVienActionPerformed
+        // TODO add your handling code here:
+        updateDiem();
+    }//GEN-LAST:event_btnUpdate_HocVienActionPerformed
+
+    private void txtTimKiem_HocVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimKiem_HocVienActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTimKiem_HocVienActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3054,6 +3119,7 @@ public class mainframe_update extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btgRole;
     private javax.swing.ButtonGroup btgSex;
+    private javax.swing.JButton btnAdd_HocVien;
     private javax.swing.JButton btnBack_NhanVien;
     private javax.swing.JButton btnCourse;
     private javax.swing.JButton btnExit;
@@ -3070,14 +3136,18 @@ public class mainframe_update extends javax.swing.JFrame {
     private javax.swing.JButton btnNext_ChuyenDe;
     private javax.swing.JButton btnNext_NhanVien;
     private javax.swing.JButton btnPre_ChuyenDe;
+    private javax.swing.JButton btnRemove_HocVien;
     private javax.swing.JButton btnStudent;
     private javax.swing.JButton btnSua_ChuyenDe;
     private javax.swing.JButton btnSua_NhanVien;
     private javax.swing.JButton btnThem_ChuyenDe;
     private javax.swing.JButton btnThem_NhanVien;
     private javax.swing.JButton btnTopic;
+    private javax.swing.JButton btnUpdate_HocVien;
     private javax.swing.JButton btnXoa_ChuyenDe;
     private javax.swing.JButton btnXoa_NhanVien;
+    private javax.swing.JComboBox<String> cboChuyenDe_HocVien;
+    private javax.swing.JComboBox<String> cboKhoaHoc_HocVien;
     private javax.swing.JButton jButton25;
     private javax.swing.JButton jButton26;
     private javax.swing.JButton jButton27;
@@ -3094,12 +3164,7 @@ public class mainframe_update extends javax.swing.JFrame {
     private javax.swing.JButton jButton38;
     private javax.swing.JButton jButton39;
     private javax.swing.JButton jButton40;
-    private javax.swing.JButton jButton41;
-    private javax.swing.JButton jButton42;
-    private javax.swing.JButton jButton43;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
@@ -3191,7 +3256,6 @@ public class mainframe_update extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
@@ -3356,11 +3420,8 @@ public class mainframe_update extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTabbedPane jTabbedPane4;
-    private javax.swing.JTabbedPane jTabbedPane5;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
-    private javax.swing.JTable jTable5;
-    private javax.swing.JTable jTable6;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextField jTextField10;
@@ -3368,7 +3429,6 @@ public class mainframe_update extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField20;
     private javax.swing.JTextField jTextField21;
@@ -3377,6 +3437,7 @@ public class mainframe_update extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField25;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JLabel lblHinhAnh_ChuyenDe;
+    private javax.swing.JLabel lblTimKiem_HocVien;
     private javax.swing.JPanel main;
     private javax.swing.JPanel pnlDashboard;
     private javax.swing.JPanel pnlExit;
@@ -3394,8 +3455,11 @@ public class mainframe_update extends javax.swing.JFrame {
     private javax.swing.JPanel pnlTrangThai;
     private javax.swing.JRadioButton rdoNhanVien_NhanVien;
     private javax.swing.JRadioButton rdoTruongPhong_NhanVien;
+    private javax.swing.JTabbedPane tabs;
     private javax.swing.JTable tblDanhSach_ChuyenDe;
     private javax.swing.JTable tblDanhSach_NhanVien;
+    private javax.swing.JTable tblHocVien_HocVien;
+    private javax.swing.JTable tblNguoiHoc_HocVien;
     private javax.swing.JTabbedPane tbpChuyenDe;
     private javax.swing.JTabbedPane tbpNhanVien;
     private javax.swing.JTextField txtHoTen_NhanVien;
@@ -3406,6 +3470,7 @@ public class mainframe_update extends javax.swing.JFrame {
     private javax.swing.JTextArea txtMoTa_ChuyenDe;
     private javax.swing.JTextField txtTenChuyenDe_ChuyenDe;
     private javax.swing.JTextField txtThoiGian_ChuyenDe;
+    private javax.swing.JTextField txtTimKiem_HocVien;
     private javax.swing.JPasswordField txtXacNhanMK_NhanVien;
     // End of variables declaration//GEN-END:variables
 
@@ -3866,6 +3931,149 @@ public class mainframe_update extends javax.swing.JFrame {
         return true;
     }
 
+    //3. Xử Lý Hoc Viên
+    
+    KhoaHocDAO khdao = new KhoaHocDAO();
+    ChuyenDeDAO cddao = new ChuyenDeDAO();
+    HocVienDAO hvdao = new HocVienDAO(); 
+    NguoiHocDAO nhdao = new NguoiHocDAO();
+
+    
+    
+
+    //Đổ dữ liệu lên combobox Chuyền Đề
+        void fillComboBoxChuyenDe() { 
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cboChuyenDe_HocVien.getModel(); 
+        model.removeAllElements(); 
+        
+            try {
+                List<ChuyenDe> list = cddao.select();
+                for(ChuyenDe cd : list){
+                    model.addElement(cd);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e);
+            }
+        this.fillComboBoxKhoaHoc();
+    }
+    
+        void fillComboBoxKhoaHoc() { 
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cboKhoaHoc_HocVien.getModel(); 
+        model.removeAllElements();
+        
+            try {
+                ChuyenDe chuyenDe = (ChuyenDe) cboChuyenDe_HocVien.getSelectedItem();
+                if(chuyenDe != null){
+                    List<KhoaHoc> list = khdao.selectByChuyenDe(chuyenDe.getMaCD());
+                    for(KhoaHoc kh : list){
+                        model.addElement(kh);
+                        
+                    }
+                    this.fillTableHocVien();
+                }
+                //this.fillTableHocVien();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+    }
+        
+    public void setModelTableHocVien_HocVien(){
+        DefaultTableModel modelHocVien = new DefaultTableModel(new Object[][]{}, new Object[]{"STT", "Mã Học Viên", "Mã Người Học", "Họ Tên", "Điểm"});
+        tblHocVien_HocVien.setModel(modelHocVien);
+    }
+    void fillTableHocVien(){
+        DefaultTableModel modelHocVien = (DefaultTableModel) tblHocVien_HocVien.getModel();
+        modelHocVien.setRowCount(0);
+        
+        try {
+            KhoaHoc khoaHoc = (KhoaHoc) cboKhoaHoc_HocVien.getSelectedItem();
+            if(khoaHoc != null){
+                List<HocVien> list = hvdao.selectByKhoaHoc(khoaHoc.getMaKH());
+                for(int i = 0; i < list.size();i++){
+                    HocVien hv = list.get(i);
+                    String hoTen = nhdao.selectID(hv.getMaNH()).getHoTen();
+                    modelHocVien.addRow(new Object[]{i+1, hv.getMaHV(), hv.getMaNH(), hoTen, hv.getDiem()});
+                    //System.out.println(list.get(i));
+                }
+                this.fillTableNguoiHoc();
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void setModelTableNguoiHoc_HocVien(){
+        DefaultTableModel modelNguoiHoc = new DefaultTableModel(new Object[][]{}, new Object[]{"Mã NH", "Họ Tên", "Ngày Sinh", "Giới Tính", "Điện Thoại","Email"});
+        tblNguoiHoc_HocVien.setModel(modelNguoiHoc);
+    }
+    
+    void fillTableNguoiHoc(){
+        DefaultTableModel modelNguoiHoc = (DefaultTableModel) tblNguoiHoc_HocVien.getModel();
+        modelNguoiHoc.setRowCount(0);
+        
+        try {
+            KhoaHoc khoaHoc = (KhoaHoc) cboKhoaHoc_HocVien.getSelectedItem();
+            
+                String keyword = txtTimKiem_HocVien.getText();
+                List<NguoiHoc> list = nhdao.selectNotInCourse(khoaHoc.getMaKH(), keyword);
+                for(NguoiHoc nh : list){
+                    Object[] row = {
+                        nh.getMaNH(), nh.getHoTen(), nh.getNgaySinh(), nh.isGioiTinh() ? "Nam":"Nữ",
+                        nh.getDienThoai(), nh.getEmail()
+                    };
+                    modelNguoiHoc.addRow(row);
+                }
+            //this.fillTableHocVien();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    void addHocVien(){
+        KhoaHoc khoaHoc = (KhoaHoc) cboKhoaHoc_HocVien.getSelectedItem();
+        for(int row : tblNguoiHoc_HocVien.getSelectedRows()){
+            HocVien hv = new HocVien();
+            hv.setMaKH(khoaHoc.getMaKH());
+            hv.setDiem(0);
+            hv.setMaNH((String) tblNguoiHoc_HocVien.getValueAt(row, 0));
+            hvdao.insert(hv);
+        }
+        this.fillTableHocVien();
+        this.tabs.setSelectedIndex(0);
+    }
+    
+    void removeHocVien(){
+        if(!Auth.isManager()){
+            MsgBox.alert(this, "Bạn Không Có Quyền Xóa Học Viên!");
+        }else{
+            if(MsgBox.confirm(this, "Bạn Muốn Xóa Học Viên Được Chọn?")){
+                for(int row : tblHocVien_HocVien.getSelectedRows()){
+                    int maHV = (Integer) tblHocVien_HocVien.getValueAt(row, 1);
+                    hvdao.delete(maHV);
+                }
+                this.fillTableHocVien();
+            }
+        }
+    }
+    
+    void updateDiem(){
+        /*
+        Câu lệnh 4090 tắt chế độ cập nhật trong ô đang chọn nếu đang chỉnh sửa
+        */
+        if (tblHocVien_HocVien.isEditing()) tblHocVien_HocVien.getCellEditor().stopCellEditing();
+        //for(int i = 0; i < tblHocVien_HocVien.getRowCount();i++){
+        int row = tblHocVien_HocVien.getSelectedRow();
+            int maHV = (Integer) tblHocVien_HocVien.getValueAt(row, 1);
+            HocVien hv = hvdao.selectID(maHV);
+            double diem = Double.parseDouble( tblHocVien_HocVien.getValueAt(row, 4).toString());
+            
+            hv.setDiem(diem);
+            hvdao.update(hv);
+        //}
+        MsgBox.alert(this, "Cập Nhật Điểm Thành Công!");
+    }
+    
     /*
    * System function
      */

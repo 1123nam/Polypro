@@ -2619,7 +2619,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="jLabel27" min="-2" pref="40" max="-2" attributes="0"/>
-                              <EmptySpace pref="8" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="jPanel75" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
@@ -5552,11 +5552,11 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel28" min="-2" pref="130" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jComboBox2" min="-2" pref="589" max="-2" attributes="0"/>
+                                  <Component id="cboChuyenDe_HocVien" min="-2" pref="589" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="jLabel29" min="-2" pref="157" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                                  <Component id="jComboBox3" min="-2" pref="450" max="-2" attributes="0"/>
+                                  <Component id="cboKhoaHoc_HocVien" min="-2" pref="450" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -5564,20 +5564,15 @@
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="jComboBox3" alignment="1" min="-2" pref="33" max="-2" attributes="0"/>
+                                      <Component id="cboKhoaHoc_HocVien" alignment="1" min="-2" pref="33" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="jLabel28" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                                                  <Component id="jComboBox2" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                                              </Group>
+                                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                              <Component id="jLabel28" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                                              <Component id="cboChuyenDe_HocVien" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                                           </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="jLabel29" min="-2" pref="35" max="-2" attributes="0"/>
-                                          </Group>
+                                          <Component id="jLabel29" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
@@ -5602,7 +5597,7 @@
                             <Property name="opaque" type="boolean" value="true"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JComboBox" name="jComboBox3">
+                        <Component class="javax.swing.JComboBox" name="cboKhoaHoc_HocVien">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Tahoma" size="16" style="0"/>
@@ -5620,7 +5615,7 @@
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                           </AuxValues>
                         </Component>
-                        <Component class="javax.swing.JComboBox" name="jComboBox2">
+                        <Component class="javax.swing.JComboBox" name="cboChuyenDe_HocVien">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Tahoma" size="16" style="0"/>
@@ -5634,6 +5629,9 @@
                               </StringArray>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cboChuyenDe_HocVienActionPerformed"/>
+                          </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                           </AuxValues>
@@ -5658,7 +5656,7 @@
                     </Container>
                   </SubComponents>
                 </Container>
-                <Container class="javax.swing.JTabbedPane" name="jTabbedPane5">
+                <Container class="javax.swing.JTabbedPane" name="tabs">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -5699,7 +5697,7 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JTable" name="jTable5">
+                            <Component class="javax.swing.JTable" name="tblHocVien_HocVien">
                               <Properties>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                   <Table columnCount="4" rowCount="4">
@@ -5733,9 +5731,9 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
                                       <EmptySpace pref="896" max="32767" attributes="0"/>
-                                      <Component id="jButton41" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnRemove_HocVien" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                                      <Component id="jButton42" min="-2" pref="217" max="-2" attributes="0"/>
+                                      <Component id="btnUpdate_HocVien" min="-2" pref="217" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -5745,8 +5743,8 @@
                                   <Group type="102" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jButton42" alignment="3" max="32767" attributes="0"/>
-                                          <Component id="jButton41" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="btnUpdate_HocVien" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="btnRemove_HocVien" alignment="3" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
@@ -5754,7 +5752,7 @@
                             </DimensionLayout>
                           </Layout>
                           <SubComponents>
-                            <Component class="javax.swing.JButton" name="jButton41">
+                            <Component class="javax.swing.JButton" name="btnRemove_HocVien">
                               <Properties>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                   <Font name="Tahoma" size="16" style="1"/>
@@ -5764,8 +5762,11 @@
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="X&#xf3;a kh&#x1ecf;i kh&#xf3;a h&#x1ecd;c"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRemove_HocVienActionPerformed"/>
+                              </Events>
                             </Component>
-                            <Component class="javax.swing.JButton" name="jButton42">
+                            <Component class="javax.swing.JButton" name="btnUpdate_HocVien">
                               <Properties>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                   <Font name="Tahoma" size="16" style="1"/>
@@ -5775,6 +5776,9 @@
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="C&#x1ead;p nh&#x1ead;t &#x111;i&#x1ec3;m"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpdate_HocVienActionPerformed"/>
+                              </Events>
                             </Component>
                           </SubComponents>
                         </Container>
@@ -5810,7 +5814,7 @@
                             <Property name="useNullLayout" type="boolean" value="false"/>
                           </Layout>
                           <SubComponents>
-                            <Component class="javax.swing.JLabel" name="jLabel30">
+                            <Component class="javax.swing.JLabel" name="lblTimKiem_HocVien">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="61" green="49" red="43" type="rgb"/>
@@ -5834,13 +5838,17 @@
                                 </Constraint>
                               </Constraints>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="jTextField15">
+                            <Component class="javax.swing.JTextField" name="txtTimKiem_HocVien">
                               <Properties>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                   <Font name="Tahoma" size="16" style="0"/>
                                 </Property>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTimKiem_HocVienActionPerformed"/>
+                                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTimKiem_HocVienKeyReleased"/>
+                              </Events>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                                   <AbsoluteConstraints x="0" y="0" width="1190" height="50"/>
@@ -5861,7 +5869,7 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JTable" name="jTable6">
+                            <Component class="javax.swing.JTable" name="tblNguoiHoc_HocVien">
                               <Properties>
                                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                                   <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
@@ -5897,7 +5905,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
                                       <EmptySpace pref="1063" max="32767" attributes="0"/>
-                                      <Component id="jButton43" min="-2" pref="272" max="-2" attributes="0"/>
+                                      <Component id="btnAdd_HocVien" min="-2" pref="272" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -5905,14 +5913,14 @@
                             <DimensionLayout dim="1">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jButton43" pref="49" max="32767" attributes="0"/>
+                                      <Component id="btnAdd_HocVien" pref="49" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
                           </Layout>
                           <SubComponents>
-                            <Component class="javax.swing.JButton" name="jButton43">
+                            <Component class="javax.swing.JButton" name="btnAdd_HocVien">
                               <Properties>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                   <Font name="Tahoma" size="18" style="1"/>
@@ -5922,6 +5930,9 @@
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Th&#xea;m v&#xe0;o kh&#xf3;a h&#x1ecd;c"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdd_HocVienActionPerformed"/>
+                              </Events>
                             </Component>
                           </SubComponents>
                         </Container>
