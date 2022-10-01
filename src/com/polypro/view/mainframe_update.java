@@ -25,6 +25,7 @@ import java.awt.Insets;
 import java.awt.LayoutManager;
 import java.awt.RenderingHints;
 import java.awt.Shape;
+import java.awt.event.KeyEvent;
 import java.awt.geom.RoundRectangle2D;
 import java.io.File;
 import java.util.List;
@@ -2628,6 +2629,16 @@ public class mainframe_update extends javax.swing.JFrame {
         ));
         tblHocVien_HocVien.setSelectionBackground(new java.awt.Color(26, 72, 86));
         tblHocVien_HocVien.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblHocVien_HocVien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblHocVien_HocVienMouseClicked(evt);
+            }
+        });
+        tblHocVien_HocVien.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tblHocVien_HocVienKeyReleased(evt);
+            }
+        });
         jScrollPane8.setViewportView(tblHocVien_HocVien);
 
         jPanel24.add(jScrollPane8, java.awt.BorderLayout.CENTER);
@@ -3352,6 +3363,16 @@ public class mainframe_update extends javax.swing.JFrame {
     private void cbx_KhoaHoc_ThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbx_KhoaHoc_ThongKeActionPerformed
         fillTalbleBangDiem_ThongKe();
     }//GEN-LAST:event_cbx_KhoaHoc_ThongKeActionPerformed
+
+    private void tblHocVien_HocVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHocVien_HocVienMouseClicked
+        // TODO add your handling code here:
+        checkDiemOnTableWithMouseClick();
+    }//GEN-LAST:event_tblHocVien_HocVienMouseClicked
+
+    private void tblHocVien_HocVienKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblHocVien_HocVienKeyReleased
+        // TODO add your handling code here:
+        checkDiemOnTableWithKeyReleased(evt);
+    }//GEN-LAST:event_tblHocVien_HocVienKeyReleased
 
     /**
      * @param args the command line arguments
@@ -4356,9 +4377,13 @@ public class mainframe_update extends javax.swing.JFrame {
         }
     }
 
-    void updateDiem() {
+     void updateDiem() {
         /*
-        Câu lệnh 4090 tắt chế độ cập nhật trong ô đang chọn nếu đang chỉnh sửa
+        Câu Lệnh
+        if (tblHocVien_HocVien.isEditing()) {
+            tblHocVien_HocVien.getCellEditor().stopCellEditing();
+        }
+        kiểm tra có đang sửa trên bảng không
          */
         if (tblHocVien_HocVien.isEditing()) {
             tblHocVien_HocVien.getCellEditor().stopCellEditing();
@@ -4368,11 +4393,51 @@ public class mainframe_update extends javax.swing.JFrame {
         int maHV = (Integer) tblHocVien_HocVien.getValueAt(row, 1);
         HocVien hv = hvdao.selectID(maHV);
         double diem = Double.parseDouble(tblHocVien_HocVien.getValueAt(row, 4).toString());
-
-        hv.setDiem(diem);
-        hvdao.update(hv);
+        if (diem < 0 || diem > 10) {
+            checkDiemOnTableWithMouseClick();
+            return;
+        } else {
+            hv.setDiem(diem);
+            hvdao.update(hv);
+            MsgBox.alert(this, "Cập Nhật Điểm Thành Công!");
+        }
         //}
-        MsgBox.alert(this, "Cập Nhật Điểm Thành Công!");
+
+    }
+
+    void checkDiemOnTableWithMouseClick() {
+        double resetDiem = 0;
+        for (int i = 0; i < tblHocVien_HocVien.getRowCount(); i++) {
+            double diem = Double.parseDouble(tblHocVien_HocVien.getValueAt(i, 4).toString());
+            if (diem < 0 || diem > 10) {
+                MsgBox.alert(this, "Điểm Phải Từ 0 -> 10!");
+                tblHocVien_HocVien.setValueAt(resetDiem, i, 4);
+                tblHocVien_HocVien.getSelectionModel().addSelectionInterval(i, i);
+                return;
+            }
+        }
+    }
+
+    private void checkDiemOnTableWithKeyReleased(KeyEvent evt) {
+        // TODO add your handling code here:
+        if(evt.getKeyChar() == KeyEvent.VK_ENTER){
+            int index = tblHocVien_HocVien.getSelectedRow();  
+            double resetDiem = 0;
+            
+            try {
+                double diem = Double.parseDouble( tblHocVien_HocVien.getValueAt(index, 4).toString());
+                if(diem < 0 || diem > 10){
+                    MsgBox.alert(this, "Điểm Phải Trong Khoảng 0 -> 10!");
+                    tblHocVien_HocVien.setValueAt(resetDiem, index, 4);
+                    tblHocVien_HocVien.getSelectionModel().addSelectionInterval(index, index);
+                }
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                MsgBox.alert(this, "Vui Lòng Nhập Số!");
+                tblHocVien_HocVien.setValueAt(resetDiem, index, 4);
+                tblHocVien_HocVien.getSelectionModel().addSelectionInterval(index, index);
+            }
+        }
     }
 
     /*
