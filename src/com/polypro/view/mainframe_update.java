@@ -22,6 +22,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.LayoutManager;
 import java.awt.RenderingHints;
@@ -30,6 +31,7 @@ import java.awt.event.KeyEvent;
 import java.awt.geom.RoundRectangle2D;
 import java.io.File;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -72,7 +74,7 @@ public class mainframe_update extends javax.swing.JFrame {
         setModelTableChuyenDe();
         setModelTableHocVien_HocVien();
         setModelTableNguoiHoc_HocVien();
-         setModelTableNguoiHoc_NguoiHoc();
+        setModelTableNguoiHoc_NguoiHoc();
 // load data chuyen de
         fillTableChuyenDe();
         //load data lên combo box
@@ -3332,9 +3334,16 @@ public class mainframe_update extends javax.swing.JFrame {
 
     private void btnThem_ChuyenDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem_ChuyenDeActionPerformed
         isUpdate = false;
-        if (checkFormChuyenDe()) {
-            insertChuyenDe();
+        if (checkDupKeyChuyenDe(txtMaCD_ChuyenDe.getText()) == false) {
+            if (checkFormChuyenDe()) {
+                insertChuyenDe();
+            }
+        } else {
+            MsgBox.alert(this, "Trùng mã chuyên đề");
+
         }
+
+
     }//GEN-LAST:event_btnThem_ChuyenDeActionPerformed
 
     private void btnSua_ChuyenDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSua_ChuyenDeActionPerformed
@@ -3420,7 +3429,7 @@ public class mainframe_update extends javax.swing.JFrame {
     }//GEN-LAST:event_tblHocVien_HocVienKeyReleased
 
     private void tblDanhSach_NguoiHocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDanhSach_NguoiHocMouseClicked
-       if (evt.getClickCount() == 2) {
+        if (evt.getClickCount() == 2) {
             this.row_NguoiHoc = tblDanhSach_NguoiHoc.getSelectedRow();
             this.edit_NguoiHoc2();
         }
@@ -3431,8 +3440,8 @@ public class mainframe_update extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTimKiem_NguoiHocActionPerformed
 
     private void txtTimKiem_NguoiHocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTimKiem_NguoiHocMouseClicked
-        
-    txtTimKiem_NguoiHoc.setText("");
+
+        txtTimKiem_NguoiHoc.setText("");
     }//GEN-LAST:event_txtTimKiem_NguoiHocMouseClicked
 
     private void btnTim_NguoiHocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTim_NguoiHocMouseClicked
@@ -3440,7 +3449,7 @@ public class mainframe_update extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTim_NguoiHocMouseClicked
 
     private void btnThem_NguoiHocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem_NguoiHocActionPerformed
-      isUpdate_nguoiHoc = false;
+        isUpdate_nguoiHoc = false;
         try {
             if (checkFormNguoihoc()) {
                 insert_NguoiHoc();
@@ -3462,7 +3471,7 @@ public class mainframe_update extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSua_NguoiHocActionPerformed
 
     private void btnXoa_NguoiHocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa_NguoiHocActionPerformed
-      delete_NguoiHoc();
+        delete_NguoiHoc();
     }//GEN-LAST:event_btnXoa_NguoiHocActionPerformed
 
     private void btnNew_NguoiHocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNew_NguoiHocActionPerformed
@@ -4142,7 +4151,8 @@ public class mainframe_update extends javax.swing.JFrame {
     JFileChooser filenChooser = new JFileChooser();
     static ChuyenDeDAO chuyenDeDAO = new ChuyenDeDAO();
     int row_ChuyenDe = -1;
-    boolean isUpdate = false;
+    List<ChuyenDe> ListChuyenDe = new ArrayList<ChuyenDe>();
+    boolean isUpdate;
     static DefaultTableModel modelChuyenDe;
 
     public void setModelTableChuyenDe() {
@@ -4156,7 +4166,16 @@ public class mainframe_update extends javax.swing.JFrame {
         if (filenChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             File file = filenChooser.getSelectedFile();
             XImage.save(file);
-            ImageIcon icon = XImage.read(file.getName());
+           
+
+//            System.out.println(file.getAbsoluteFile());
+//               System.out.println(file.getAbsolutePath()); 
+//                           System.out.println(file.getPath()); 
+            ImageIcon iconTam = new ImageIcon(file.getAbsolutePath());
+            Image img = iconTam.getImage();
+             ImageIcon icon = new ImageIcon(img.getScaledInstance(lblHinhAnh_ChuyenDe.getWidth(), lblHinhAnh_ChuyenDe.getHeight(), Image.SCALE_SMOOTH));
+          
+          
             lblHinhAnh_ChuyenDe.setIcon(icon);
             lblHinhAnh_ChuyenDe.setToolTipText(file.getName());
         }
@@ -4224,27 +4243,32 @@ public class mainframe_update extends javax.swing.JFrame {
         String maCD = (String) tblDanhSach_ChuyenDe.getValueAt(this.row_ChuyenDe, 0);
         ChuyenDe cd = chuyenDeDAO.selectID(maCD);
         this.setFormChuyenDe(cd);
+
+        // chuyen trang
         tbpChuyenDe.setSelectedIndex(1);
         this.updateStatusChuyenDe();
     }
 
     void insertChuyenDe() {
-        ChuyenDe model = getFormChuyenDe();
-        if (model.getHinh() == null) {
+        ChuyenDe modelCD = getFormChuyenDe();
+
+        if (modelCD.getHinh() == null) {
             MsgBox.alert(this, "Hình Không Được Để Trống");
-            return;
+        } else {
+            try {
+                chuyenDeDAO.insert(modelCD);
+                this.fillTableChuyenDe();
+                MsgBox.alert(this, "Thêm mới thành công!");
+            } catch (Exception e) {
+                MsgBox.alert(this, "Thêm mới thất bại!");
+            }
         }
-        try {
-            chuyenDeDAO.insert(model);
-            this.fillTableChuyenDe();
-            //MsgBox.alert(this, "Thêm mới thành công!");
-        } catch (Exception e) {
-            MsgBox.alert(this, "Thêm mới thất bại!");
-        }
+
     }
 
     void updateChuyenDe() {
         ChuyenDe model = getFormChuyenDe();
+
         if (MsgBox.confirm(this, "Bạn có chắc muốn cập nhật chuyên đề này không?")) {
             try {
                 chuyenDeDAO.update(model);
@@ -4264,6 +4288,9 @@ public class mainframe_update extends javax.swing.JFrame {
                 chuyenDeDAO.delete(maCD);
                 this.fillTableChuyenDe();
                 MsgBox.alert(this, "Xóa thành công!");
+                // -1 quay ve trang thai enabal nut update
+                row_ChuyenDe = -1;
+                this.updateStatusChuyenDe();
             } catch (Exception e) {
                 MsgBox.alert(this, "Không thể xóa chuyên đề đã tồn tại khóa học!");
             }
@@ -4324,36 +4351,40 @@ public class mainframe_update extends javax.swing.JFrame {
         updateStatusChuyenDe();
     }
 
-    public boolean checkFormChuyenDe() {
-        if (txtMaCD_ChuyenDe.getText().equals("") || txtMaCD_ChuyenDe.getText().equals("") || txtThoiGian_ChuyenDe.getText().equals("")
-                || txtHocPhi_ChuyenDe.getText().equals("") || txtMoTa_ChuyenDe.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Hãy nhập đủ dữ liệu sau đó ấn Thêm", "Error", 1);
-            return false;
-        } else if (!(txtMaCD_ChuyenDe.getText()).matches("CD[0-9]{1,5}")) {
-            JOptionPane.showMessageDialog(this, "Sai định dạng mã \n VD : CD07", "Error", 1);
-            txtMaCD_ChuyenDe.requestFocus();
-            return false;
-        } else if (!(txtThoiGian_ChuyenDe.getText()).matches("[0-9]{1,99}")) {
-            JOptionPane.showMessageDialog(this, "Thời lượng phải nhập số dương", "Error", 1);
-            txtThoiGian_ChuyenDe.requestFocus();
-            return false;
-        } else if (!(txtHocPhi_ChuyenDe.getText()).matches("[0-9]{1,99}")) {
-            JOptionPane.showMessageDialog(this, "Học phí phải nhập số dương", "Error", 1);
-            txtHocPhi_ChuyenDe.requestFocus();
-            return false;
-        }
-        List<ChuyenDe> list = chuyenDeDAO.select();
-        for (int i = 0; i < list.size(); i++) {
-            if (isUpdate) {
-            } else {
-                if (txtMaCD_ChuyenDe.getText().equalsIgnoreCase(list.get(i).getMaCD())) {
-                    JOptionPane.showMessageDialog(this, "Trùng Mã Chuyên Đề", "Error", 1);
-                    return false;
-                }
+    public boolean checkDupKeyChuyenDe(String maCD) {
+        List<ChuyenDe> listChuyenDe = chuyenDeDAO.select();
+
+        for (int i = 0; i < listChuyenDe.size(); i++) {
+            System.out.println(listChuyenDe.get(i).getMaCD());
+            if (maCD.equalsIgnoreCase(listChuyenDe.get(i).getMaCD())) {
+
+                return true;
             }
         }
+        return false;
 
-        return true;
+    }
+
+    public boolean checkFormChuyenDe() {
+        boolean result = true;
+        if (txtMaCD_ChuyenDe.getText().equals("") || txtTenChuyenDe_ChuyenDe.getText().equals("") || txtThoiGian_ChuyenDe.getText().equals("")
+                || txtHocPhi_ChuyenDe.getText().equals("") || txtMoTa_ChuyenDe.getText().equals("")) {
+            MsgBox.alert(this, "Hãy nhập đủ dữ liệu sau đó ấn Thêm");
+            result = false;
+
+        }
+        if (!(txtThoiGian_ChuyenDe.getText()).matches("[0-9]{1,99}")) {
+            JOptionPane.showMessageDialog(this, "Thời lượng phải nhập số dương", "Error", 1);
+            txtThoiGian_ChuyenDe.requestFocus();
+            result = false;
+        }
+        if (!(txtHocPhi_ChuyenDe.getText()).matches("[0-9]{1,99}")) {
+            MsgBox.alert(this, "Học phí phải nhập số dương");
+            txtHocPhi_ChuyenDe.requestFocus();
+            result = false;
+        }
+
+        return result;
     }
 
     //3. Xử Lý Hoc Viên
@@ -4479,7 +4510,7 @@ public class mainframe_update extends javax.swing.JFrame {
         }
     }
 
-     void updateDiem() {
+    void updateDiem() {
         /*
         Câu Lệnh
         if (tblHocVien_HocVien.isEditing()) {
@@ -4522,13 +4553,13 @@ public class mainframe_update extends javax.swing.JFrame {
 
     private void checkDiemOnTableWithKeyReleased(KeyEvent evt) {
         // TODO add your handling code here:
-        if(evt.getKeyChar() == KeyEvent.VK_ENTER){
-            int index = tblHocVien_HocVien.getSelectedRow();  
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            int index = tblHocVien_HocVien.getSelectedRow();
             double resetDiem = 0;
-            
+
             try {
-                double diem = Double.parseDouble( tblHocVien_HocVien.getValueAt(index, 4).toString());
-                if(diem < 0 || diem > 10){
+                double diem = Double.parseDouble(tblHocVien_HocVien.getValueAt(index, 4).toString());
+                if (diem < 0 || diem > 10) {
                     MsgBox.alert(this, "Điểm Phải Trong Khoảng 0 -> 10!");
                     tblHocVien_HocVien.setValueAt(resetDiem, index, 4);
                     tblHocVien_HocVien.getSelectionModel().addSelectionInterval(index, index);
@@ -4637,9 +4668,9 @@ public class mainframe_update extends javax.swing.JFrame {
             model.addRow(row);
         });
     }
-    
+
     //Quan ly Nguoi Hoc => Vinh
-     int row_NguoiHoc = 1;
+    int row_NguoiHoc = 1;
     boolean isUpdate_nguoiHoc = false;
 
     public void setModelTableNguoiHoc_NguoiHoc() {
@@ -4778,7 +4809,7 @@ public class mainframe_update extends javax.swing.JFrame {
             this.fillTableNguoiHoc();
         } catch (Exception e) {
             MsgBox.alert(this, "Cap Nhat thất bại!");
-             e.printStackTrace();
+            e.printStackTrace();
         }
     }
 
@@ -4857,7 +4888,7 @@ public class mainframe_update extends javax.swing.JFrame {
 
         if (txtMaNguoiHoc_NguoiHoc.getText().equals("") || txtHoTen_NguoiHoc.getText().equals("") || txtNgaySinh_NguoiHoc.getText().equals("")
                 || txtDienThoai_NguoiHoc.getText().equals("") || txtDiaChiEmail_NguoiHoc.getText().equals("")) {
-               MsgBox.alert(this, "Hãy nhập đủ dữ liệu sau đó ấn Thêm");
+            MsgBox.alert(this, "Hãy nhập đủ dữ liệu sau đó ấn Thêm");
             return false;
         } else if ((!(txtMaNguoiHoc_NguoiHoc.getText()).matches("PS[0-9]{1,5}"))) {
             MsgBox.alert(this, "Vui lòng nhập đúng định dạng mã người học VD: PS0001");
@@ -4870,10 +4901,10 @@ public class mainframe_update extends javax.swing.JFrame {
             return false;
         } else if ((!(txtDiaChiEmail_NguoiHoc.getText()).matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                 + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"))) {
-           MsgBox.alert(this, "Vui lòng nhập đúng định dạng mail!");
+            MsgBox.alert(this, "Vui lòng nhập đúng định dạng mail!");
             return false;
         }
-      List<NguoiHoc> list = nhdao.select();
+        List<NguoiHoc> list = nhdao.select();
         for (int i = 0; i < list.size(); i++) {
             if (isUpdate_nguoiHoc) {
             } else {
