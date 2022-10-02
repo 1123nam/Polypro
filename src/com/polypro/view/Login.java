@@ -1,6 +1,11 @@
 package com.polypro.view;
 
+import com.polypro.DAO.NhanVienDAO;
+import com.polypro.model.NhanVien;
+import com.polypro.utils.Auth;
+import com.polypro.utils.MsgBox;
 import com.sun.glass.events.KeyEvent;
+import com.sun.glass.events.WindowEvent;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -14,6 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.Timer;
@@ -30,21 +36,19 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         this.setLocationRelativeTo(null);
-        txtUsername.setBackground(new java.awt.Color(0, 0, 0, 1));
-        txtPassword.setBackground(new java.awt.Color(0, 0, 0, 1));
+        txtMaNhanVien.setBackground(new java.awt.Color(0, 0, 0, 1));
+        txtMatKhau.setBackground(new java.awt.Color(0, 0, 0, 1));
         this.setTitle("LOGIN");
         changeIcon();
         setInterface();
     }
 
     private void setInterface() {
-        txtPassword.requestFocus();
-        btnFacebook.setBackground(Color.white);
-        btnGoogle.setBackground(Color.white);
+        txtMatKhau.requestFocus();
+
         lblLogin.requestFocus();
-        txtPassword.setEchoChar((char) 0);
-        lblErorUsername.setVisible(false);
-        lblErorPassword.setVisible(false);
+        txtMatKhau.setEchoChar((char) 0);
+       
     }
 
     public void changeIcon() {
@@ -52,69 +56,36 @@ public class Login extends javax.swing.JFrame {
         setIconImage(icon.getImage());
     }
 
-    private boolean checking() {
-        String pass = new String(txtPassword.getPassword()).trim();
-        if ((txtUsername.getText().isEmpty() || txtUsername.getText().trim().equalsIgnoreCase("Username")) && (pass.isEmpty() || pass.equalsIgnoreCase("Password"))) {
-            lblErorUsername.setVisible(true);
-            txtUsername.setText("");
-            lblErorPassword.setVisible(true);
-            txtPassword.setText("");
-            return false;
-        } else if (txtUsername.getText().isEmpty() || txtUsername.getText().trim().equalsIgnoreCase("Username")) {
-            lblErorUsername.setVisible(true);
-            lblErorPassword.setVisible(false);
-            txtUsername.setText("");
-            return false;
-
-        } else if (pass.isEmpty() || pass.equalsIgnoreCase("Password")) {
-            lblErorPassword.setVisible(true);
-            lblErorUsername.setVisible(false);
-            txtPassword.setText("");
-            return false;
-        } else {
-            lblErorUsername.setVisible(false);
-            lblErorPassword.setVisible(false);
-            return true;
-        }
-    }
-
+   
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         pnlRight = new javax.swing.JPanel();
-        lblErorPassword = new javax.swing.JLabel();
-        lblErorUsername = new javax.swing.JLabel();
         viewPass = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtUsername = new javax.swing.JTextField();
+        txtMaNhanVien = new javax.swing.JTextField();
         lblLogin = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        btnFacebook = new javax.swing.JButton();
-        btnGoogle = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JPasswordField();
+        txtMatKhau = new javax.swing.JPasswordField();
+        jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 204, 204));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlRight.setBackground(new java.awt.Color(255, 255, 255));
         pnlRight.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblErorPassword.setForeground(new java.awt.Color(255, 51, 51));
-        lblErorPassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/error.png"))); // NOI18N
-        lblErorPassword.setText("Please enter your Password!");
-        pnlRight.add(lblErorPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 210, 30));
-
-        lblErorUsername.setForeground(new java.awt.Color(255, 51, 51));
-        lblErorUsername.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/error.png"))); // NOI18N
-        lblErorUsername.setText("Please enter your Username!");
-        pnlRight.add(lblErorUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 210, 30));
 
         viewPass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/show.png"))); // NOI18N
         viewPass.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 153, 153)));
@@ -126,27 +97,27 @@ public class Login extends javax.swing.JFrame {
                 viewPassMouseReleased(evt);
             }
         });
-        pnlRight.add(viewPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, 40, 50));
+        pnlRight.add(viewPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 230, 40, 50));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/user.png"))); // NOI18N
-        pnlRight.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(53, 57, -1, -1));
+        pnlRight.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/padlockk.png"))); // NOI18N
-        pnlRight.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(53, 124, -1, -1));
+        pnlRight.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, -1, -1));
 
-        txtUsername.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txtUsername.setForeground(new java.awt.Color(204, 204, 204));
-        txtUsername.setText("  Username");
-        txtUsername.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 153, 153)));
-        txtUsername.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtMaNhanVien.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
+        txtMaNhanVien.setForeground(new java.awt.Color(204, 204, 204));
+        txtMaNhanVien.setText("Tên đăng nhập");
+        txtMaNhanVien.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 153, 153)));
+        txtMaNhanVien.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtUsernameFocusGained(evt);
+                txtMaNhanVienFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtUsernameFocusLost(evt);
+                txtMaNhanVienFocusLost(evt);
             }
         });
-        pnlRight.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 37, 297, 52));
+        pnlRight.add(txtMaNhanVien, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 297, 52));
 
         lblLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/button_login_1.png"))); // NOI18N
         lblLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -169,54 +140,39 @@ public class Login extends javax.swing.JFrame {
                 lblLoginKeyTyped(evt);
             }
         });
-        pnlRight.add(lblLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, -1, -1));
+        pnlRight.add(lblLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, 160, -1));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel5.setText("OR");
-        pnlRight.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(217, 277, -1, -1));
-
-        btnFacebook.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        btnFacebook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/fb.png"))); // NOI18N
-        btnFacebook.setText(" Continue with Facebook");
-        btnFacebook.setBorder(new javax.swing.border.MatteBorder(null));
-        btnFacebook.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnFacebook.setMargin(new java.awt.Insets(2, 35, 2, 14));
-        pnlRight.add(btnFacebook, new org.netbeans.lib.awtextra.AbsoluteConstraints(53, 336, 356, 50));
-
-        btnGoogle.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        btnGoogle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/google.png"))); // NOI18N
-        btnGoogle.setText(" Continue with Google");
-        btnGoogle.setBorder(new javax.swing.border.MatteBorder(null));
-        btnGoogle.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlRight.add(btnGoogle, new org.netbeans.lib.awtextra.AbsoluteConstraints(53, 399, 356, 50));
-
-        jLabel7.setText("___________");
-        pnlRight.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, -1, 20));
-
-        jLabel8.setText("___________");
-        pnlRight.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, -1, 20));
-
-        txtPassword.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
-        txtPassword.setForeground(new java.awt.Color(204, 204, 204));
-        txtPassword.setText("   Password");
-        txtPassword.setToolTipText("");
-        txtPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 153, 153)));
-        txtPassword.setEchoChar('\uf06c');
-        txtPassword.setFocusCycleRoot(true);
-        txtPassword.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtMatKhau.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
+        txtMatKhau.setForeground(new java.awt.Color(204, 204, 204));
+        txtMatKhau.setText("Mật khẩu");
+        txtMatKhau.setToolTipText("");
+        txtMatKhau.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 153, 153)));
+        txtMatKhau.setEchoChar('\uf06c');
+        txtMatKhau.setFocusCycleRoot(true);
+        txtMatKhau.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtPasswordFocusGained(evt);
+                txtMatKhauFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtPasswordFocusLost(evt);
+                txtMatKhauFocusLost(evt);
             }
         });
-        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtMatKhau.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMatKhauActionPerformed(evt);
+            }
+        });
+        txtMatKhau.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtPasswordKeyReleased(evt);
+                txtMatKhauKeyReleased(evt);
             }
         });
-        pnlRight.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 260, 50));
+        pnlRight.add(txtMatKhau, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 260, 50));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 40)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(40, 146, 161));
+        jLabel4.setText("ĐĂNG NHẬP");
+        pnlRight.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, -1, -1));
 
         getContentPane().add(pnlRight, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, 440, 470));
 
@@ -229,93 +185,92 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtUsernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusGained
-        lblErorUsername.setVisible(false);
-        if (txtUsername.getText().trim().equalsIgnoreCase("Username")) {
-            txtUsername.setText("");
-            txtUsername.setFont(new Font("Roboto", Font.PLAIN, 18));
-            txtUsername.setForeground(Color.black);
+    private void txtMaNhanVienFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMaNhanVienFocusGained
+        if (txtMaNhanVien.getText().trim().equalsIgnoreCase("Tên đăng nhập")) {
+            txtMaNhanVien.setText("");
+            txtMaNhanVien.setFont(new Font("Roboto", Font.PLAIN, 20));
+            txtMaNhanVien.setForeground(Color.black);
         }
-    }//GEN-LAST:event_txtUsernameFocusGained
+    }//GEN-LAST:event_txtMaNhanVienFocusGained
 
-    private void txtUsernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusLost
-        if (txtUsername.getText().trim().equals("")) {
-            if (lblErorUsername.isVisible()) {
-                txtUsername.setText("");
-            } else {
-                txtUsername.setText("Username");
-                txtUsername.setForeground(Color.LIGHT_GRAY);
-                txtUsername.setFont(new Font("Roboto", Font.PLAIN, 16));
-            }
+    private void txtMaNhanVienFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMaNhanVienFocusLost
+        if (txtMaNhanVien.getText().trim().equals("")) {
+          
+                txtMaNhanVien.setText("Tên đăng nhập");
+                txtMaNhanVien.setForeground(Color.LIGHT_GRAY);
+                txtMaNhanVien.setFont(new Font("Roboto", Font.PLAIN, 16));
         } else {
-            txtUsername.setText(txtUsername.getText());
-            txtUsername.setFont(new Font("Roboto", Font.PLAIN, 18));
-            txtUsername.setForeground(Color.black);
+            txtMaNhanVien.setText(txtMaNhanVien.getText());
+            txtMaNhanVien.setFont(new Font("Roboto", Font.PLAIN, 18));
+            txtMaNhanVien.setForeground(Color.black);
         }
-    }//GEN-LAST:event_txtUsernameFocusLost
+    }//GEN-LAST:event_txtMaNhanVienFocusLost
 
-    private void txtPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusGained
-        lblErorPassword.setVisible(false);
-        String pass = String.valueOf(txtPassword.getPassword()).trim();
+    private void txtMatKhauFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMatKhauFocusGained
+        String pass = String.valueOf(txtMatKhau.getPassword()).trim();
 //        System.out.println(pass);
-        if (pass.equalsIgnoreCase("Password")) {
-            txtPassword.setText("");
-            txtPassword.setForeground(Color.black);
+        if (pass.equalsIgnoreCase("Mật khẩu")) {
+            txtMatKhau.setText("");
+            txtMatKhau.setForeground(Color.black);
         }
-    }//GEN-LAST:event_txtPasswordFocusGained
+    }//GEN-LAST:event_txtMatKhauFocusGained
 
-    private void txtPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusLost
-        String pass = String.valueOf(txtPassword.getPassword()).trim();
+    private void txtMatKhauFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMatKhauFocusLost
+        String pass = String.valueOf(txtMatKhau.getPassword()).trim();
         if (pass.equalsIgnoreCase("")) {
-            if (lblErorPassword.isVisible()) {
-                txtPassword.setText("");
-            } else {
-                txtPassword.setText("Password");
-                txtPassword.setFont(new Font("Caribi", Font.PLAIN, 16));
-                txtPassword.setForeground(Color.LIGHT_GRAY);
-            }
+          
+                txtMatKhau.setText("Mật khẩu");
+                txtMatKhau.setFont(new Font("Caribi", Font.PLAIN, 16));
+                txtMatKhau.setForeground(Color.LIGHT_GRAY);
         }
-    }//GEN-LAST:event_txtPasswordFocusLost
+    }//GEN-LAST:event_txtMatKhauFocusLost
 
     private void viewPassMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewPassMousePressed
-        String view = String.valueOf(txtPassword.getPassword()).trim();
+        String view = String.valueOf(txtMatKhau.getPassword()).trim();
         if (view.isEmpty() || view.equalsIgnoreCase("Password")) {
             return;
         }
-        txtPassword.setEchoChar((char) 0);
-        txtPassword.setFont(new Font("Arial", Font.PLAIN, 18));
+        txtMatKhau.setEchoChar((char) 0);
+        txtMatKhau.setFont(new Font("Arial", Font.PLAIN, 18));
         viewPass.setIcon(new ImageIcon("src//com/polypro/view/icon/dontshow.png"));
 
     }//GEN-LAST:event_viewPassMousePressed
 
     private void viewPassMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewPassMouseReleased
-        String view = String.valueOf(txtPassword.getPassword()).trim();
-        if (view.isEmpty() || view.equalsIgnoreCase("Password")) {
+        String view = String.valueOf(txtMatKhau.getPassword()).trim();
+        if (view.isEmpty() || view.equalsIgnoreCase("Mật khẩu")) {
             return;
         }
-        txtPassword.setEchoChar('\uf06c');
-        txtPassword.setFont(new Font("Caribi", Font.PLAIN, 16));
+        txtMatKhau.setEchoChar('\uf06c');
+        txtMatKhau.setFont(new Font("Caribi", Font.PLAIN, 16));
         viewPass.setIcon(new ImageIcon("src//com/polypro/view/icon/show.png"));
     }//GEN-LAST:event_viewPassMouseReleased
 
-    private void txtPasswordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyReleased
-        String pass = new String(txtPassword.getPassword());
+    private void txtMatKhauKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMatKhauKeyReleased
+        String pass = new String(txtMatKhau.getPassword());
         if (!pass.isEmpty()) {
-            txtPassword.setFont(new Font("Caribi", Font.PLAIN, 16));
-            txtPassword.setEchoChar('\uf06c');
-            txtPassword.setText(String.valueOf(pass));
-            txtPassword.setForeground(Color.black);
+            txtMatKhau.setFont(new Font("Caribi", Font.PLAIN, 16));
+            txtMatKhau.setEchoChar('\uf06c');
+            txtMatKhau.setText(String.valueOf(pass));
+            txtMatKhau.setForeground(Color.black);
         } else {
-            txtPassword.setText("");
-            txtPassword.setEchoChar((char) 0);
-            txtPassword.setForeground(Color.LIGHT_GRAY);
-            txtPassword.setFont(new Font("Roboto", Font.PLAIN, 16));
+            txtMatKhau.setText("");
+            txtMatKhau.setEchoChar((char) 0);
+            txtMatKhau.setForeground(Color.LIGHT_GRAY);
+            txtMatKhau.setFont(new Font("Roboto", Font.PLAIN, 16));
+        }
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            if (checkInput()) {
+                login();
+            }
         }
 
-    }//GEN-LAST:event_txtPasswordKeyReleased
+    }//GEN-LAST:event_txtMatKhauKeyReleased
 
     private void lblLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLoginMouseClicked
-
+        if (checkInput()) {
+            login();
+        }
     }//GEN-LAST:event_lblLoginMouseClicked
 
     private void lblLoginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLoginMouseEntered
@@ -333,6 +288,23 @@ public class Login extends javax.swing.JFrame {
     private void lblLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lblLoginKeyPressed
 
     }//GEN-LAST:event_lblLoginKeyPressed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        boolean isExit = MsgBox.confirm(this, "Bạn có chắc chắn muốn thoát khỏi chương trình ?");
+        if (!isExit) {
+            this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        } else {
+            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        }
+    }//GEN-LAST:event_formWindowClosing
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+
+    }//GEN-LAST:event_formWindowClosed
+
+    private void txtMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMatKhauActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMatKhauActionPerformed
 
     /**
      * @param args the command line arguments
@@ -378,20 +350,52 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnFacebook;
-    private javax.swing.JButton btnGoogle;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel lblErorPassword;
-    private javax.swing.JLabel lblErorUsername;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel lblLogin;
     private javax.swing.JPanel pnlRight;
-    private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JTextField txtUsername;
+    private javax.swing.JTextField txtMaNhanVien;
+    private javax.swing.JPasswordField txtMatKhau;
     private javax.swing.JLabel viewPass;
     // End of variables declaration//GEN-END:variables
+
+    private boolean checkInput() {
+        StringBuilder sb = new StringBuilder();
+        String maNV = txtMaNhanVien.getText();
+        String matKhau = String.valueOf(txtMatKhau.getPassword());
+        if (maNV.equals("") || maNV.equals("Tên đăng nhập")) {
+            sb.append("Tên đăng nhập không được để trống\n");
+        }
+        if (matKhau.equals("") || matKhau.equals("Mật khẩu")) {
+            sb.append("Mật khẩu không được để trống\n");
+        }
+        if (sb.length() > 0) {
+            sb.append("Vui lòng kiểm tra lại !");
+            MsgBox.alert(this, sb.toString());
+            return false;
+        }
+        return true;
+    }
+
+    private void login() {
+
+        NhanVienDAO nhanVienDAO = new NhanVienDAO();
+        String maNV = txtMaNhanVien.getText();
+        String matKhau = String.valueOf(txtMatKhau.getPassword());
+        NhanVien nhanVien = nhanVienDAO.selectID(maNV);
+        if (nhanVien == null) {
+            MsgBox.alert(this, "Tên đăng nhập của bạn không đúng. Vui lòng kiểm tra lại");
+            txtMaNhanVien.requestFocus();
+        } else if (!matKhau.equals(nhanVien.getMatKhau())) {
+            MsgBox.alert(this, "Mật khẩu của bạn không đúng. Vui lòng kiểm tra lại");
+            txtMatKhau.requestFocus();
+        } else {
+            Auth.user = nhanVien;
+            new mainframe_update().setVisible(true);
+            this.dispose();
+        }
+    }
+
 }

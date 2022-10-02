@@ -141,7 +141,17 @@ public class mainframe_update extends javax.swing.JFrame {
                         case "Thống Kê":
                             cardLayout.show(main, "cardThongKe");
                             break;
-
+                        case "Đổi Mật Khẩu": {
+                            new ChangePass().setVisible(true);
+                            changePass();
+                        }
+                        break;
+                        case "Đăng Xuất": {
+                            if (MsgBox.confirm(null, "Bạn có chắc chắn muốn đăng xuất khỏi chương trình ?")) {
+                                login();
+                            }
+                        }
+                        break;
                         default:
                             break;
                     }
@@ -3128,6 +3138,11 @@ public class mainframe_update extends javax.swing.JFrame {
         btnLogout.setFocusPainted(false);
         btnLogout.setOpaque(true);
         btnLogout.setPreferredSize(new java.awt.Dimension(60, 50));
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
         pnlLogout.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, -1));
 
         pnlDashboard.add(pnlLogout);
@@ -3167,6 +3182,11 @@ public class mainframe_update extends javax.swing.JFrame {
         btnLearner.setFocusPainted(false);
         btnLearner.setOpaque(true);
         btnLearner.setPreferredSize(new java.awt.Dimension(60, 50));
+        btnLearner.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLearnerActionPerformed(evt);
+            }
+        });
         pnlLearner.add(btnLearner, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, -1));
 
         pnlDashboard.add(pnlLearner);
@@ -3184,6 +3204,11 @@ public class mainframe_update extends javax.swing.JFrame {
         btnTopic.setFocusPainted(false);
         btnTopic.setOpaque(true);
         btnTopic.setPreferredSize(new java.awt.Dimension(60, 50));
+        btnTopic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTopicActionPerformed(evt);
+            }
+        });
         pnlTopic.add(btnTopic, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, -1));
 
         pnlDashboard.add(pnlTopic);
@@ -3223,6 +3248,11 @@ public class mainframe_update extends javax.swing.JFrame {
         btnStudent.setFocusPainted(false);
         btnStudent.setOpaque(true);
         btnStudent.setPreferredSize(new java.awt.Dimension(60, 50));
+        btnStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStudentActionPerformed(evt);
+            }
+        });
         jPanel35.add(btnStudent, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, -1));
 
         pnlDashboard.add(jPanel35);
@@ -3240,6 +3270,11 @@ public class mainframe_update extends javax.swing.JFrame {
         btnGuide.setFocusPainted(false);
         btnGuide.setOpaque(true);
         btnGuide.setPreferredSize(new java.awt.Dimension(60, 50));
+        btnGuide.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuideActionPerformed(evt);
+            }
+        });
         jPanel29.add(btnGuide, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 50));
 
         pnlDashboard.add(jPanel29);
@@ -3283,7 +3318,8 @@ public class mainframe_update extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCourseActionPerformed
-        // TODO add your handling code here:
+        cardLayout.show(main, "cardQLKhoaHoc");
+
     }//GEN-LAST:event_btnCourseActionPerformed
 
     private void tblDanhSach_ChuyenDeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDanhSach_ChuyenDeMouseClicked
@@ -3485,6 +3521,32 @@ public class mainframe_update extends javax.swing.JFrame {
         btnLast_NguoiHoc.setEnabled(false);
     }//GEN-LAST:event_btnNew_NguoiHocActionPerformed
 
+    private void btnLearnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLearnerActionPerformed
+        cardLayout.show(main, "cardQLNguoiHoc");
+
+    }//GEN-LAST:event_btnLearnerActionPerformed
+
+    private void btnTopicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTopicActionPerformed
+        cardLayout.show(main, "cardQLChuyenDe");
+
+    }//GEN-LAST:event_btnTopicActionPerformed
+
+    private void btnStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStudentActionPerformed
+        cardLayout.show(main, "cardQLHocVien");
+
+    }//GEN-LAST:event_btnStudentActionPerformed
+
+    private void btnGuideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuideActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuideActionPerformed
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        if (MsgBox.confirm(this, "Bạn có chắc chắn muốn đăng xuất khỏi chương trình ?")) {
+            login();
+        }
+
+    }//GEN-LAST:event_btnLogoutActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3522,6 +3584,8 @@ public class mainframe_update extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+               HiJDialog hiJDialog =  new HiJDialog(new mainframe_update(), true);
+               hiJDialog.setVisible(true);
                 new mainframe_update().setVisible(true);
             }
         });
@@ -4166,16 +4230,14 @@ public class mainframe_update extends javax.swing.JFrame {
         if (filenChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             File file = filenChooser.getSelectedFile();
             XImage.save(file);
-           
 
 //            System.out.println(file.getAbsoluteFile());
 //               System.out.println(file.getAbsolutePath()); 
 //                           System.out.println(file.getPath()); 
             ImageIcon iconTam = new ImageIcon(file.getAbsolutePath());
             Image img = iconTam.getImage();
-             ImageIcon icon = new ImageIcon(img.getScaledInstance(lblHinhAnh_ChuyenDe.getWidth(), lblHinhAnh_ChuyenDe.getHeight(), Image.SCALE_SMOOTH));
-          
-          
+            ImageIcon icon = new ImageIcon(img.getScaledInstance(lblHinhAnh_ChuyenDe.getWidth(), lblHinhAnh_ChuyenDe.getHeight(), Image.SCALE_SMOOTH));
+
             lblHinhAnh_ChuyenDe.setIcon(icon);
             lblHinhAnh_ChuyenDe.setToolTipText(file.getName());
         }
@@ -4919,5 +4981,16 @@ public class mainframe_update extends javax.swing.JFrame {
 
     public void selectTab(int index) {
         tabs_DoanhThu.setSelectedIndex(index);
+    }
+
+    private void changePass() {
+        new ChangePass().setVisible(true);
+        this.dispose();
+    }
+
+    private void login() {
+        new Login().setVisible(true);
+        this.dispose();
+
     }
 }

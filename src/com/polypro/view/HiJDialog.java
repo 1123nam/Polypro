@@ -4,13 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.Timer;
 
 /**
  *
  * @author LAPTOP LENOVO
  */
-public class HiJDialog extends javax.swing.JDialog {
+public class HiJDialog extends javax.swing.JDialog implements Runnable {
 
     /**
      * Creates new form HiJDialog
@@ -18,7 +19,9 @@ public class HiJDialog extends javax.swing.JDialog {
     public HiJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-
+        Thread th;
+        th = new Thread((Runnable) this);
+        th.start();
     }
 
     /**
@@ -30,9 +33,11 @@ public class HiJDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         prbLoading = new javax.swing.JProgressBar();
         lblMsg = new javax.swing.JLabel();
         lblLoadingPercent = new javax.swing.JLabel();
+        lblLoading = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -42,90 +47,109 @@ public class HiJDialog extends javax.swing.JDialog {
                 formWindowActivated(evt);
             }
         });
+        getContentPane().setLayout(new java.awt.GridLayout());
 
-        lblMsg.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(238, 238, 238));
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(21, 71, 133), 3, true));
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
+
+        lblMsg.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
+        lblMsg.setForeground(new java.awt.Color(21, 71, 133));
         lblMsg.setText("Đang khởi động");
 
+        lblLoadingPercent.setBackground(new java.awt.Color(21, 71, 133));
         lblLoadingPercent.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         lblLoadingPercent.setText("0%");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(prbLoading, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
+        lblLoading.setBackground(new java.awt.Color(255, 255, 255));
+        lblLoading.setForeground(new java.awt.Color(255, 255, 255));
+        lblLoading.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/education_loading.gif"))); // NOI18N
+        lblLoading.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(lblLoading)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(prbLoading, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(lblMsg)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 891, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblLoadingPercent, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(369, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblMsg, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblLoadingPercent, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(prbLoading, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(lblLoading, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblMsg)
+                    .addComponent(lblLoadingPercent))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(prbLoading, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
+
+        getContentPane().add(jPanel1);
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        new Timer(50, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int value = prbLoading.getValue();
-                if (value < 100) {
-                    try {
-                        if (value == 10) {
-                            lblMsg.setText("Đang khởi động.");
-                        }
-                        if (value == 20) {
-                            lblMsg.setText("Đang khởi động..");
-                        }
-                        if (value == 30) {
-                            lblMsg.setText("Đang khởi động...");
-                        }
-                        if (value == 40) {
-                            Thread.sleep(300);
-                            lblMsg.setText("Đang tải cơ sở dữ liệu.");
-                        }
-                        if (value == 55) {
-                            Thread.sleep(600);
-                            lblMsg.setText("Đang tải cơ sở dữ liệu..");
-                        }
-                        if (value == 700) {
-                            Thread.sleep(400);
+//        new Timer(20, new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                int value = prbLoading.getValue();
+//                if (value < 100) {
+//                    try {
+//                        if (value == 10) {
+//                            lblMsg.setText("Đang khởi động.");
+//                        }
+//                        if (value == 20) {
+//                            lblMsg.setText("Đang khởi động..");
+//                        }
+//                        if (value == 30) {
+//                            lblMsg.setText("Đang khởi động...");
+//                        }
+//                        if (value == 40) {
+//                            Thread.sleep(300);
+//                            lblMsg.setText("Đang tải cơ sở dữ liệu.");
+//                        }
+//                        if (value == 55) {
+//                            Thread.sleep(600);
+//                            lblMsg.setText("Đang tải cơ sở dữ liệu..");
+//                        }
+//
+//                        if (value == 80) {
+//                            lblMsg.setText("Hoàn thành tải tài nguyên người dùng...");
+//                            Thread.sleep(800);
+//
+//                        }
+//                        if (value == 85) {
+//                            Thread.sleep(1500);
+//                            lblMsg.setText("Đang mở ứng dụng");
+//
+//                        }
+//                        prbLoading.setValue(value + 1);
+//                        lblLoadingPercent.setText(String.valueOf(value) + "%");
+//                    } catch (InterruptedException ex) {
+//                        Logger.getLogger(HiJDialog.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
+//                } else {
+//                    HiJDialog.this.dispose();
+//                }
+//            }
+//        }).start();
 
-                            lblMsg.setText("Đang tải cơ sở dữ liệu...");
-                        }
-                        if (value == 80) {
-                            Thread.sleep(800);
-                            lblMsg.setText("Hoàn thành tải tài nguyên người dùng...");
-                            Thread.sleep(800);
-                        }
-                        if (value == 90) {
-                            lblMsg.setText("Đang mở ứng dụng");
-                        }
-                        prbLoading.setValue(value + 1);
-                        lblLoadingPercent.setText(String.valueOf(value) + "%");
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(HiJDialog.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                } else {
-                    HiJDialog.this.dispose();
-                }
-            }
-        }).start();
     }//GEN-LAST:event_formWindowActivated
 
     /**
@@ -174,8 +198,52 @@ public class HiJDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblLoading;
     private javax.swing.JLabel lblLoadingPercent;
     private javax.swing.JLabel lblMsg;
     private javax.swing.JProgressBar prbLoading;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void run() {
+        try {
+            for (int i = 0; i <= 101; i++) {
+                int value = prbLoading.getValue();
+                prbLoading.setValue(i);
+                lblLoadingPercent.setText(String.valueOf(value) + "%");
+                if (value < 100) {
+                    if (value == 10) {
+                        lblMsg.setText("Đang khởi động.");
+                    }
+                    if (value == 20) {
+                        lblMsg.setText("Đang khởi động..");
+                    }
+                    if (value == 30) {
+                        lblMsg.setText("Đang khởi động...");
+                    }
+                    if (value == 40) {
+                        lblMsg.setText("Đang tải cơ sở dữ liệu.");
+                        Thread.sleep(1000);
+
+                    }
+                    if (value == 55) {
+                        lblMsg.setText("Đang tải cơ sở dữ liệu..");
+                    }
+
+                    if (value == 80) {
+                        lblMsg.setText("Hoàn thành tải tài nguyên người dùng...");
+                    }
+                    if (value == 95) {
+                        lblMsg.setText("Đang mở ứng dụng");
+                        Thread.sleep(1000);
+                    }
+                } else {
+                    this.dispose();
+                }
+                Thread.sleep(80);
+            }
+        } catch (Exception e) {
+        }
+    }
 }
