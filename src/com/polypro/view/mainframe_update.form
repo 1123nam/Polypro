@@ -729,12 +729,12 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane1" alignment="0" pref="1353" max="32767" attributes="0"/>
+                              <Component id="jScrollPane1" alignment="0" pref="1395" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane1" alignment="0" pref="686" max="32767" attributes="0"/>
+                              <Component id="jScrollPane1" alignment="0" pref="824" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                       </Layout>
@@ -1493,7 +1493,7 @@
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane6" alignment="0" pref="640" max="32767" attributes="0"/>
+                              <Component id="jScrollPane6" alignment="0" pref="764" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                       </Layout>
@@ -2082,7 +2082,7 @@
                           </AuxValues>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="20" y="140" width="460" height="160"/>
+                              <AbsoluteConstraints x="20" y="140" width="460" height="150"/>
                             </Constraint>
                           </Constraints>
 
@@ -2228,7 +2228,7 @@
                           </AuxValues>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="20" y="310" width="460" height="160"/>
+                              <AbsoluteConstraints x="20" y="300" width="460" height="150"/>
                             </Constraint>
                           </Constraints>
 
@@ -2374,7 +2374,7 @@
                           </AuxValues>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="20" y="480" width="460" height="150"/>
+                              <AbsoluteConstraints x="20" y="460" width="460" height="140"/>
                             </Constraint>
                           </Constraints>
 
@@ -2706,7 +2706,7 @@
                                   <Component id="jLabel6" min="-2" pref="172" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="cboChuyenDe_KhoaHoc" min="-2" pref="783" max="-2" attributes="0"/>
-                                  <EmptySpace pref="248" max="32767" attributes="0"/>
+                                  <EmptySpace pref="283" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -2809,7 +2809,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jScrollPane3" pref="1329" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane3" pref="1371" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -2818,7 +2818,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jScrollPane3" pref="660" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane3" pref="798" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -4550,12 +4550,12 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane4" alignment="0" pref="1370" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane4" alignment="0" pref="1395" max="32767" attributes="0"/>
                               </Group>
                             </DimensionLayout>
                             <DimensionLayout dim="1">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane4" alignment="0" pref="660" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane4" alignment="0" pref="774" max="32767" attributes="0"/>
                               </Group>
                             </DimensionLayout>
                           </Layout>
@@ -4783,6 +4783,9 @@
                                   <Insets value="[0, 10, 0, 10]"/>
                                 </Property>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFirst_NguoiHocActionPerformed"/>
+                              </Events>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                                   <AbsoluteConstraints x="20" y="0" width="90" height="70"/>
@@ -4800,6 +4803,9 @@
                                   <Insets value="[0, 10, 0, 10]"/>
                                 </Property>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPre_NguoiHocActionPerformed"/>
+                              </Events>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                                   <AbsoluteConstraints x="150" y="0" width="80" height="70"/>
@@ -4817,6 +4823,9 @@
                                   <Insets value="[0, 10, 0, 10]"/>
                                 </Property>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNext_NguoiHocActionPerformed"/>
+                              </Events>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                                   <AbsoluteConstraints x="270" y="0" width="90" height="70"/>
@@ -4834,6 +4843,9 @@
                                   <Insets value="[0, 10, 0, 10]"/>
                                 </Property>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLast_NguoiHocActionPerformed"/>
+                              </Events>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                                   <AbsoluteConstraints x="390" y="0" width="80" height="70"/>
@@ -5820,7 +5832,7 @@
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace pref="877" max="32767" attributes="0"/>
+                                      <EmptySpace pref="920" max="32767" attributes="0"/>
                                       <Component id="btnRemove_HocVien" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                                       <Component id="btnUpdate_HocVien" min="-2" pref="217" max="-2" attributes="0"/>
@@ -6000,7 +6012,7 @@
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace pref="1090" max="32767" attributes="0"/>
+                                      <EmptySpace pref="1086" max="32767" attributes="0"/>
                                       <Component id="btnAdd_HocVien" min="-2" pref="272" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                                   </Group>
@@ -6162,12 +6174,12 @@
                               <Layout>
                                 <DimensionLayout dim="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jScrollPane10" alignment="0" pref="1353" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane10" alignment="0" pref="1395" max="32767" attributes="0"/>
                                   </Group>
                                 </DimensionLayout>
                                 <DimensionLayout dim="1">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jScrollPane10" alignment="0" pref="643" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane10" alignment="0" pref="779" max="32767" attributes="0"/>
                                   </Group>
                                 </DimensionLayout>
                               </Layout>
@@ -6242,12 +6254,12 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane11" alignment="0" pref="1353" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane11" alignment="0" pref="1395" max="32767" attributes="0"/>
                               </Group>
                             </DimensionLayout>
                             <DimensionLayout dim="1">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane11" alignment="0" pref="688" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane11" alignment="0" pref="824" max="32767" attributes="0"/>
                               </Group>
                             </DimensionLayout>
                           </Layout>
@@ -6320,12 +6332,12 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane12" alignment="0" pref="1353" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane12" alignment="0" pref="1395" max="32767" attributes="0"/>
                               </Group>
                             </DimensionLayout>
                             <DimensionLayout dim="1">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane12" alignment="0" pref="688" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane12" alignment="0" pref="824" max="32767" attributes="0"/>
                               </Group>
                             </DimensionLayout>
                           </Layout>
@@ -6418,7 +6430,7 @@
                               <Layout>
                                 <DimensionLayout dim="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <EmptySpace min="0" pref="1353" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="1395" max="32767" attributes="0"/>
                                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                                           <Group type="102" attributes="0">
                                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -6493,12 +6505,12 @@
                               <Layout>
                                 <DimensionLayout dim="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jScrollPane14" alignment="0" pref="1353" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane14" alignment="0" pref="1395" max="32767" attributes="0"/>
                                   </Group>
                                 </DimensionLayout>
                                 <DimensionLayout dim="1">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jScrollPane14" alignment="0" pref="643" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane14" alignment="0" pref="779" max="32767" attributes="0"/>
                                   </Group>
                                 </DimensionLayout>
                               </Layout>
@@ -6632,12 +6644,12 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="1358" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="1400" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="762" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="900" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
