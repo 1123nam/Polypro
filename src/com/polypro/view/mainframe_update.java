@@ -91,6 +91,10 @@ public class mainframe_update extends javax.swing.JFrame {
         if (!Auth.isManager()) {
             tabs_DoanhThu.remove(3);
         }
+
+        //load dữ liệu của Khóa học
+        fillComboBoxChuyenDe_KhoaHoc();
+        setModelTableKhoaHoc_KhoaHoc();
     }
 
     public void initMenu() {
@@ -269,37 +273,37 @@ public class mainframe_update extends javax.swing.JFrame {
         jLabel69 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         pnlQLKhoaHoc = new javax.swing.JPanel();
-        jTabbedPane4 = new javax.swing.JTabbedPane();
+        tab_QLKH = new javax.swing.JTabbedPane();
         jPanel18 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        tblKhoaHoc_KhoaHoc = new javax.swing.JTable();
         jPanel17 = new javax.swing.JPanel();
         jPanel19 = new javax.swing.JPanel();
-        jButton33 = new javax.swing.JButton();
-        jButton34 = new javax.swing.JButton();
-        jButton35 = new javax.swing.JButton();
-        jButton36 = new javax.swing.JButton();
+        btnThem_KhoaHoc = new javax.swing.JButton();
+        btnSua_KhoaHoc = new javax.swing.JButton();
+        btnXoa_KhoaHoc = new javax.swing.JButton();
+        btnMoi_KhoaHoc = new javax.swing.JButton();
         jPanel20 = new javax.swing.JPanel();
-        jButton37 = new javax.swing.JButton();
-        jButton38 = new javax.swing.JButton();
-        jButton39 = new javax.swing.JButton();
-        jButton40 = new javax.swing.JButton();
+        btnFrist_KhoaHoc = new javax.swing.JButton();
+        btnPrev_KhoaHoc = new javax.swing.JButton();
+        btnNext_KhoaHoc = new javax.swing.JButton();
+        btnLast_KhoaHoc = new javax.swing.JButton();
         jPanel45 = new RoundedPanel(50);
         jLabel35 = new javax.swing.JLabel();
-        jTextField19 = new RoundJTextField(10);
+        txtTenCD_KhoaHoc = new RoundJTextField(10);
         jLabel36 = new javax.swing.JLabel();
-        jTextField20 = new RoundJTextField(10);
+        txtHocPhi_KhoaHoc = new RoundJTextField(10);
         jLabel38 = new javax.swing.JLabel();
-        jTextField21 = new RoundJTextField(10);
+        txtNguoiTao_KhoaHoc = new RoundJTextField(10);
         jLabel37 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
-        jTextField25 = new RoundJTextField(10)
+        txtGhiChu_KhoaHoc = new javax.swing.JTextArea();
+        txtNgayTao_KhoaHoc = new RoundJTextField(10)
         ;
         jLabel41 = new javax.swing.JLabel();
-        jTextField24 = new RoundJTextField(10);
+        txtThoiLuong_KhoaHoc = new RoundJTextField(10);
         jLabel40 = new javax.swing.JLabel();
-        jTextField23 = new RoundJTextField(10);
+        txtNgayKG_KhoaHoc = new RoundJTextField(10);
         jLabel39 = new javax.swing.JLabel();
         jPanel46 = new RoundedPanel(15);
         jLabel73 = new javax.swing.JLabel();
@@ -341,7 +345,7 @@ public class mainframe_update extends javax.swing.JFrame {
         jLabel27 = new javax.swing.JLabel();
         jPanel75 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cboChuyenDe_KhoaHoc = new javax.swing.JComboBox<>();
         pnlQLNhanVien = new javax.swing.JPanel();
         tbpNhanVien = new javax.swing.JTabbedPane();
         jPanel6 = new javax.swing.JPanel();
@@ -1110,12 +1114,12 @@ public class mainframe_update extends javax.swing.JFrame {
 
         pnlQLKhoaHoc.setLayout(new java.awt.BorderLayout());
 
-        jTabbedPane4.setBackground(new java.awt.Color(255, 255, 255));
-        jTabbedPane4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jTabbedPane4.setOpaque(true);
+        tab_QLKH.setBackground(new java.awt.Color(255, 255, 255));
+        tab_QLKH.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        tab_QLKH.setOpaque(true);
 
-        jTable4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        tblKhoaHoc_KhoaHoc.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        tblKhoaHoc_KhoaHoc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -1126,10 +1130,15 @@ public class mainframe_update extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable4.setSelectionBackground(new java.awt.Color(26, 72, 86));
-        jTable4.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jTable4.setShowHorizontalLines(false);
-        jScrollPane6.setViewportView(jTable4);
+        tblKhoaHoc_KhoaHoc.setSelectionBackground(new java.awt.Color(26, 72, 86));
+        tblKhoaHoc_KhoaHoc.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblKhoaHoc_KhoaHoc.setShowHorizontalLines(false);
+        tblKhoaHoc_KhoaHoc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblKhoaHoc_KhoaHocMouseClicked(evt);
+            }
+        });
+        jScrollPane6.setViewportView(tblKhoaHoc_KhoaHoc);
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
@@ -1142,7 +1151,7 @@ public class mainframe_update extends javax.swing.JFrame {
             .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
         );
 
-        jTabbedPane4.addTab("   Danh Sách   ", jPanel18);
+        tab_QLKH.addTab("   Danh Sách   ", jPanel18);
 
         jPanel17.setBackground(new java.awt.Color(255, 255, 255));
         jPanel17.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1151,91 +1160,126 @@ public class mainframe_update extends javax.swing.JFrame {
         jPanel19.setPreferredSize(new java.awt.Dimension(150, 50));
         jPanel19.setLayout(new java.awt.GridLayout(0, 2, 10, 5));
 
-        jButton33.setBackground(new java.awt.Color(255, 255, 255));
-        jButton33.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jButton33.setForeground(new java.awt.Color(0, 153, 153));
-        jButton33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/add.png"))); // NOI18N
-        jButton33.setText("Thêm");
-        jButton33.setBorder(null);
-        jButton33.setMargin(new java.awt.Insets(2, 1, 2, 1));
-        jButton33.setMaximumSize(new java.awt.Dimension(150, 50));
-        jButton33.setPreferredSize(new java.awt.Dimension(100, 50));
-        jButton33.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/change-pass-24px.png"))); // NOI18N
-        jPanel19.add(jButton33);
-
-        jButton34.setBackground(new java.awt.Color(255, 255, 255));
-        jButton34.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jButton34.setForeground(new java.awt.Color(0, 153, 153));
-        jButton34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/update.png"))); // NOI18N
-        jButton34.setText("Sửa");
-        jButton34.setBorder(null);
-        jButton34.setMargin(new java.awt.Insets(2, 1, 2, 1));
-        jButton34.setMaximumSize(new java.awt.Dimension(150, 50));
-        jButton34.setPreferredSize(new java.awt.Dimension(100, 50));
-        jButton34.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/change-pass-24px.png"))); // NOI18N
-        jPanel19.add(jButton34);
-
-        jButton35.setBackground(new java.awt.Color(255, 255, 255));
-        jButton35.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jButton35.setForeground(new java.awt.Color(0, 153, 153));
-        jButton35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/delete.png"))); // NOI18N
-        jButton35.setText("Xóa");
-        jButton35.setBorder(null);
-        jButton35.setMargin(new java.awt.Insets(2, 1, 2, 1));
-        jButton35.setMaximumSize(new java.awt.Dimension(150, 50));
-        jButton35.setPreferredSize(new java.awt.Dimension(100, 50));
-        jButton35.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/change-pass-24px.png"))); // NOI18N
-        jPanel19.add(jButton35);
-
-        jButton36.setBackground(new java.awt.Color(255, 255, 255));
-        jButton36.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jButton36.setForeground(new java.awt.Color(0, 153, 153));
-        jButton36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/refresh.png"))); // NOI18N
-        jButton36.setText("Mới");
-        jButton36.setBorder(null);
-        jButton36.setMargin(new java.awt.Insets(2, 1, 2, 1));
-        jButton36.setMaximumSize(new java.awt.Dimension(150, 50));
-        jButton36.setPreferredSize(new java.awt.Dimension(100, 50));
-        jButton36.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/change-pass-24px.png"))); // NOI18N
-        jButton36.addActionListener(new java.awt.event.ActionListener() {
+        btnThem_KhoaHoc.setBackground(new java.awt.Color(255, 255, 255));
+        btnThem_KhoaHoc.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        btnThem_KhoaHoc.setForeground(new java.awt.Color(0, 153, 153));
+        btnThem_KhoaHoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/add.png"))); // NOI18N
+        btnThem_KhoaHoc.setText("Thêm");
+        btnThem_KhoaHoc.setBorder(null);
+        btnThem_KhoaHoc.setMargin(new java.awt.Insets(2, 1, 2, 1));
+        btnThem_KhoaHoc.setMaximumSize(new java.awt.Dimension(150, 50));
+        btnThem_KhoaHoc.setPreferredSize(new java.awt.Dimension(100, 50));
+        btnThem_KhoaHoc.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/change-pass-24px.png"))); // NOI18N
+        btnThem_KhoaHoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton36ActionPerformed(evt);
+                btnThem_KhoaHocActionPerformed(evt);
             }
         });
-        jPanel19.add(jButton36);
+        jPanel19.add(btnThem_KhoaHoc);
+
+        btnSua_KhoaHoc.setBackground(new java.awt.Color(255, 255, 255));
+        btnSua_KhoaHoc.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        btnSua_KhoaHoc.setForeground(new java.awt.Color(0, 153, 153));
+        btnSua_KhoaHoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/update.png"))); // NOI18N
+        btnSua_KhoaHoc.setText("Sửa");
+        btnSua_KhoaHoc.setBorder(null);
+        btnSua_KhoaHoc.setMargin(new java.awt.Insets(2, 1, 2, 1));
+        btnSua_KhoaHoc.setMaximumSize(new java.awt.Dimension(150, 50));
+        btnSua_KhoaHoc.setPreferredSize(new java.awt.Dimension(100, 50));
+        btnSua_KhoaHoc.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/change-pass-24px.png"))); // NOI18N
+        btnSua_KhoaHoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSua_KhoaHocActionPerformed(evt);
+            }
+        });
+        jPanel19.add(btnSua_KhoaHoc);
+
+        btnXoa_KhoaHoc.setBackground(new java.awt.Color(255, 255, 255));
+        btnXoa_KhoaHoc.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        btnXoa_KhoaHoc.setForeground(new java.awt.Color(0, 153, 153));
+        btnXoa_KhoaHoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/delete.png"))); // NOI18N
+        btnXoa_KhoaHoc.setText("Xóa");
+        btnXoa_KhoaHoc.setBorder(null);
+        btnXoa_KhoaHoc.setMargin(new java.awt.Insets(2, 1, 2, 1));
+        btnXoa_KhoaHoc.setMaximumSize(new java.awt.Dimension(150, 50));
+        btnXoa_KhoaHoc.setPreferredSize(new java.awt.Dimension(100, 50));
+        btnXoa_KhoaHoc.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/change-pass-24px.png"))); // NOI18N
+        btnXoa_KhoaHoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoa_KhoaHocActionPerformed(evt);
+            }
+        });
+        jPanel19.add(btnXoa_KhoaHoc);
+
+        btnMoi_KhoaHoc.setBackground(new java.awt.Color(255, 255, 255));
+        btnMoi_KhoaHoc.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        btnMoi_KhoaHoc.setForeground(new java.awt.Color(0, 153, 153));
+        btnMoi_KhoaHoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/refresh.png"))); // NOI18N
+        btnMoi_KhoaHoc.setText("Mới");
+        btnMoi_KhoaHoc.setBorder(null);
+        btnMoi_KhoaHoc.setMargin(new java.awt.Insets(2, 1, 2, 1));
+        btnMoi_KhoaHoc.setMaximumSize(new java.awt.Dimension(150, 50));
+        btnMoi_KhoaHoc.setPreferredSize(new java.awt.Dimension(100, 50));
+        btnMoi_KhoaHoc.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/change-pass-24px.png"))); // NOI18N
+        btnMoi_KhoaHoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMoi_KhoaHocActionPerformed(evt);
+            }
+        });
+        jPanel19.add(btnMoi_KhoaHoc);
 
         jPanel17.add(jPanel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 510, 330, 110));
 
         jPanel20.setBackground(new java.awt.Color(255, 255, 255));
         jPanel20.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/first.png"))); // NOI18N
-        jButton37.setBorderPainted(false);
-        jButton37.setContentAreaFilled(false);
-        jButton37.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton37.setMargin(new java.awt.Insets(0, 10, 0, 10));
-        jPanel20.add(jButton37, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 75, 70));
+        btnFrist_KhoaHoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/first.png"))); // NOI18N
+        btnFrist_KhoaHoc.setBorderPainted(false);
+        btnFrist_KhoaHoc.setContentAreaFilled(false);
+        btnFrist_KhoaHoc.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnFrist_KhoaHoc.setMargin(new java.awt.Insets(0, 10, 0, 10));
+        btnFrist_KhoaHoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFrist_KhoaHocActionPerformed(evt);
+            }
+        });
+        jPanel20.add(btnFrist_KhoaHoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 75, 70));
 
-        jButton38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/prev.png"))); // NOI18N
-        jButton38.setBorderPainted(false);
-        jButton38.setContentAreaFilled(false);
-        jButton38.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton38.setMargin(new java.awt.Insets(0, 10, 0, 10));
-        jPanel20.add(jButton38, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 75, 70));
+        btnPrev_KhoaHoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/prev.png"))); // NOI18N
+        btnPrev_KhoaHoc.setBorderPainted(false);
+        btnPrev_KhoaHoc.setContentAreaFilled(false);
+        btnPrev_KhoaHoc.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnPrev_KhoaHoc.setMargin(new java.awt.Insets(0, 10, 0, 10));
+        btnPrev_KhoaHoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrev_KhoaHocActionPerformed(evt);
+            }
+        });
+        jPanel20.add(btnPrev_KhoaHoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 75, 70));
 
-        jButton39.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/next.png"))); // NOI18N
-        jButton39.setBorderPainted(false);
-        jButton39.setContentAreaFilled(false);
-        jButton39.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton39.setMargin(new java.awt.Insets(0, 10, 0, 10));
-        jPanel20.add(jButton39, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 75, 70));
+        btnNext_KhoaHoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/next.png"))); // NOI18N
+        btnNext_KhoaHoc.setBorderPainted(false);
+        btnNext_KhoaHoc.setContentAreaFilled(false);
+        btnNext_KhoaHoc.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnNext_KhoaHoc.setMargin(new java.awt.Insets(0, 10, 0, 10));
+        btnNext_KhoaHoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNext_KhoaHocActionPerformed(evt);
+            }
+        });
+        jPanel20.add(btnNext_KhoaHoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 75, 70));
 
-        jButton40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/last.png"))); // NOI18N
-        jButton40.setBorderPainted(false);
-        jButton40.setContentAreaFilled(false);
-        jButton40.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton40.setMargin(new java.awt.Insets(0, 10, 0, 10));
-        jPanel20.add(jButton40, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, 70, 70));
+        btnLast_KhoaHoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/last.png"))); // NOI18N
+        btnLast_KhoaHoc.setBorderPainted(false);
+        btnLast_KhoaHoc.setContentAreaFilled(false);
+        btnLast_KhoaHoc.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnLast_KhoaHoc.setMargin(new java.awt.Insets(0, 10, 0, 10));
+        btnLast_KhoaHoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLast_KhoaHocActionPerformed(evt);
+            }
+        });
+        jPanel20.add(btnLast_KhoaHoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, 70, 70));
 
         jPanel17.add(jPanel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 510, 420, 130));
 
@@ -1248,54 +1292,54 @@ public class mainframe_update extends javax.swing.JFrame {
         jLabel35.setText("Chuyên đề");
         jPanel45.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
 
-        jTextField19.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jPanel45.add(jTextField19, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 53, 390, 42));
+        txtTenCD_KhoaHoc.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jPanel45.add(txtTenCD_KhoaHoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 53, 390, 42));
 
         jLabel36.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel36.setForeground(new java.awt.Color(255, 255, 255));
         jLabel36.setText("Học phí");
         jPanel45.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 113, -1, -1));
 
-        jTextField20.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jPanel45.add(jTextField20, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 136, 390, 42));
+        txtHocPhi_KhoaHoc.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jPanel45.add(txtHocPhi_KhoaHoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 136, 390, 42));
 
         jLabel38.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel38.setForeground(new java.awt.Color(255, 255, 255));
         jLabel38.setText("Người tạo");
         jPanel45.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 196, -1, -1));
 
-        jTextField21.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jPanel45.add(jTextField21, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 219, 390, 42));
+        txtNguoiTao_KhoaHoc.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jPanel45.add(txtNguoiTao_KhoaHoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 219, 390, 42));
 
         jLabel37.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel37.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel37.setText("Người tạo");
+        jLabel37.setText("Ghi chú");
         jPanel45.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
 
-        jTextArea3.setColumns(20);
-        jTextArea3.setRows(5);
-        jScrollPane7.setViewportView(jTextArea3);
+        txtGhiChu_KhoaHoc.setColumns(20);
+        txtGhiChu_KhoaHoc.setRows(5);
+        jScrollPane7.setViewportView(txtGhiChu_KhoaHoc);
 
         jPanel45.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 770, 150));
 
-        jTextField25.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jPanel45.add(jTextField25, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, 360, 42));
+        txtNgayTao_KhoaHoc.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jPanel45.add(txtNgayTao_KhoaHoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, 360, 42));
 
         jLabel41.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel41.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel41.setText("Người tạo");
+        jLabel41.setText("Ngày tạo");
         jPanel45.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 190, -1, -1));
 
-        jTextField24.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jPanel45.add(jTextField24, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, 360, 42));
+        txtThoiLuong_KhoaHoc.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jPanel45.add(txtThoiLuong_KhoaHoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, 360, 42));
 
         jLabel40.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel40.setForeground(new java.awt.Color(255, 255, 255));
         jLabel40.setText("Thời lượng (giờ)");
         jPanel45.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 110, -1, -1));
 
-        jTextField23.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jPanel45.add(jTextField23, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 50, 360, 42));
+        txtNgayKG_KhoaHoc.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jPanel45.add(txtNgayKG_KhoaHoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 50, 360, 42));
 
         jLabel39.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel39.setForeground(new java.awt.Color(255, 255, 255));
@@ -1470,9 +1514,9 @@ public class mainframe_update extends javax.swing.JFrame {
 
         jPanel17.add(jPanel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 141, 120));
 
-        jTabbedPane4.addTab("   Cập Nhật   ", jPanel17);
+        tab_QLKH.addTab("   Cập Nhật   ", jPanel17);
 
-        pnlQLKhoaHoc.add(jTabbedPane4, java.awt.BorderLayout.LINE_START);
+        pnlQLKhoaHoc.add(tab_QLKH, java.awt.BorderLayout.LINE_START);
 
         jPanel16.setBackground(new java.awt.Color(255, 255, 255));
         jPanel16.setPreferredSize(new java.awt.Dimension(1230, 100));
@@ -1497,9 +1541,14 @@ public class mainframe_update extends javax.swing.JFrame {
         jLabel6.setText("Chọn chuyên đề:");
         jLabel6.setOpaque(true);
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.setOpaque(false);
+        cboChuyenDe_KhoaHoc.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        cboChuyenDe_KhoaHoc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboChuyenDe_KhoaHoc.setOpaque(false);
+        cboChuyenDe_KhoaHoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboChuyenDe_KhoaHocActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel75Layout = new javax.swing.GroupLayout(jPanel75);
         jPanel75.setLayout(jPanel75Layout);
@@ -1509,14 +1558,14 @@ public class mainframe_update extends javax.swing.JFrame {
                 .addGap(133, 133, 133)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 783, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(253, Short.MAX_VALUE))
+                .addComponent(cboChuyenDe_KhoaHoc, javax.swing.GroupLayout.PREFERRED_SIZE, 783, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(248, Short.MAX_VALUE))
         );
         jPanel75Layout.setVerticalGroup(
             jPanel75Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel75Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(cboChuyenDe_KhoaHoc, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
@@ -3417,9 +3466,9 @@ public class mainframe_update extends javax.swing.JFrame {
         chonAnh();
     }//GEN-LAST:event_lblHinhAnh_ChuyenDeMouseClicked
 
-    private void jButton36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton36ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton36ActionPerformed
+    private void btnMoi_KhoaHocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoi_KhoaHocActionPerformed
+        clearForm_KhoaHoc();
+    }//GEN-LAST:event_btnMoi_KhoaHocActionPerformed
 
     private void btnAdd_HocVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd_HocVienActionPerformed
         // TODO add your handling code here:
@@ -3547,6 +3596,50 @@ public class mainframe_update extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnLogoutActionPerformed
 
+    private void cboChuyenDe_KhoaHocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboChuyenDe_KhoaHocActionPerformed
+        chonChuyenDe_KhoaHoc();
+    }//GEN-LAST:event_cboChuyenDe_KhoaHocActionPerformed
+
+    private void tblKhoaHoc_KhoaHocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKhoaHoc_KhoaHocMouseClicked
+        if (evt.getClickCount() == 2) {
+            this.row_khoaHoc = tblKhoaHoc_KhoaHoc.getSelectedRow();
+            this.edit_KhoaHoc();
+
+        }
+    }//GEN-LAST:event_tblKhoaHoc_KhoaHocMouseClicked
+
+    private void btnThem_KhoaHocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem_KhoaHocActionPerformed
+        if (checkFormKhoaHoc()) {
+            insert_KhoaHoc();
+        }
+    }//GEN-LAST:event_btnThem_KhoaHocActionPerformed
+
+    private void btnSua_KhoaHocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSua_KhoaHocActionPerformed
+        if (checkFormKhoaHoc()) {
+            update_KhoaHoc();
+        }
+    }//GEN-LAST:event_btnSua_KhoaHocActionPerformed
+
+    private void btnXoa_KhoaHocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoa_KhoaHocActionPerformed
+        delete_KhoaHoc();
+    }//GEN-LAST:event_btnXoa_KhoaHocActionPerformed
+
+    private void btnFrist_KhoaHocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFrist_KhoaHocActionPerformed
+        first_KhoaHoc();
+    }//GEN-LAST:event_btnFrist_KhoaHocActionPerformed
+
+    private void btnPrev_KhoaHocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrev_KhoaHocActionPerformed
+        prev_KhoaHoc();
+    }//GEN-LAST:event_btnPrev_KhoaHocActionPerformed
+
+    private void btnNext_KhoaHocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNext_KhoaHocActionPerformed
+        next_KhoaHoc();
+    }//GEN-LAST:event_btnNext_KhoaHocActionPerformed
+
+    private void btnLast_KhoaHocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLast_KhoaHocActionPerformed
+        last_KhoaHoc();
+    }//GEN-LAST:event_btnLast_KhoaHocActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3584,8 +3677,8 @@ public class mainframe_update extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               HiJDialog hiJDialog =  new HiJDialog(new mainframe_update(), true);
-               hiJDialog.setVisible(true);
+                HiJDialog hiJDialog = new HiJDialog(new mainframe_update(), true);
+                hiJDialog.setVisible(true);
                 new mainframe_update().setVisible(true);
             }
         });
@@ -3601,48 +3694,48 @@ public class mainframe_update extends javax.swing.JFrame {
     private javax.swing.JButton btnFirst_ChuyenDe;
     private javax.swing.JButton btnFirst_NguoiHoc;
     private javax.swing.JButton btnFirst_NhanVien;
+    private javax.swing.JButton btnFrist_KhoaHoc;
     private javax.swing.JButton btnGuide;
     private javax.swing.JButton btnLast_ChuyenDe;
+    private javax.swing.JButton btnLast_KhoaHoc;
     private javax.swing.JButton btnLast_NguoiHoc;
     private javax.swing.JButton btnLast_NhanVien;
     private javax.swing.JButton btnLearner;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnMenubar_showhide;
     private javax.swing.JButton btnMoi_ChuyenDe;
+    private javax.swing.JButton btnMoi_KhoaHoc;
     private javax.swing.JButton btnMoi_NhanVien;
     private javax.swing.JButton btnNew_NguoiHoc;
     private javax.swing.JButton btnNext_ChuyenDe;
+    private javax.swing.JButton btnNext_KhoaHoc;
     private javax.swing.JButton btnNext_NguoiHoc;
     private javax.swing.JButton btnNext_NhanVien;
     private javax.swing.JButton btnPre_ChuyenDe;
     private javax.swing.JButton btnPre_NguoiHoc;
+    private javax.swing.JButton btnPrev_KhoaHoc;
     private javax.swing.JButton btnRemove_HocVien;
     private javax.swing.JButton btnStudent;
     private javax.swing.JButton btnSua_ChuyenDe;
+    private javax.swing.JButton btnSua_KhoaHoc;
     private javax.swing.JButton btnSua_NguoiHoc;
     private javax.swing.JButton btnSua_NhanVien;
     private javax.swing.JButton btnThem_ChuyenDe;
+    private javax.swing.JButton btnThem_KhoaHoc;
     private javax.swing.JButton btnThem_NguoiHoc;
     private javax.swing.JButton btnThem_NhanVien;
     private javax.swing.JLabel btnTim_NguoiHoc;
     private javax.swing.JButton btnTopic;
     private javax.swing.JButton btnUpdate_HocVien;
     private javax.swing.JButton btnXoa_ChuyenDe;
+    private javax.swing.JButton btnXoa_KhoaHoc;
     private javax.swing.JButton btnXoa_NguoiHoc;
     private javax.swing.JButton btnXoa_NhanVien;
     private javax.swing.JComboBox<String> cboChuyenDe_HocVien;
+    private javax.swing.JComboBox<String> cboChuyenDe_KhoaHoc;
     private javax.swing.JComboBox<String> cboKhoaHoc_HocVien;
     private javax.swing.JComboBox<String> cbx_KhoaHoc_ThongKe;
     private javax.swing.JComboBox<String> cbx_Nam_ThongKe;
-    private javax.swing.JButton jButton33;
-    private javax.swing.JButton jButton34;
-    private javax.swing.JButton jButton35;
-    private javax.swing.JButton jButton36;
-    private javax.swing.JButton jButton37;
-    private javax.swing.JButton jButton38;
-    private javax.swing.JButton jButton39;
-    private javax.swing.JButton jButton40;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
@@ -3909,15 +4002,6 @@ public class mainframe_update extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTabbedPane jTabbedPane4;
-    private javax.swing.JTable jTable4;
-    private javax.swing.JTextArea jTextArea3;
-    private javax.swing.JTextField jTextField19;
-    private javax.swing.JTextField jTextField20;
-    private javax.swing.JTextField jTextField21;
-    private javax.swing.JTextField jTextField23;
-    private javax.swing.JTextField jTextField24;
-    private javax.swing.JTextField jTextField25;
     private javax.swing.JLabel lblHinhAnh_ChuyenDe;
     private javax.swing.JLabel lblTimKiem_HocVien;
     private javax.swing.JPanel main;
@@ -3939,12 +4023,14 @@ public class mainframe_update extends javax.swing.JFrame {
     private javax.swing.JRadioButton rdoNhanVien_NhanVien;
     private javax.swing.JRadioButton rdoNu_NguoiHoc;
     private javax.swing.JRadioButton rdoTruongPhong_NhanVien;
+    private javax.swing.JTabbedPane tab_QLKH;
     private javax.swing.JTabbedPane tabs;
     private javax.swing.JTabbedPane tabs_DoanhThu;
     private javax.swing.JTable tblDanhSach_ChuyenDe;
     private javax.swing.JTable tblDanhSach_NguoiHoc;
     private javax.swing.JTable tblDanhSach_NhanVien;
     private javax.swing.JTable tblHocVien_HocVien;
+    private javax.swing.JTable tblKhoaHoc_KhoaHoc;
     private javax.swing.JTable tblNguoiHoc_HocVien;
     private javax.swing.JTable tbl_BangDiem_Thongke;
     private javax.swing.JTable tbl_DiemChuyenDe_ThongKe;
@@ -3955,18 +4041,25 @@ public class mainframe_update extends javax.swing.JFrame {
     private javax.swing.JTabbedPane tbpNhanVien;
     private javax.swing.JTextField txtDiaChiEmail_NguoiHoc;
     private javax.swing.JTextField txtDienThoai_NguoiHoc;
+    private javax.swing.JTextArea txtGhiChu_KhoaHoc;
     private javax.swing.JTextArea txtGhiChu_NguoiHoc;
     private javax.swing.JTextField txtHoTen_NguoiHoc;
     private javax.swing.JTextField txtHoTen_NhanVien;
     private javax.swing.JTextField txtHocPhi_ChuyenDe;
+    private javax.swing.JTextField txtHocPhi_KhoaHoc;
     private javax.swing.JTextField txtMaCD_ChuyenDe;
     private javax.swing.JTextField txtMaNV_NhanVien;
     private javax.swing.JTextField txtMaNguoiHoc_NguoiHoc;
     private javax.swing.JPasswordField txtMatKhau_NhanVien;
     private javax.swing.JTextArea txtMoTa_ChuyenDe;
+    private javax.swing.JTextField txtNgayKG_KhoaHoc;
     private javax.swing.JTextField txtNgaySinh_NguoiHoc;
+    private javax.swing.JTextField txtNgayTao_KhoaHoc;
+    private javax.swing.JTextField txtNguoiTao_KhoaHoc;
+    private javax.swing.JTextField txtTenCD_KhoaHoc;
     private javax.swing.JTextField txtTenChuyenDe_ChuyenDe;
     private javax.swing.JTextField txtThoiGian_ChuyenDe;
+    private javax.swing.JTextField txtThoiLuong_KhoaHoc;
     private javax.swing.JTextField txtTimKiem_HocVien;
     private javax.swing.JTextField txtTimKiem_NguoiHoc;
     private javax.swing.JPasswordField txtXacNhanMK_NhanVien;
@@ -4992,5 +5085,258 @@ public class mainframe_update extends javax.swing.JFrame {
         new Login().setVisible(true);
         this.dispose();
 
+    }
+
+    //Xử lý quản lý khóa Học *Gia Khánh*
+    //Thêm phương thức fillComboBoxChuyenDe để đổ danh sách chuyên đề vào ComboBox
+    ChuyenDeDAO cdDao_kh = new ChuyenDeDAO();
+    KhoaHocDAO khDao_kh = new KhoaHocDAO();
+    KhoaHoc khoaHoc = new KhoaHoc();
+    int row_khoaHoc = -1;
+
+    public void setModelTableKhoaHoc_KhoaHoc() {
+        DefaultTableModel modelKhoaHoc = new DefaultTableModel(new Object[][]{}, new Object[]{"MÃ KH", "THỜI LƯỢNG", "HỌC PHÍ", "KHAI GIẢNG", "TẠO BỞI", "NGÀY TẠO"});
+        tblKhoaHoc_KhoaHoc.setModel(modelKhoaHoc);
+    }
+
+    void fillComboBoxChuyenDe_KhoaHoc() {
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cboChuyenDe_KhoaHoc.getModel();
+        model.removeAllElements();
+        try {
+            List<ChuyenDe> list = cdDao_kh.select();
+            for (ChuyenDe cd : list) {
+                model.addElement(cd);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+        this.fillTable_KhoaHoc();
+    }
+
+    void fillTable_KhoaHoc() {
+        DefaultTableModel model = (DefaultTableModel) tblKhoaHoc_KhoaHoc.getModel();
+        tblKhoaHoc_KhoaHoc.setDefaultEditor(Object.class, null);
+        model.setRowCount(0);
+        try {
+            ChuyenDe chuyenDe = (ChuyenDe) cboChuyenDe_KhoaHoc.getSelectedItem();
+            List<KhoaHoc> list = khDao_kh.selectByChuyenDe(chuyenDe.getMaCD());
+            for (KhoaHoc kh : list) {
+                Object[] row = {kh.getMaKH(), kh.getThoiLuong(), kh.getHocPhi(),
+                    XDate.toString(kh.getNgayKG(), "dd-MM-yyyy"), kh.getMaNV(), XDate.toString(kh.getNgayTao(), "dd-MM-yyyy")};
+                model.addRow(row);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    void Enabled_KhoaHoc() {
+        txtTenCD_KhoaHoc.setEnabled(false);
+        txtThoiLuong_KhoaHoc.setEnabled(false);
+        txtHocPhi_KhoaHoc.setEnabled(false);
+        txtGhiChu_KhoaHoc.setEnabled(false);
+    }
+
+    void chonChuyenDe_KhoaHoc() {
+
+        ChuyenDe chuyenDe = (ChuyenDe) cboChuyenDe_KhoaHoc.getSelectedItem();
+//        KhoaHoc khoaHoc = new KhoaHoc();
+        if (chuyenDe != null) {
+            txtThoiLuong_KhoaHoc.setText(String.valueOf(chuyenDe.getThoiLuong()));
+            txtHocPhi_KhoaHoc.setText(String.valueOf(chuyenDe.getHocPhi()));
+            txtGhiChu_KhoaHoc.setText(khoaHoc.getGhiChu());
+            txtTenCD_KhoaHoc.setText(chuyenDe.getTenCD());
+
+            this.fillTable_KhoaHoc();
+            this.row_khoaHoc = -1;
+            tabs.setSelectedIndex(1);
+            this.updateStatus_KhoaHoc();
+            Enabled_KhoaHoc();
+        }
+
+    }
+
+    void updateStatus_KhoaHoc() {
+        boolean edit = (this.row_khoaHoc >= 0);
+        boolean first = (this.row_khoaHoc == 0);
+        boolean last = (this.row_khoaHoc == tblKhoaHoc_KhoaHoc.getRowCount() - 1);
+        //Form state
+        btnThem_KhoaHoc.setEnabled(!edit);
+        btnSua_KhoaHoc.setEnabled(edit);
+        btnXoa_KhoaHoc.setEnabled(edit);
+        txtGhiChu_KhoaHoc.setEnabled(edit);
+
+        //Directional state
+        btnFrist_KhoaHoc.setEnabled(edit && !first);
+        btnPrev_KhoaHoc.setEnabled(edit && !first);
+        btnNext_KhoaHoc.setEnabled(edit && !last);
+        btnLast_KhoaHoc.setEnabled(edit && !last);
+    }
+
+    void insert_KhoaHoc() {
+        KhoaHoc kh = getForm_khoaHoc();
+        try {
+            khDao_kh.insert(kh);
+            this.fillTable_KhoaHoc();
+            MsgBox.alert(this, "Thêm khóa học thành công!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            MsgBox.alert(this, "Thêm khóa học mới thất bại!");
+        }
+    }
+
+    void update_KhoaHoc() {
+        KhoaHoc kh = getForm_khoaHoc_update();
+        try {
+            khDao_kh.update(kh);
+            this.fillTable_KhoaHoc();
+            MsgBox.alert(this, "Cập nhật thông tin khóa học thành công!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            MsgBox.alert(this, "Cập nhật thông tin khóa học không thành công!");
+        }
+    }
+
+    void delete_KhoaHoc() {
+        if (Auth.isManager()) {
+            MsgBox.alert(this, "Bạn không được phép xóa nhân viên!");
+        } else {
+            int index = tblKhoaHoc_KhoaHoc.getSelectedRow();
+
+            int id = Integer.parseInt(tblKhoaHoc_KhoaHoc.getValueAt(index, 0).toString());
+            if (MsgBox.confirm(this, "Bạn có muốn xóa nhân viên này không?")) {
+                try {
+                    khDao_kh.delete(id);
+                    this.fillTable_KhoaHoc();
+                    MsgBox.alert(this, "Xoá thành công!!");
+                } catch (Exception e) {
+                    MsgBox.alert(this, "Xoá không thành công!!");
+                }
+            }
+        }
+    }
+
+    void edit_KhoaHoc() {
+        int makh = (int) tblKhoaHoc_KhoaHoc.getValueAt(this.row_khoaHoc, 0);
+        KhoaHoc kh = khDao_kh.selectID(makh);
+        khoaHoc = kh;
+        this.setForm(kh);
+        tab_QLKH.setSelectedIndex(1);
+        this.updateStatus_KhoaHoc();
+
+    }
+
+    void clearForm_KhoaHoc() {
+        txtNguoiTao_KhoaHoc.setText("");
+        txtNgayKG_KhoaHoc.setText("");
+        txtNgayTao_KhoaHoc.setText("");
+        txtGhiChu_KhoaHoc.setText("");
+        txtGhiChu_KhoaHoc.setEnabled(true);
+        this.row_khoaHoc = -1;
+//        this.updateStatus_KhoaHoc();
+    }
+
+    void setForm(KhoaHoc kh) {
+        try {
+//            cboChuyenDe_KhoaHoc.setSelectedItem(khDao_kh.selectID(kh.getMaCD()));
+            cboChuyenDe_KhoaHoc.setSelectedItem(String.valueOf(kh.getMaKH()));
+            txtHocPhi_KhoaHoc.setText(String.valueOf(kh.getHocPhi()));
+            txtThoiLuong_KhoaHoc.setText(String.valueOf(kh.getThoiLuong()));
+            txtNgayKG_KhoaHoc.setText(String.valueOf(kh.getNgayKG()));
+            txtGhiChu_KhoaHoc.setText(kh.getGhiChu());
+            txtNguoiTao_KhoaHoc.setText(kh.getMaNV());
+            txtNgayTao_KhoaHoc.setText(String.valueOf(kh.getNgayTao()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    KhoaHoc getForm_khoaHoc() {
+        KhoaHoc kh = new KhoaHoc();
+        ChuyenDe cd = (ChuyenDe) cboChuyenDe_KhoaHoc.getSelectedItem();
+        if (cd != null) {
+            kh.setMaCD(cd.getMaCD());
+            kh.setHocPhi(Double.parseDouble(txtHocPhi_KhoaHoc.getText()));
+            kh.setThoiLuong(Integer.parseInt(txtThoiLuong_KhoaHoc.getText()));
+            kh.setNgayKG(XDate.toDate(txtNgayKG_KhoaHoc.getText(), "yyyy-MM-dd"));
+            kh.setGhiChu(txtGhiChu_KhoaHoc.getText());
+            if (txtNguoiTao_KhoaHoc.getText().equals("")) {
+                kh.setMaNV(Auth.user.getMaNV());
+            } else {
+                kh.setMaNV(txtNguoiTao_KhoaHoc.getText());
+            }
+            kh.setNgayTao(XDate.toDate(txtNgayTao_KhoaHoc.getText(), "yyyy-MM-dd"));
+//            int index = tblKhoaHoc_KhoaHoc.getSelectedRow();
+//            kh.setMaKH((int) tblKhoaHoc_KhoaHoc.getValueAt(index, 0));
+
+        }
+        return kh;
+    }
+
+    KhoaHoc getForm_khoaHoc_update() {
+        KhoaHoc kh = new KhoaHoc();
+        ChuyenDe cd = (ChuyenDe) cboChuyenDe_KhoaHoc.getSelectedItem();
+        if (cd != null) {
+            kh.setMaCD(cd.getMaCD());
+            kh.setHocPhi(Double.parseDouble(txtHocPhi_KhoaHoc.getText()));
+            kh.setThoiLuong(Integer.parseInt(txtThoiLuong_KhoaHoc.getText()));
+            kh.setNgayKG(XDate.toDate(txtNgayKG_KhoaHoc.getText(), "yyyy-MM-dd"));
+            kh.setGhiChu(txtGhiChu_KhoaHoc.getText());
+            if (txtNguoiTao_KhoaHoc.getText().equals("")) {
+                kh.setMaNV(Auth.user.getMaNV());
+            } else {
+                kh.setMaNV(txtNguoiTao_KhoaHoc.getText());
+            }
+            kh.setNgayTao(XDate.toDate(txtNgayTao_KhoaHoc.getText(), "yyyy-MM-dd"));
+            int index = tblKhoaHoc_KhoaHoc.getSelectedRow();
+            kh.setMaKH((int) tblKhoaHoc_KhoaHoc.getValueAt(index, 0));
+
+        }
+        return kh;
+    }
+
+    void first_KhoaHoc() {
+        this.row_khoaHoc = 0;
+        this.edit_KhoaHoc();
+    }
+
+    void prev_KhoaHoc() {
+        if (this.row_khoaHoc > 0) {
+            this.row_khoaHoc--;
+            this.edit_KhoaHoc();
+        }
+    }
+
+    void next_KhoaHoc() {
+        if (this.row_khoaHoc < tblKhoaHoc_KhoaHoc.getRowCount() - 1) {
+            this.row_khoaHoc++;
+            this.edit_KhoaHoc();
+        }
+    }
+
+    void last_KhoaHoc() {
+        this.row_khoaHoc = tblKhoaHoc_KhoaHoc.getRowCount() - 1;
+        this.edit_KhoaHoc();
+    }
+
+    public boolean checkFormKhoaHoc() {
+        if (txtNgayKG_KhoaHoc.getText().equals("") || txtGhiChu_KhoaHoc.getText().equals("") || txtNgayTao_KhoaHoc.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Hãy nhập đủ thông tin để có thể thực hiện được thao tác tiếp theo", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        String regex = "(^[0-9][0-9])?[0-9][0-9]-(0[0-9]||1[0-2])-([0-2][0-9]||3[0-1])$";
+        if (!(txtNgayKG_KhoaHoc.getText()).matches(regex)) {
+            JOptionPane.showMessageDialog(this, "Sai định dạng ngày khai giảng. VD:'yyyy-MM-dd'", "Error", JOptionPane.ERROR_MESSAGE);
+            txtNgayKG_KhoaHoc.requestFocus();
+            return false;
+        }
+        if (!(txtNgayTao_KhoaHoc.getText()).matches(regex)) {
+            JOptionPane.showMessageDialog(this, "Sai định dạng ngày tạo. VD:'yyyy-MM-dd'", "Error", JOptionPane.ERROR_MESSAGE);
+            txtNgayTao_KhoaHoc.requestFocus();
+            return false;
+        }
+        return true;
     }
 }

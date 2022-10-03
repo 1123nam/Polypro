@@ -10,8 +10,10 @@ import java.util.List;
 
 public class KhoaHocDAO extends EduSysDAO<KhoaHoc, Integer> {
 
-    String INSERT_SQL = "INSERT INTO KhoaHoc (MaCD, HocPhi, ThoiLuong, NgayKG, GhiChu, MaNV) VALUES (?, ?, ?, ?, ?,?)";
-    String UPDATE_SQL = "UPDATE KhoaHoc SET MaCD=?, HocPhi=?, ThoiLuong=?, NgayKG=?, GhiChu=?, MaNV=? WHEREMaKH=?";
+    //String INSERT_SQL = "INSERT INTO KhoaHoc (MaCD, HocPhi, ThoiLuong, NgayKG, GhiChu, MaNV) VALUES (?, ?, ?, ?, ?,?)";
+     String INSERT_SQL = "INSERT INTO KhoaHoc (MaCD, HocPhi, ThoiLuong, NgayKG, GhiChu, MaNV) VALUES (?, ?, ?, ?, ?, ?)";
+ //   String UPDATE_SQL = "UPDATE KhoaHoc SET MaCD=?, HocPhi=?, ThoiLuong=?, NgayKG=?, GhiChu=?, MaNV=? WHERE MaKH=?";
+    String UPDATE_SQL = "UPDATE KhoaHoc SET MaCD= ?, HocPhi= ?, ThoiLuong= ?, NgayKG= ?, GhiChu= ?, MaNV= ?, NgayTao = ? WHERE MaKH= ?";
     String DELETE_SQL = "DELETE FROM KhoaHoc WHERE MaKH=?";
     String SELECT_ALL_SQL = "SELECT * FROM KhoaHoc";
     String SELECT_BY_ID = "SELECT * FROM KhoaHoc WHERE MaKH=?";
@@ -65,9 +67,18 @@ public class KhoaHocDAO extends EduSysDAO<KhoaHoc, Integer> {
         return this.selectBySql(SELECT_ALL_SQL);
     }
 
+//    @Override
+//    public KhoaHoc selectID(Integer id) {
+//        List<KhoaHoc> list = this.selectBySql(SELECT_BY_ID, id); // đang lỗi 
+//        if (list.isEmpty()) {
+//            return null;
+//        }
+//        return list.get(0);
+//    }
     @Override
     public KhoaHoc selectID(Integer id) {
-        List<KhoaHoc> list = this.selectBySql(SELECT_BY_ID, id); // đang lỗi 
+
+        List<KhoaHoc> list = this.selectBySql(SELECT_BY_ID, id);
         if (list.isEmpty()) {
             return null;
         }
