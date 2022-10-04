@@ -3296,9 +3296,10 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable{
 
         lblClock.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblClock.setForeground(new java.awt.Color(255, 255, 255));
+        lblClock.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblClock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/stopwatch.png"))); // NOI18N
         lblClock.setText(" 00:00:00 AM");
-        pnlTrangThai.add(lblClock, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 0, 160, 30));
+        pnlTrangThai.add(lblClock, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 0, 320, 30));
 
         jPanel2.add(pnlTrangThai, java.awt.BorderLayout.PAGE_END);
 
