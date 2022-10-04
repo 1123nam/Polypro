@@ -240,6 +240,8 @@ public class HiJDialog extends javax.swing.JDialog implements Runnable {
                     }
                 } else {
                     this.dispose();
+                    Login lg = new Login();
+                    lg.setVisible(true);
                 }
                 Thread.sleep(80);
             }
