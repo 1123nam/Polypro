@@ -51,7 +51,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 
-public class mainframe_update extends javax.swing.JFrame implements Runnable{
+public class mainframe_update extends javax.swing.JFrame implements Runnable {
 
     GradientDropdownMenu menu = new GradientDropdownMenu();
     CardLayout cardLayout;
@@ -119,7 +119,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable{
         menu.addItem(" Hệ Thống ", "Đổi Mật Khẩu", "Đăng Xuất", "Kết Thúc");
         menu.applay(this);
     }
-    
+
     @Override
     public void run() {
         while (true) {
@@ -2362,11 +2362,11 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable{
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1358, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1370, Short.MAX_VALUE)
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)
         );
 
         jPanel10.add(jPanel13, java.awt.BorderLayout.CENTER);
@@ -3089,6 +3089,11 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable{
 
         cbx_Nam_ThongKe.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         cbx_Nam_ThongKe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbx_Nam_ThongKe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbx_Nam_ThongKeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel85Layout = new javax.swing.GroupLayout(jPanel85);
         jPanel85.setLayout(jPanel85Layout);
@@ -3790,16 +3795,20 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable{
     }//GEN-LAST:event_btnFirst_NguoiHocActionPerformed
 
     private void btnPre_NguoiHocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPre_NguoiHocActionPerformed
-       pre_NguoiHoc();
+        pre_NguoiHoc();
     }//GEN-LAST:event_btnPre_NguoiHocActionPerformed
 
     private void btnNext_NguoiHocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNext_NguoiHocActionPerformed
-      next_NguoiHoc();
+        next_NguoiHoc();
     }//GEN-LAST:event_btnNext_NguoiHocActionPerformed
 
     private void btnLast_NguoiHocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLast_NguoiHocActionPerformed
-       last_NguoiHoc();
+        last_NguoiHoc();
     }//GEN-LAST:event_btnLast_NguoiHocActionPerformed
+
+    private void cbx_Nam_ThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbx_Nam_ThongKeActionPerformed
+        fillTableDoanhThu_ThongKe();
+    }//GEN-LAST:event_cbx_Nam_ThongKeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -4995,11 +5004,14 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable{
     private void fillTableDoanhThu_ThongKe() {
         DefaultTableModel model = (DefaultTableModel) tbl_DoanhThu.getModel();
         model.setRowCount(0);
-        int nam = (Integer) cbx_Nam_ThongKe.getSelectedItem();
-        List<Object[]> list = thongKeDAO_ThongKe.getDoanhThu(nam);
-        list.forEach((row) -> {
-            model.addRow(row);
-        });
+        if (cbx_Nam_ThongKe.getSelectedItem() != null) {
+            int nam = (Integer) cbx_Nam_ThongKe.getSelectedItem();
+            List<Object[]> list = thongKeDAO_ThongKe.getDoanhThu(nam);
+            list.forEach((row) -> {
+                model.addRow(row);
+            });
+        }
+
     }
 
     //Quan ly Nguoi Hoc => Vinh
@@ -5046,14 +5058,17 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable{
     }
 
     void setForm_NguoiHoc(NguoiHoc nh) {
-        txtMaNguoiHoc_NguoiHoc.setText(nh.getMaNH());
-        txtHoTen_NguoiHoc.setText(nh.getHoTen());
-        txtDienThoai_NguoiHoc.setText(nh.getDienThoai());
-        txtDiaChiEmail_NguoiHoc.setText(nh.getEmail());
-        txtGhiChu_NguoiHoc.setText(nh.getGhiChu());
-        rdoNam_NguoiHoc.setSelected(nh.isGioiTinh());
-        rdoNu_NguoiHoc.setSelected(!nh.isGioiTinh());
-        txtNgaySinh_NguoiHoc.setText(String.valueOf(nh.getNgaySinh()));
+        if (nh.getNgaySinh() != null) {
+            txtMaNguoiHoc_NguoiHoc.setText(nh.getMaNH());
+            txtHoTen_NguoiHoc.setText(nh.getHoTen());
+            txtDienThoai_NguoiHoc.setText(nh.getDienThoai());
+            txtDiaChiEmail_NguoiHoc.setText(nh.getEmail());
+            txtGhiChu_NguoiHoc.setText(nh.getGhiChu());
+            rdoNam_NguoiHoc.setSelected(nh.isGioiTinh());
+            rdoNu_NguoiHoc.setSelected(!nh.isGioiTinh());
+            txtNgaySinh_NguoiHoc.setText(XDate.toString(nh.getNgaySinh(), "yyyy-MM-dd"));
+        }
+
     }
 
     NguoiHoc getForm_NguoiHoc() {
