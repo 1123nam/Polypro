@@ -43,13 +43,17 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 
 public class mainframe_update extends javax.swing.JFrame implements Runnable {
 
@@ -69,6 +73,19 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         Thread t1 = new Thread(this);
         t1.start();
         lblClock.setEnabled(false);
+        initAllTable();
+    }
+
+    private void initAllTable() {
+        initTable(tblDanhSach_ChuyenDe);
+        initTable(tblDanhSach_NguoiHoc);
+        initTable(tblDanhSach_NhanVien);
+        initTable(tblKhoaHoc_KhoaHoc);
+        initTable(tblHocVien_HocVien);
+        initTable(tbl_BangDiem_Thongke);
+        initTable(tbl_DiemChuyenDe_ThongKe);
+        initTable(tbl_DoanhThu);
+        initTable(tbl_NguoiHoc_ThongKe);
     }
 
     public void initloadData() {
@@ -4868,7 +4885,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         int maHV = (Integer) tblHocVien_HocVien.getValueAt(row, 1);
         HocVien hv = hvdao.selectID(maHV);
         double diem = Double.parseDouble(tblHocVien_HocVien.getValueAt(row, 4).toString());
-        if (diem < 0 || diem > 10) {
+        if (diem < -1 || diem > 10) {
             checkDiemOnTableWithMouseClick();
             return;
         } else {
@@ -5531,5 +5548,23 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
             return false;
         }
         return true;
+    }
+
+    private void initTable(JTable table) {
+        table.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 18));
+        table.getTableHeader().setForeground(new Color(26,72,86));
+        TableCellRenderer rendererFromHeader = table.getTableHeader().getDefaultRenderer();
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        int colunm = table.getColumnCount()-1;
+        System.out.println(colunm);
+        for (int i = 0; i <= colunm; i++) {
+            table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+        }
+        JLabel headerLabel = (JLabel) rendererFromHeader;
+        headerLabel.setHorizontalAlignment(JLabel.CENTER);
+        table.setRowHeight(30);
+        table.setForeground(new Color(71,102,102));
+        table.setFont(new Font("Segoe UI", Font.BOLD, 16));
     }
 }
