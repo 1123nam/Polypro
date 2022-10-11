@@ -85,6 +85,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         initTable(tbl_BangDiem_Thongke);
         initTable(tbl_DiemChuyenDe_ThongKe);
         initTable(tbl_DoanhThu);
+        initTable(tblNguoiHoc_HocVien);
         initTable(tbl_NguoiHoc_ThongKe);
     }
 
@@ -882,11 +883,11 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1358, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1370, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE)
         );
 
         tbpChuyenDe.addTab("   Danh sách   ", jPanel1);
@@ -1209,7 +1210,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         );
         jPanel18Layout.setVerticalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 647, Short.MAX_VALUE)
         );
 
         tab_QLKH.addTab("   Danh Sách   ", jPanel18);
@@ -1366,6 +1367,11 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         jPanel45.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 196, -1, -1));
 
         txtNguoiTao_KhoaHoc.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtNguoiTao_KhoaHoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNguoiTao_KhoaHocActionPerformed(evt);
+            }
+        });
         jPanel45.add(txtNguoiTao_KhoaHoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 219, 390, 42));
 
         jLabel37.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -1686,7 +1692,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -2383,7 +2389,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 657, Short.MAX_VALUE)
         );
 
         jPanel10.add(jPanel13, java.awt.BorderLayout.CENTER);
@@ -3010,11 +3016,11 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         jPanel84.setLayout(jPanel84Layout);
         jPanel84Layout.setHorizontalGroup(
             jPanel84Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 1358, Short.MAX_VALUE)
+            .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 1370, Short.MAX_VALUE)
         );
         jPanel84Layout.setVerticalGroup(
             jPanel84Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 779, Short.MAX_VALUE)
+            .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
         );
 
         jPanel79.add(jPanel84, java.awt.BorderLayout.CENTER);
@@ -3048,11 +3054,11 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         jPanel80.setLayout(jPanel80Layout);
         jPanel80Layout.setHorizontalGroup(
             jPanel80Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 1358, Short.MAX_VALUE)
+            .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 1370, Short.MAX_VALUE)
         );
         jPanel80Layout.setVerticalGroup(
             jPanel80Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 824, Short.MAX_VALUE)
+            .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE)
         );
 
         tabs_DoanhThu.addTab("   Người Học   ", jPanel80);
@@ -3084,11 +3090,11 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         jPanel81.setLayout(jPanel81Layout);
         jPanel81Layout.setHorizontalGroup(
             jPanel81Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 1358, Short.MAX_VALUE)
+            .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 1370, Short.MAX_VALUE)
         );
         jPanel81Layout.setVerticalGroup(
             jPanel81Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 824, Short.MAX_VALUE)
+            .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE)
         );
 
         tabs_DoanhThu.addTab("   Điểm Chuyên Đề   ", jPanel81);
@@ -3116,7 +3122,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         jPanel85.setLayout(jPanel85Layout);
         jPanel85Layout.setHorizontalGroup(
             jPanel85Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1358, Short.MAX_VALUE)
+            .addGap(0, 1370, Short.MAX_VALUE)
             .addGroup(jPanel85Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel85Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -3165,11 +3171,11 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         jPanel86.setLayout(jPanel86Layout);
         jPanel86Layout.setHorizontalGroup(
             jPanel86Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 1358, Short.MAX_VALUE)
+            .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 1370, Short.MAX_VALUE)
         );
         jPanel86Layout.setVerticalGroup(
             jPanel86Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 779, Short.MAX_VALUE)
+            .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
         );
 
         jPanel82.add(jPanel86, java.awt.BorderLayout.CENTER);
@@ -3279,7 +3285,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
                     .addComponent(jLabel179)
                     .addComponent(jLabel177)
                     .addComponent(jLabel178))
-                .addContainerGap(414, Short.MAX_VALUE))
+                .addContainerGap(431, Short.MAX_VALUE))
         );
         pnlHuongDanSuDungLayout.setVerticalGroup(
             pnlHuongDanSuDungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3298,7 +3304,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
                 .addComponent(jLabel182)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel183)
-                .addContainerGap(468, Short.MAX_VALUE))
+                .addContainerGap(483, Short.MAX_VALUE))
         );
 
         main.add(pnlHuongDanSuDung, "card_HuongDanSuDung");
@@ -3826,6 +3832,10 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     private void cbx_Nam_ThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbx_Nam_ThongKeActionPerformed
         fillTableDoanhThu_ThongKe();
     }//GEN-LAST:event_cbx_Nam_ThongKeActionPerformed
+
+    private void txtNguoiTao_KhoaHocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNguoiTao_KhoaHocActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNguoiTao_KhoaHocActionPerformed
 
     /**
      * @param args the command line arguments
@@ -4847,7 +4857,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         for (int row : tblNguoiHoc_HocVien.getSelectedRows()) {
             HocVien hv = new HocVien();
             hv.setMaKH(khoaHoc.getMaKH());
-            hv.setDiem(0);
+            hv.setDiem(-1.0);
             hv.setMaNH((String) tblNguoiHoc_HocVien.getValueAt(row, 0));
             hvdao.insert(hv);
         }
@@ -4901,7 +4911,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         double resetDiem = 0;
         for (int i = 0; i < tblHocVien_HocVien.getRowCount(); i++) {
             double diem = Double.parseDouble(tblHocVien_HocVien.getValueAt(i, 4).toString());
-            if (diem < 0 || diem > 10) {
+            if (diem < -1 || diem > 10) {
                 MsgBox.alert(this, "Điểm Phải Từ 0 -> 10!");
                 tblHocVien_HocVien.setValueAt(resetDiem, i, 4);
                 tblHocVien_HocVien.getSelectionModel().addSelectionInterval(i, i);
@@ -4918,7 +4928,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
 
             try {
                 double diem = Double.parseDouble(tblHocVien_HocVien.getValueAt(index, 4).toString());
-                if (diem < 0 || diem > 10) {
+                if (diem < -1 || diem > 10) {
                     MsgBox.alert(this, "Điểm Phải Trong Khoảng 0 -> 10!");
                     tblHocVien_HocVien.setValueAt(resetDiem, index, 4);
                     tblHocVien_HocVien.getSelectionModel().addSelectionInterval(index, index);
@@ -5341,10 +5351,11 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     }
 
     void Enabled_KhoaHoc() {
-        txtTenCD_KhoaHoc.setEnabled(false);
-        txtThoiLuong_KhoaHoc.setEnabled(false);
-        txtHocPhi_KhoaHoc.setEnabled(false);
-        txtGhiChu_KhoaHoc.setEnabled(false);
+        txtTenCD_KhoaHoc.setEditable(false);
+        txtThoiLuong_KhoaHoc.setEditable(false);
+        txtHocPhi_KhoaHoc.setEditable(false);
+        txtGhiChu_KhoaHoc.setEditable(false);
+        txtNgayTao_KhoaHoc.setEditable(false);
     }
 
     void chonChuyenDe_KhoaHoc() {
@@ -5436,16 +5447,18 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
 
     }
 
+    
+    
     void clearForm_KhoaHoc() {
         txtNguoiTao_KhoaHoc.setText("");
         txtNgayKG_KhoaHoc.setText("");
-        txtNgayTao_KhoaHoc.setText("");
-        txtGhiChu_KhoaHoc.setText("");
+        txtNgayTao_KhoaHoc.setText(XDate.toString(XDate.now(), "yyyy-MM-dd"));
+        txtGhiChu_KhoaHoc.setText("");      
         txtGhiChu_KhoaHoc.setEnabled(true);
+        txtNguoiTao_KhoaHoc.setText(Auth.user.getMaNV());
         this.row_khoaHoc = -1;
 //        this.updateStatus_KhoaHoc();
     }
-
     void setForm(KhoaHoc kh) {
         try {
 //            cboChuyenDe_KhoaHoc.setSelectedItem(khDao_kh.selectID(kh.getMaCD()));
@@ -5552,11 +5565,11 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
 
     private void initTable(JTable table) {
         table.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 18));
-        table.getTableHeader().setForeground(new Color(26,72,86));
+        table.getTableHeader().setForeground(new Color(26, 72, 86));
         TableCellRenderer rendererFromHeader = table.getTableHeader().getDefaultRenderer();
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-        int colunm = table.getColumnCount()-1;
+        int colunm = table.getColumnCount() - 1;
         System.out.println(colunm);
         for (int i = 0; i <= colunm; i++) {
             table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
@@ -5564,7 +5577,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         JLabel headerLabel = (JLabel) rendererFromHeader;
         headerLabel.setHorizontalAlignment(JLabel.CENTER);
         table.setRowHeight(30);
-        table.setForeground(new Color(71,102,102));
+        table.setForeground(new Color(71, 102, 102));
         table.setFont(new Font("Segoe UI", Font.BOLD, 16));
     }
 }
