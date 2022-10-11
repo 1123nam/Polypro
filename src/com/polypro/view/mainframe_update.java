@@ -5385,7 +5385,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         btnThem_KhoaHoc.setEnabled(!edit);
         btnSua_KhoaHoc.setEnabled(edit);
         btnXoa_KhoaHoc.setEnabled(edit);
-        txtGhiChu_KhoaHoc.setEnabled(edit);
+        txtGhiChu_KhoaHoc.setEditable(edit);
 
         //Directional state
         btnFrist_KhoaHoc.setEnabled(edit && !first);
@@ -5454,8 +5454,10 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         txtNgayKG_KhoaHoc.setText("");
         txtNgayTao_KhoaHoc.setText(XDate.toString(XDate.now(), "yyyy-MM-dd"));
         txtGhiChu_KhoaHoc.setText("");      
-        txtGhiChu_KhoaHoc.setEnabled(true);
+        txtGhiChu_KhoaHoc.setEditable(true);
         txtNguoiTao_KhoaHoc.setText(Auth.user.getMaNV());
+        txtNguoiTao_KhoaHoc.setEditable(false);
+        
         this.row_khoaHoc = -1;
 //        this.updateStatus_KhoaHoc();
     }
