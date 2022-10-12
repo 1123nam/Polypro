@@ -3733,14 +3733,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_btnXoa_NguoiHocActionPerformed
 
     private void btnNew_NguoiHocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNew_NguoiHocActionPerformed
-        clearFormNguoiHoc();
-        btnThem_NguoiHoc.setEnabled(true);
-        btnSua_NguoiHoc.setEnabled(false);
-        btnXoa_NguoiHoc.setEnabled(false);
-        btnFirst_NguoiHoc.setEnabled(false);
-        btnPre_NguoiHoc.setEnabled(false);
-        btnNext_NguoiHoc.setEnabled(false);
-        btnLast_NguoiHoc.setEnabled(false);
+        clearFormNguoiHoc();       
     }//GEN-LAST:event_btnNew_NguoiHocActionPerformed
 
     private void btnLearnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLearnerActionPerformed
@@ -5101,6 +5094,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     NguoiHoc getForm_NguoiHoc() {
         NguoiHoc nh = new NguoiHoc();
         nh.setMaNH(txtMaNguoiHoc_NguoiHoc.getText());
+        nh.setMaNV(Auth.user.getMaNV());
         nh.setHoTen(txtHoTen_NguoiHoc.getText());
         nh.setDienThoai(txtDienThoai_NguoiHoc.getText());
         nh.setEmail(txtDiaChiEmail_NguoiHoc.getText());
@@ -5156,10 +5150,24 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     }
 
     void clearFormNguoiHoc() { //btnMoi_NhanVien
-        NguoiHoc nh = new NguoiHoc();
-        this.setForm_NguoiHoc(nh);
+         txtMaNguoiHoc_NguoiHoc.setText("");
+        txtHoTen_NguoiHoc.setText("");
+        txtNgaySinh_NguoiHoc.setText("");
+        txtDienThoai_NguoiHoc.setText("");
+        txtDiaChiEmail_NguoiHoc.setText("");
+        txtGhiChu_NguoiHoc.setText("");
+        rdoNam_NguoiHoc.setSelected(true);
+        
         this.row_NguoiHoc = -1;
         this.updateStatus_NguoiHoc();
+
+        btnThem_NguoiHoc.setEnabled(true);
+        btnSua_NguoiHoc.setEnabled(false);
+        btnXoa_NguoiHoc.setEnabled(false);
+        btnFirst_NguoiHoc.setEnabled(false);
+        btnPre_NguoiHoc.setEnabled(false);
+        btnNext_NguoiHoc.setEnabled(false);
+        btnLast_NguoiHoc.setEnabled(false);
     }
 
     void insert_NguoiHoc() {
