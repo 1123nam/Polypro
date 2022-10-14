@@ -27,6 +27,7 @@ import java.awt.Insets;
 import java.awt.LayoutManager;
 import java.awt.RenderingHints;
 import java.awt.Shape;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.geom.RoundRectangle2D;
 import java.io.File;
@@ -73,6 +74,8 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         Thread t1 = new Thread(this);
         t1.start();
         lblClock.setEnabled(false);
+        Image icon = Toolkit.getDefaultToolkit().getImage("src\\com\\polypro\\view\\icon\\fpt-32px.png");    
+        this.setIconImage(icon);
         initAllTable();
     }
 

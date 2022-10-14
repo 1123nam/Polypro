@@ -105,50 +105,7 @@ public class HiJDialog extends javax.swing.JDialog implements Runnable {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-//        new Timer(20, new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                int value = prbLoading.getValue();
-//                if (value < 100) {
-//                    try {
-//                        if (value == 10) {
-//                            lblMsg.setText("Đang khởi động.");
-//                        }
-//                        if (value == 20) {
-//                            lblMsg.setText("Đang khởi động..");
-//                        }
-//                        if (value == 30) {
-//                            lblMsg.setText("Đang khởi động...");
-//                        }
-//                        if (value == 40) {
-//                            Thread.sleep(300);
-//                            lblMsg.setText("Đang tải cơ sở dữ liệu.");
-//                        }
-//                        if (value == 55) {
-//                            Thread.sleep(600);
-//                            lblMsg.setText("Đang tải cơ sở dữ liệu..");
-//                        }
-//
-//                        if (value == 80) {
-//                            lblMsg.setText("Hoàn thành tải tài nguyên người dùng...");
-//                            Thread.sleep(800);
-//
-//                        }
-//                        if (value == 85) {
-//                            Thread.sleep(1500);
-//                            lblMsg.setText("Đang mở ứng dụng");
-//
-//                        }
-//                        prbLoading.setValue(value + 1);
-//                        lblLoadingPercent.setText(String.valueOf(value) + "%");
-//                    } catch (InterruptedException ex) {
-//                        Logger.getLogger(HiJDialog.class.getName()).log(Level.SEVERE, null, ex);
-//                    }
-//                } else {
-//                    HiJDialog.this.dispose();
-//                }
-//            }
-//        }).start();
+
 
     }//GEN-LAST:event_formWindowActivated
 
@@ -243,7 +200,7 @@ public class HiJDialog extends javax.swing.JDialog implements Runnable {
                     Login lg = new Login();
                     lg.setVisible(true);
                 }
-                Thread.sleep(80);
+                Thread.sleep(20);
             }
         } catch (Exception e) {
         }
