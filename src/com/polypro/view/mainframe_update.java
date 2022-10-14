@@ -129,7 +129,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
 
         menu.setFont(new Font("Cambria", Font.BOLD, 18));
 //        menu.setHeaderGradient(false);
-        menu.addItem("Home");
+        menu.addItem("Trang chủ");
         menu.addItem("Quản Lý", "Chuyên Đề", "Khóa Học", "Người Học", "Học Viên", "Nhân Viên");
         menu.addItem("Thống Kê");
 //        menu.addItem("Thống Kê", "Bảng Điểm", "Lượng Người Học", "Điểm Chuyên Đề", "Doanh Thu");
@@ -161,7 +161,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
                 if (menuItem) {
                     // Nếu click vào menu theo tên nào truy cập đến card đó
                     switch (menu.getMenuNameAt(index, subIndex).trim()) {
-                        case "Home":
+                        case "Trang chủ":
                             cardLayout.show(main, "cardRoot");
                             break;
                         case "Chuyên Đề":
@@ -3869,7 +3869,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
             public void run() {
                 HiJDialog hiJDialog = new HiJDialog(new mainframe_update(), true);
                 hiJDialog.setVisible(true);
-//                new mainframe_update().setVisible(true);
+                //new mainframe_update().setVisible(true);
             }
         });
     }
@@ -5065,7 +5065,9 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
                         nh.isGioiTinh() ? "Nam" : "Nữ",
                         nh.getDienThoai(),
                         nh.getEmail(),
-                        nh.getGhiChu(),};
+                        nh.getGhiChu(),
+                        nh.getMaNV(),
+                        nh.getNgayDK()};
                     model.addRow(row);
                 }
             }
@@ -5110,8 +5112,8 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         boolean last = (this.row_NguoiHoc == tblDanhSach_NguoiHoc.getRowCount());
         txtMaNguoiHoc_NguoiHoc.setEditable(!edit);
         btnThem_NguoiHoc.setEnabled(!edit);
-        btnSua_NguoiHoc.setEnabled(!edit);
-        btnXoa_NguoiHoc.setEnabled(!edit);
+        btnSua_NguoiHoc.setEnabled(edit);
+        btnXoa_NguoiHoc.setEnabled(edit);
         btnFirst_NguoiHoc.setEnabled(edit && !first);
         btnPre_NguoiHoc.setEnabled(edit && !first);
         btnNext_NguoiHoc.setEnabled(edit && !last);
@@ -5161,13 +5163,13 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         this.row_NguoiHoc = -1;
         this.updateStatus_NguoiHoc();
 
-        btnThem_NguoiHoc.setEnabled(true);
-        btnSua_NguoiHoc.setEnabled(false);
-        btnXoa_NguoiHoc.setEnabled(false);
-        btnFirst_NguoiHoc.setEnabled(false);
-        btnPre_NguoiHoc.setEnabled(false);
-        btnNext_NguoiHoc.setEnabled(false);
-        btnLast_NguoiHoc.setEnabled(false);
+//        btnThem_NguoiHoc.setEnabled(true);
+//        btnSua_NguoiHoc.setEnabled(false);
+//        btnXoa_NguoiHoc.setEnabled(false);
+//        btnFirst_NguoiHoc.setEnabled(false);
+//        btnPre_NguoiHoc.setEnabled(false);
+//        btnNext_NguoiHoc.setEnabled(false);
+//        btnLast_NguoiHoc.setEnabled(false);
     }
 
     void insert_NguoiHoc() {
@@ -5286,6 +5288,11 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
                 + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"))) {
             MsgBox.alert(this, "Vui lòng nhập đúng định dạng mail!");
             return false;
+        } 
+        try {
+            Date ngay = XDate.toDate(txtNgaySinh_NguoiHoc.getText(),"yyyy-MM-dd");           
+        } catch (Exception e) {
+            MsgBox.alert(this,"Vui lòng nhập đúng định dạng ngày yyyy-MM-dd");
         }
         List<NguoiHoc> list = nhdao.select();
         for (int i = 0; i < list.size(); i++) {
@@ -5467,7 +5474,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         txtNguoiTao_KhoaHoc.setEditable(false);
         
         this.row_khoaHoc = -1;
-//        this.updateStatus_KhoaHoc();
+        this.updateStatus_KhoaHoc();
     }
     void setForm(KhoaHoc kh) {
         try {
