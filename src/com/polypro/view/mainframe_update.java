@@ -31,6 +31,7 @@ import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.geom.RoundRectangle2D;
 import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -57,7 +58,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import sun.security.util.ManifestEntryVerifier;
-
 
 public class mainframe_update extends javax.swing.JFrame implements Runnable {
 
@@ -400,10 +400,10 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         cboChuyenDe_KhoaHoc = new javax.swing.JComboBox<>();
         pnlQLNhanVien = new javax.swing.JPanel();
         tbpNhanVien = new javax.swing.JTabbedPane();
-        jPanel6 = new javax.swing.JPanel();
+        DanhSach = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblDanhSach_NhanVien = new javax.swing.JTable();
-        jPanel7 = new javax.swing.JPanel();
+        FormThongTin = new javax.swing.JPanel();
         jPanel61 = new RoundedPanel(50);
         jLabel135 = new javax.swing.JLabel();
         jLabel136 = new javax.swing.JLabel();
@@ -434,6 +434,9 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         rdoNhanVien_NhanVien = new javax.swing.JRadioButton();
         txtMatKhau_NhanVien = new javax.swing.JPasswordField();
         txtXacNhanMK_NhanVien = new javax.swing.JPasswordField();
+        btnUpHinhAnh_NhanVien = new RoundedPanel(50);
+        UpText = new javax.swing.JLabel();
+        IconHinhAnh = new javax.swing.JLabel();
         jPanel53 = new javax.swing.JPanel();
         btnFirst_NhanVien = new javax.swing.JButton();
         btnBack_NhanVien = new javax.swing.JButton();
@@ -470,7 +473,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         jLabel99 = new javax.swing.JLabel();
         jLabel100 = new javax.swing.JLabel();
         jLabel102 = new javax.swing.JLabel();
-        jLabel103 = new javax.swing.JLabel();
+        lblHinhAnh_NhanVien = new javax.swing.JLabel();
         jLabel104 = new javax.swing.JLabel();
         jLabel105 = new javax.swing.JLabel();
         jLabel106 = new javax.swing.JLabel();
@@ -484,9 +487,6 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         jLabel113 = new javax.swing.JLabel();
         jPanel57 = new RoundedPanel(50);
         jLabel114 = new javax.swing.JLabel();
-        jPanel58 = new RoundedPanel(50);
-        jLabel115 = new javax.swing.JLabel();
-        jLabel116 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         pnlQLNguoiHoc = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
@@ -1685,27 +1685,27 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         });
         jScrollPane3.setViewportView(tblDanhSach_NhanVien);
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        javax.swing.GroupLayout DanhSachLayout = new javax.swing.GroupLayout(DanhSach);
+        DanhSach.setLayout(DanhSachLayout);
+        DanhSachLayout.setHorizontalGroup(
+            DanhSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DanhSachLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1346, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        DanhSachLayout.setVerticalGroup(
+            DanhSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DanhSachLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        tbpNhanVien.addTab("   Danh Sách   ", jPanel6);
+        tbpNhanVien.addTab("   Danh Sách   ", DanhSach);
 
-        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        FormThongTin.setBackground(new java.awt.Color(255, 255, 255));
+        FormThongTin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel61.setOpaque(false);
         jPanel61.setBackground(new java.awt.Color(111, 111, 113));
@@ -1784,7 +1784,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
 
         jPanel61.add(jPanel70, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 70, 30));
 
-        jPanel7.add(jPanel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 270, 160, 290));
+        FormThongTin.add(jPanel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 270, 160, 290));
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setPreferredSize(new java.awt.Dimension(150, 50));
@@ -1847,7 +1847,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         });
         jPanel8.add(btnMoi_NhanVien, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 100, 80));
 
-        jPanel7.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 460, 80));
+        FormThongTin.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 460, 80));
 
         jPanel52.setOpaque(false);
         jPanel52.setBackground(new java.awt.Color(52, 86, 86));
@@ -1893,27 +1893,58 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
 
         txtXacNhanMK_NhanVien.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
+        btnUpHinhAnh_NhanVien.setOpaque(false);
+        btnUpHinhAnh_NhanVien.setBackground(new java.awt.Color(221, 198, 198));
+        btnUpHinhAnh_NhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUpHinhAnh_NhanVienMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnUpHinhAnh_NhanVienMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnUpHinhAnh_NhanVienMouseExited(evt);
+            }
+        });
+        btnUpHinhAnh_NhanVien.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        UpText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        UpText.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/change.png"))); // NOI18N
+        btnUpHinhAnh_NhanVien.add(UpText, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 40, 50));
+
+        IconHinhAnh.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        IconHinhAnh.setForeground(new java.awt.Color(51, 51, 51));
+        IconHinhAnh.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        IconHinhAnh.setText("Up");
+        btnUpHinhAnh_NhanVien.add(IconHinhAnh, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 50));
+
         javax.swing.GroupLayout jPanel52Layout = new javax.swing.GroupLayout(jPanel52);
         jPanel52.setLayout(jPanel52Layout);
         jPanel52Layout.setHorizontalGroup(
             jPanel52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel52Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addGroup(jPanel52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtMatKhau_NhanVien)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabel17)
-                    .addComponent(jLabel16)
+                .addGroup(jPanel52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel52Layout.createSequentialGroup()
                         .addComponent(rdoTruongPhong_NhanVien)
                         .addGap(29, 29, 29)
-                        .addComponent(rdoNhanVien_NhanVien))
-                    .addComponent(txtMaNV_NhanVien)
-                    .addComponent(txtHoTen_NhanVien, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
-                    .addComponent(txtXacNhanMK_NhanVien, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE))
-                .addContainerGap(42, Short.MAX_VALUE))
+                        .addComponent(rdoNhanVien_NhanVien)
+                        .addGap(27, 27, 27)
+                        .addComponent(btnUpHinhAnh_NhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 34, Short.MAX_VALUE))
+                    .addGroup(jPanel52Layout.createSequentialGroup()
+                        .addGroup(jPanel52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtMatKhau_NhanVien)
+                                .addComponent(jLabel13)
+                                .addComponent(jLabel14)
+                                .addComponent(jLabel15)
+                                .addComponent(jLabel17)
+                                .addComponent(txtMaNV_NhanVien)
+                                .addComponent(txtHoTen_NhanVien, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
+                                .addComponent(txtXacNhanMK_NhanVien, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE))
+                            .addComponent(jLabel16))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel52Layout.setVerticalGroup(
             jPanel52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1935,15 +1966,20 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
                 .addGap(10, 10, 10)
                 .addComponent(txtHoTen_NhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(jLabel16)
-                .addGap(10, 10, 10)
                 .addGroup(jPanel52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rdoTruongPhong_NhanVien)
-                    .addComponent(rdoNhanVien_NhanVien))
-                .addContainerGap(41, Short.MAX_VALUE))
+                    .addGroup(jPanel52Layout.createSequentialGroup()
+                        .addComponent(jLabel16)
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rdoTruongPhong_NhanVien)
+                            .addComponent(rdoNhanVien_NhanVien)))
+                    .addGroup(jPanel52Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(btnUpHinhAnh_NhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
-        jPanel7.add(jPanel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 460, 460));
+        FormThongTin.add(jPanel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 460, 460));
 
         jPanel53.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -2027,7 +2063,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        jPanel7.add(jPanel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 590, 460, -1));
+        FormThongTin.add(jPanel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 590, 460, -1));
 
         jPanel54.setOpaque(false);
         jPanel54.setBackground(new java.awt.Color(245, 205, 55));
@@ -2144,7 +2180,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
 
         jPanel54.add(jPanel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 140, 40));
 
-        jPanel7.add(jPanel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 140, 310, 530));
+        FormThongTin.add(jPanel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 140, 310, 530));
 
         jPanel9.setOpaque(false);
         jPanel9.setBackground(new java.awt.Color(52, 86, 86));
@@ -2178,9 +2214,9 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         jLabel102.setText("Adress");
         jPanel9.add(jLabel102, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, -1, -1));
 
-        jLabel103.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel103.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/avata_icon.png"))); // NOI18N
-        jPanel9.add(jLabel103, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 220, 240));
+        lblHinhAnh_NhanVien.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblHinhAnh_NhanVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/avata_icon.png"))); // NOI18N
+        jPanel9.add(lblHinhAnh_NhanVien, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 210, 190));
 
         jLabel104.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/share_Icon.png"))); // NOI18N
         jPanel9.add(jLabel104, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 250, -1, -1));
@@ -2200,12 +2236,12 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         jLabel108.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel108.setForeground(new java.awt.Color(255, 255, 255));
         jLabel108.setText("Manager");
-        jPanel9.add(jLabel108, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 340, 120, 60));
+        jPanel9.add(jLabel108, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, 110, 60));
 
         jLabel109.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel109.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel109.setText("Role");
-        jPanel9.add(jLabel109, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, -1, -1));
+        jLabel109.setText("Role:");
+        jPanel9.add(jLabel109, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, -1, -1));
 
         jPanel56.setOpaque(false);
         jPanel56.setBackground(new java.awt.Color(34, 57, 57));
@@ -2257,7 +2293,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         jPanel9.add(jPanel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 300, 120));
 
         jLabel113.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/back_24.png"))); // NOI18N
-        jPanel9.add(jLabel113, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 560, -1, -1));
+        jPanel9.add(jLabel113, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 554, 40, 40));
 
         jPanel57.setOpaque(false);
         jPanel57.setBackground(new java.awt.Color(71, 102, 102));
@@ -2273,38 +2309,22 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
             jPanel57Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel57Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel114, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jLabel114, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel57Layout.setVerticalGroup(
             jPanel57Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel57Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel114, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel114, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        jPanel9.add(jPanel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 550, 110, 50));
+        jPanel9.add(jPanel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 550, 110, 50));
 
-        jPanel58.setOpaque(false);
-        jPanel58.setBackground(new java.awt.Color(221, 198, 198));
-        jPanel58.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        FormThongTin.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, 340, 650));
 
-        jLabel115.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel115.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/change.png"))); // NOI18N
-        jPanel58.add(jLabel115, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 40, 50));
-
-        jLabel116.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel116.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel116.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel116.setText("Change");
-        jPanel58.add(jLabel116, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 50));
-
-        jPanel9.add(jPanel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 550, -1, 50));
-
-        jPanel7.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, 340, 650));
-
-        tbpNhanVien.addTab("Cập Nhật", jPanel7);
+        tbpNhanVien.addTab("Cập Nhật", FormThongTin);
 
         pnlQLNhanVien.add(tbpNhanVien, java.awt.BorderLayout.CENTER);
 
@@ -3543,7 +3563,6 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         exitProgram();
-
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCourseActionPerformed
@@ -3567,6 +3586,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_tblDanhSach_NhanVienMouseClicked
 
     private void btnThem_NhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem_NhanVienActionPerformed
+            saveAnh();
         insertNhanVien();
     }//GEN-LAST:event_btnThem_NhanVienActionPerformed
 
@@ -3836,6 +3856,20 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNguoiTao_KhoaHocActionPerformed
 
+    private void btnUpHinhAnh_NhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpHinhAnh_NhanVienMouseClicked
+        f_chonAnh_NhanVien();
+    }//GEN-LAST:event_btnUpHinhAnh_NhanVienMouseClicked
+
+    private void btnUpHinhAnh_NhanVienMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpHinhAnh_NhanVienMouseEntered
+        btnUpHinhAnh_NhanVien.setBackground(Color.gray);
+        btnUpHinhAnh_NhanVien.setOpaque(false);
+    }//GEN-LAST:event_btnUpHinhAnh_NhanVienMouseEntered
+
+    private void btnUpHinhAnh_NhanVienMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpHinhAnh_NhanVienMouseExited
+        btnUpHinhAnh_NhanVien.setBackground(new Color(221, 198, 198));
+        btnUpHinhAnh_NhanVien.setBackground(new Color(221, 198, 198));
+    }//GEN-LAST:event_btnUpHinhAnh_NhanVienMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -3881,6 +3915,10 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel DanhSach;
+    private javax.swing.JPanel FormThongTin;
+    private javax.swing.JLabel IconHinhAnh;
+    private javax.swing.JLabel UpText;
     private javax.swing.ButtonGroup btgRole;
     private javax.swing.ButtonGroup btgSex;
     private javax.swing.JButton btnAdd_HocVien;
@@ -3922,6 +3960,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton btnThem_NhanVien;
     private javax.swing.JLabel btnTim_NguoiHoc;
     private javax.swing.JButton btnTopic;
+    private javax.swing.JPanel btnUpHinhAnh_NhanVien;
     private javax.swing.JButton btnUpdate_HocVien;
     private javax.swing.JButton btnXoa_ChuyenDe;
     private javax.swing.JButton btnXoa_KhoaHoc;
@@ -3937,7 +3976,6 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel100;
     private javax.swing.JLabel jLabel101;
     private javax.swing.JLabel jLabel102;
-    private javax.swing.JLabel jLabel103;
     private javax.swing.JLabel jLabel104;
     private javax.swing.JLabel jLabel105;
     private javax.swing.JLabel jLabel106;
@@ -3950,8 +3988,6 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel112;
     private javax.swing.JLabel jLabel113;
     private javax.swing.JLabel jLabel114;
-    private javax.swing.JLabel jLabel115;
-    private javax.swing.JLabel jLabel116;
     private javax.swing.JLabel jLabel117;
     private javax.swing.JLabel jLabel118;
     private javax.swing.JLabel jLabel119;
@@ -4167,9 +4203,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     private javax.swing.JPanel jPanel55;
     private javax.swing.JPanel jPanel56;
     private javax.swing.JPanel jPanel57;
-    private javax.swing.JPanel jPanel58;
     private javax.swing.JPanel jPanel59;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel60;
     private javax.swing.JPanel jPanel61;
     private javax.swing.JPanel jPanel62;
@@ -4180,7 +4214,6 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     private javax.swing.JPanel jPanel67;
     private javax.swing.JPanel jPanel68;
     private javax.swing.JPanel jPanel69;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel70;
     private javax.swing.JPanel jPanel71;
     private javax.swing.JPanel jPanel72;
@@ -4214,6 +4247,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JLabel lblClock;
     private javax.swing.JLabel lblHinhAnh_ChuyenDe;
+    private javax.swing.JLabel lblHinhAnh_NhanVien;
     private javax.swing.JLabel lblTimKiem_HocVien;
     private javax.swing.JPanel main;
     private javax.swing.JPanel pnlDashboard;
@@ -4356,9 +4390,49 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
             return shape.contains(x, y);
         }
     }
-    
+
     JFileChooser filenChooser_NhanVien = new JFileChooser();
     
+    void f_chonAnh_NhanVien() {
+        if (filenChooser_NhanVien.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            File file = filenChooser_NhanVien.getSelectedFile();
+            ImageIcon iconTam = new ImageIcon(file.getAbsolutePath());
+            Image img = iconTam.getImage();
+            ImageIcon icon = new ImageIcon(img.getScaledInstance(lblHinhAnh_NhanVien.getWidth(), lblHinhAnh_NhanVien.getHeight(), Image.SCALE_SMOOTH));
+            lblHinhAnh_NhanVien.setIcon(icon);
+            lblHinhAnh_NhanVien.setToolTipText(file.getAbsolutePath());
+        }
+    }
+
+    void saveAnh(){
+        File fileAnh = new File(lblHinhAnh_NhanVien.getToolTipText());
+        XImage.save(fileAnh);
+        File newF = new File("logos", fileAnh.getName());
+        String tenFile = newF.getName();
+        String duoiFile = null;
+        if (tenFile.endsWith(".png")) {
+            duoiFile = ".png";
+        } else if (tenFile.endsWith(".jpg")) {
+            duoiFile = ".jpg";
+        }
+        //Tên file mới + đuôi file
+        String newFileName = txtMaNV_NhanVien.getText() + "1" + duoiFile;
+//            Đổi tên file
+        String fileRenamed = tenFile.replace(tenFile, newFileName);
+        //Rename lại file trong thư mục logos
+        boolean renamedSuccess = newF.renameTo(new File("logos", fileRenamed));
+        //set lại tên file trên label tool tip
+        lblHinhAnh_NhanVien.setToolTipText(fileRenamed);
+    }
+    
+    void docAnh_NhanVien(NhanVien nv) {
+        ImageIcon iconTam1 = XImage.read(nv.getHinh());
+        Image img1 = iconTam1.getImage();
+        ImageIcon icon1 = new ImageIcon(img1.getScaledInstance(lblHinhAnh_NhanVien.getWidth(), lblHinhAnh_NhanVien.getHeight(), Image.SCALE_SMOOTH));
+        lblHinhAnh_NhanVien.setIcon(icon1);
+        lblHinhAnh_NhanVien.setToolTipText(nv.getHinh());
+    }
+
     void fillTableNhanVien() {
         DefaultTableModel model = (DefaultTableModel) tblDanhSach_NhanVien.getModel();
 
@@ -4373,18 +4447,17 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
                     nv.getMaNV(),
                     nv.getHoTen(),
                     nv.isVaiTro() ? "Trưởng phòng" : "Nhân viên",
-                };
+                    nv.getHinh(),};
                 model.addRow(row); //Thêm một hàng vào Jtable nhân viên
             }
         } catch (Exception e) {
 //            MsgBox.alert(this, "Lỗi truy vấn dữ liệu!");
             System.out.println(e);
         }
-
     }
 
     void setColumn_NhanVien() {
-        String[] column = {"Mã nhân viên", "Họ tên", "Vai trò"};
+        String[] column = {"Mã nhân viên", "Họ tên", "Vai trò", "Hình"};
         DefaultTableModel model = (DefaultTableModel) tblDanhSach_NhanVien.getModel();
         model.setColumnIdentifiers(column);
     }
@@ -4440,7 +4513,15 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         txtXacNhanMK_NhanVien.setText(nv.getMatKhau());
         rdoTruongPhong_NhanVien.setSelected(nv.isVaiTro());
         rdoNhanVien_NhanVien.setSelected(!nv.isVaiTro());
+        if (nv.getHinh() != null) {
+            docAnh_NhanVien(nv);
+        } else {
+            ImageIcon icon1 = new ImageIcon("src/com/polypro/view/icon/avata_icon.png");
+            lblHinhAnh_NhanVien.setIcon(icon1);
+        }
     }
+
+    
 
     void clearFormNhanVien() { //btnMoi_NhanVien
         NhanVien nv = new NhanVien();
@@ -4463,6 +4544,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         nv.setHoTen(txtHoTen_NhanVien.getText());
         nv.setMatKhau(new String(txtMatKhau_NhanVien.getPassword()));
         nv.setVaiTro(rdoTruongPhong_NhanVien.isSelected());
+        nv.setHinh(lblHinhAnh_NhanVien.getToolTipText());
         return nv;
     }
 
@@ -4487,6 +4569,9 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     }
 
     void updateNhanVien() {
+        if (!check_NhanVien()) {
+            return;
+        }
         NhanVien nv = getFormNhanVien();
         String xacNhanMK = new String(txtXacNhanMK_NhanVien.getPassword());
         if (!xacNhanMK.equals(nv.getMatKhau())) {
@@ -4776,17 +4861,18 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     }
 
     public boolean checkDupKeyChuyenDe(String maCD) {
-        List<ChuyenDe> listChuyenDe = chuyenDeDAO.select();
-
-        for (int i = 0; i < listChuyenDe.size(); i++) {
-            System.out.println(listChuyenDe.get(i).getMaCD());
-            if (maCD.equalsIgnoreCase(listChuyenDe.get(i).getMaCD())) {
-
-                return true;
-            }
+        ChuyenDe newMaCD = chuyenDeDAO.selectID(maCD);
+        if (newMaCD != null) {
+            return true;
         }
+//        String newMaCD = maCD.trim();
+//        for (int i = 0; i < listChuyenDe.size(); i++) {
+//            System.out.println(listChuyenDe.get(i).getMaCD());
+//            if (newMaCD.equalsIgnoreCase(listChuyenDe.get(i).getMaCD())) {
+//                return true;
+//            }
+//        }
         return false;
-
     }
 
     public boolean checkFormChuyenDe() {

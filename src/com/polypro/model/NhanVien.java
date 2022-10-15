@@ -9,19 +9,21 @@ public class NhanVien {
     private String matKhau;
     private String hoTen;
     private boolean vaiTro = false;
+    private String hinh;
 
     public NhanVien() {
     }
 
-    public NhanVien(String maNV, String matKhau, String hoTen) {
+    public NhanVien(String maNV, String matKhau, String hoTen, String hinh) {
         this.maNV = maNV;
         this.matKhau = matKhau;
         this.hoTen = hoTen;
+        this.hinh = hinh;
     }
 
     @Override
     public String toString() {
-        return "NhanVien{" + "maNV=" + maNV + ", matKhau=" + matKhau + ", hoTen=" + hoTen + ", vaiTro=" + vaiTro + '}';
+        return "NhanVien{" + "maNV=" + maNV + ", matKhau=" + matKhau + ", hoTen=" + hoTen + ", vaiTro=" + vaiTro + ", hinh=" + hinh + '}';
     }
 
     public String getMaNV() {
@@ -54,5 +56,13 @@ public class NhanVien {
 
     public void setVaiTro(boolean vaiTro) {
         this.vaiTro = vaiTro;
+    }
+    
+    public String getHinh() {
+        return hinh;
+    }
+
+    public void setHinh(String hinh) {
+        this.hinh = hinh;
     }
 }
