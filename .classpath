@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="dist/lib/AbsoluteLayout.jar"/>
+	<classpathentry kind="lib" path="dist/lib/gradient-dropdown-menu.jar"/>
+	<classpathentry kind="lib" path="dist/lib/miglayout-4.0.jar"/>
+	<classpathentry kind="lib" path="dist/lib/mssql-jdbc-11.2.0.jre17.jar"/>
+	<classpathentry kind="lib" path="dist/lib/mssql-jdbc-8.2.2.jre8.jar"/>
+	<classpathentry kind="lib" path="dist/lib/TimingFramework-0.55.jar"/>
+	<classpathentry kind="lib" path="dist/PolyPro.jar"/>
+	<classpathentry kind="lib" path="lib/gradient-dropdown-menu.jar"/>
+	<classpathentry kind="lib" path="lib/miglayout-4.0.jar"/>
+	<classpathentry kind="lib" path="lib/mssql-jdbc-11.2.0.jre17.jar"/>
+	<classpathentry kind="lib" path="lib/mssql-jdbc-8.2.2.jre11.jar"/>
+	<classpathentry kind="lib" path="lib/mssql-jdbc-8.2.2.jre13.jar"/>
+	<classpathentry kind="lib" path="lib/mssql-jdbc-8.2.2.jre8.jar"/>
+	<classpathentry kind="lib" path="lib/TimingFramework-0.55.jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>

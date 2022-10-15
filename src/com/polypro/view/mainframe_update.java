@@ -47,6 +47,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
@@ -55,6 +56,8 @@ import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
+import sun.security.util.ManifestEntryVerifier;
+
 
 public class mainframe_update extends javax.swing.JFrame implements Runnable {
 
@@ -74,7 +77,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         Thread t1 = new Thread(this);
         t1.start();
         lblClock.setEnabled(false);
-        Image icon = Toolkit.getDefaultToolkit().getImage("src\\com\\polypro\\view\\icon\\fpt-32px.png");    
+        Image icon = Toolkit.getDefaultToolkit().getImage("src\\com\\polypro\\view\\icon\\fpt-32px.png");
         this.setIconImage(icon);
         initAllTable();
     }
@@ -1883,6 +1886,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         btgRole.add(rdoNhanVien_NhanVien);
         rdoNhanVien_NhanVien.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         rdoNhanVien_NhanVien.setForeground(new java.awt.Color(255, 255, 255));
+        rdoNhanVien_NhanVien.setSelected(true);
         rdoNhanVien_NhanVien.setText("Nhân viên");
 
         txtMatKhau_NhanVien.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -3558,6 +3562,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         if (evt.getClickCount() == 2) {
             this.row_NhanVien = tblDanhSach_NhanVien.getSelectedRow();
             this.editNhanVien();
+            this.txtMaNV_NhanVien.setEditable(false);
         }
     }//GEN-LAST:event_tblDanhSach_NhanVienMouseClicked
 
@@ -3603,8 +3608,6 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
             MsgBox.alert(this, "Trùng mã chuyên đề");
 
         }
-
-
     }//GEN-LAST:event_btnThem_ChuyenDeActionPerformed
 
     private void btnSua_ChuyenDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSua_ChuyenDeActionPerformed
@@ -3736,7 +3739,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_btnXoa_NguoiHocActionPerformed
 
     private void btnNew_NguoiHocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNew_NguoiHocActionPerformed
-        clearFormNguoiHoc();       
+        clearFormNguoiHoc();
     }//GEN-LAST:event_btnNew_NguoiHocActionPerformed
 
     private void btnLearnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLearnerActionPerformed
@@ -4353,7 +4356,9 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
             return shape.contains(x, y);
         }
     }
-
+    
+    JFileChooser filenChooser_NhanVien = new JFileChooser();
+    
     void fillTableNhanVien() {
         DefaultTableModel model = (DefaultTableModel) tblDanhSach_NhanVien.getModel();
 
@@ -4361,15 +4366,13 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         tblDanhSach_NhanVien.setDefaultEditor(Object.class, null);
 
         model.setRowCount(0); //Xóa tất cả các hàng trên jtable nhân viên
-
         try {
             List<NhanVien> list = nvDAO.select(); //Đọc dữ liệu từ CSDL
             for (NhanVien nv : list) {
                 Object[] row = {
                     nv.getMaNV(),
-                    nv.getMatKhau(),
                     nv.getHoTen(),
-                    nv.isVaiTro() ? "Trưởng phòng" : "Nhân viên"
+                    nv.isVaiTro() ? "Trưởng phòng" : "Nhân viên",
                 };
                 model.addRow(row); //Thêm một hàng vào Jtable nhân viên
             }
@@ -4381,9 +4384,53 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     }
 
     void setColumn_NhanVien() {
-        String[] column = {"Mã nhân viên", "Mật khẩu", "Họ tên", "Vai trò"};
+        String[] column = {"Mã nhân viên", "Họ tên", "Vai trò"};
         DefaultTableModel model = (DefaultTableModel) tblDanhSach_NhanVien.getModel();
         model.setColumnIdentifiers(column);
+    }
+
+    boolean check_NhanVien() {
+        boolean kiemTra = true;
+        //Kiểm tra rỗng
+        if (txtMaNV_NhanVien.getText().equals("") && String.valueOf(txtMatKhau_NhanVien.getPassword()).equals("")
+                && String.valueOf(txtXacNhanMK_NhanVien.getPassword()).equals("") && txtHoTen_NhanVien.getText().equals("")) {
+            MsgBox.alert(this, "Vui lòng nhập đầy đủ thông tin nhân viên");
+            return kiemTra = false;
+        } else if (txtMaNV_NhanVien.getText().equals("")) {
+            MsgBox.alert(this, "Vui lòng nhập mã nhân viên");
+            return kiemTra = false;
+        } else if (String.valueOf(txtMatKhau_NhanVien.getPassword()).equals("")) {
+            MsgBox.alert(this, "Vui lòng nhập mật khẩu");
+            return kiemTra = false;
+        } else if (String.valueOf(txtXacNhanMK_NhanVien.getPassword()).equals("")) {
+            MsgBox.alert(this, "Vui lòng nhập mật khẩu xác nhận");
+            return kiemTra = false;
+        }
+
+        //Kiểm tra trùng mã
+        String maNV = txtMaNV_NhanVien.getText();
+        NhanVien maNV_TimKiem = nvDAO.selectID(maNV);
+        if (maNV_TimKiem != null) {
+            MsgBox.alert(this, "Mã nhân viên đã tồn tại");
+            return kiemTra = false;
+        }
+        //Kiểm tra mật khẩu
+        String matKhau = String.valueOf(txtMatKhau_NhanVien.getPassword());
+        String xacNhanMK = String.valueOf(txtXacNhanMK_NhanVien.getPassword());
+
+        if (matKhau.length() <= 5) {
+            MsgBox.alert(this, "Mật khẩu phải ít nhất 6 kí tự");
+            return kiemTra = false;
+        }
+
+        if (!xacNhanMK.equals(matKhau)) {
+            MsgBox.alert(this, "Mật khẩu không trùng khớp");
+            return kiemTra = false;
+        } else if (xacNhanMK.length() <= 5) {
+            MsgBox.alert(this, "Mật khẩu phải ít nhất 6 kí tự");
+            return kiemTra = false;
+        }
+        return kiemTra;
     }
 
     void setFormNhanVien(NhanVien nv) {
@@ -4420,6 +4467,9 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     }
 
     void insertNhanVien() { //btnThemNhanVien
+        if (!check_NhanVien()) {
+            return;
+        }
         NhanVien nv = getFormNhanVien();
         String xacNhanMK = new String(txtXacNhanMK_NhanVien.getPassword());
         if (!xacNhanMK.equals(nv.getMatKhau())) {
@@ -4450,6 +4500,8 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
                 MsgBox.alert(this, "Cập nhật thất bại!");
             }
         }
+        tbpNhanVien.setSelectedIndex(0);
+        tblDanhSach_NhanVien.setRowSelectionInterval(row_NhanVien, row_NhanVien);
     }
 
     void deleteNhanVien() { //btnXoa_NhanVien
@@ -4482,11 +4534,18 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
             this.row_NhanVien--;
             this.editNhanVien();
         }
+//        else if(this.row_NhanVien == 0){
+//            this.row_NhanVien = tblDanhSach_NhanVien.getRowCount() - 1;
+//            this.editNhanVien();
+//        }
     }
 
     void next_NhanVien() {//btnNext_NhanVien
         if (this.row_NhanVien < tblDanhSach_NhanVien.getRowCount() - 1) {
             this.row_NhanVien++;
+            this.editNhanVien();
+        } else if (this.row_NhanVien == tblDanhSach_NhanVien.getRowCount() - 1) {
+            this.row_NhanVien = 0;
             this.editNhanVien();
         }
     }
@@ -5155,14 +5214,14 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     }
 
     void clearFormNguoiHoc() { //btnMoi_NhanVien
-         txtMaNguoiHoc_NguoiHoc.setText("");
+        txtMaNguoiHoc_NguoiHoc.setText("");
         txtHoTen_NguoiHoc.setText("");
         txtNgaySinh_NguoiHoc.setText("");
         txtDienThoai_NguoiHoc.setText("");
         txtDiaChiEmail_NguoiHoc.setText("");
         txtGhiChu_NguoiHoc.setText("");
         rdoNam_NguoiHoc.setSelected(true);
-        
+
         this.row_NguoiHoc = -1;
         this.updateStatus_NguoiHoc();
 
@@ -5291,11 +5350,11 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
                 + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"))) {
             MsgBox.alert(this, "Vui lòng nhập đúng định dạng mail!");
             return false;
-        } 
+        }
         try {
-            Date ngay = XDate.toDate(txtNgaySinh_NguoiHoc.getText(),"yyyy-MM-dd");           
+            Date ngay = XDate.toDate(txtNgaySinh_NguoiHoc.getText(), "yyyy-MM-dd");
         } catch (Exception e) {
-            MsgBox.alert(this,"Vui lòng nhập đúng định dạng ngày yyyy-MM-dd");
+            MsgBox.alert(this, "Vui lòng nhập đúng định dạng ngày yyyy-MM-dd");
         }
         List<NguoiHoc> list = nhdao.select();
         for (int i = 0; i < list.size(); i++) {
@@ -5465,20 +5524,19 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
 
     }
 
-    
-    
     void clearForm_KhoaHoc() {
         txtNguoiTao_KhoaHoc.setText("");
         txtNgayKG_KhoaHoc.setText("");
         txtNgayTao_KhoaHoc.setText(XDate.toString(XDate.now(), "yyyy-MM-dd"));
-        txtGhiChu_KhoaHoc.setText("");      
+        txtGhiChu_KhoaHoc.setText("");
         txtGhiChu_KhoaHoc.setEditable(true);
         txtNguoiTao_KhoaHoc.setText(Auth.user.getMaNV());
         txtNguoiTao_KhoaHoc.setEditable(false);
-        
+
         this.row_khoaHoc = -1;
         this.updateStatus_KhoaHoc();
     }
+
     void setForm(KhoaHoc kh) {
         try {
 //            cboChuyenDe_KhoaHoc.setSelectedItem(khDao_kh.selectID(kh.getMaCD()));
