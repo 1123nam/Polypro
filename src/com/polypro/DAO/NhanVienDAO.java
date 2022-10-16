@@ -17,11 +17,11 @@ import java.util.logging.Logger;
 public class NhanVienDAO extends EduSysDAO<NhanVien, String> {
 
     String INSERT_SQL = "INSERT INTO NhanVien(MaNV, HoTen,MatKhau,  VaiTro, HinhAnh) VALUES (?, ?, ?, ?, ?)";
-    String UPDATE_SQL = "UPDATE NhanVien SET HoTen = ?, MatKhau = ?,  VaiTro = ? WHERE MaNV = ?";
+    String UPDATE_SQL = "UPDATE NhanVien SET HoTen = ?, MatKhau = ?,  VaiTro = ?, HinhAnh = ? WHERE MaNV = ?";
     String DELETE_SQL = "DELETE FROM NhanVien WHERE MaNV = ?";
     String SELECT_ALL_SQL = "SELECT * FROM NhanVien";
     String SELECT_BY_ID_SQL = "SELECT * FROM NhanVien WHERE MaNV = ?";
-
+    
     @Override
     public void insert(NhanVien entity) {
         try {
@@ -45,12 +45,12 @@ public class NhanVienDAO extends EduSysDAO<NhanVien, String> {
     public void update(NhanVien entity) {
         try {
             JdbcHelper.update(UPDATE_SQL,
-                    entity.getHoTen(), entity.getMatKhau(), entity.isVaiTro(), entity.getMaNV());
+                    entity.getHoTen(), entity.getMatKhau(), entity.isVaiTro(),entity.getHinh(), entity.getMaNV());
         } catch (SQLException ex) {
             Logger.getLogger(NhanVienDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     @Override
     public List<NhanVien> select() {
         return this.selectBySql(SELECT_ALL_SQL);

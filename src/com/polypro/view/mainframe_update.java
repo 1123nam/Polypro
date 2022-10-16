@@ -25,12 +25,14 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.LayoutManager;
+import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.Shape;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.geom.RoundRectangle2D;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -52,20 +54,17 @@ import javax.swing.JPasswordField;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
-import sun.security.util.ManifestEntryVerifier;
 
 public class mainframe_update extends javax.swing.JFrame implements Runnable {
 
     GradientDropdownMenu menu = new GradientDropdownMenu();
     CardLayout cardLayout;
-    //Quản lý Nhân Viên - Hải
-    NhanVienDAO nvDAO = new NhanVienDAO();
-    int row_NhanVien = -1; //Hàng được chọn hiện tại trên bảng nhân viên
 
     public mainframe_update() {
         initComponents();
@@ -73,6 +72,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         initMenu();
         addEvent();
         initloadData();
+        load_Image_UpdatedData_NV();
         //luồng chạy đồng hồ
         Thread t1 = new Thread(this);
         t1.start();
@@ -468,20 +468,17 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         jLabel123 = new javax.swing.JLabel();
         jPanel9 = new RoundedPanel(50);
         jLabel86 = new javax.swing.JLabel();
-        jLabel85 = new javax.swing.JLabel();
         jLabel101 = new javax.swing.JLabel();
         jLabel99 = new javax.swing.JLabel();
-        jLabel100 = new javax.swing.JLabel();
-        jLabel102 = new javax.swing.JLabel();
         lblHinhAnh_NhanVien = new javax.swing.JLabel();
         jLabel104 = new javax.swing.JLabel();
         jLabel105 = new javax.swing.JLabel();
         jLabel106 = new javax.swing.JLabel();
         jLabel107 = new javax.swing.JLabel();
-        jLabel108 = new javax.swing.JLabel();
+        lblChucVu_NhanVien = new javax.swing.JLabel();
         jLabel109 = new javax.swing.JLabel();
         jPanel56 = new RoundedPanel(50);
-        jLabel110 = new javax.swing.JLabel();
+        lblTen_NhanVien = new javax.swing.JLabel();
         jLabel111 = new javax.swing.JLabel();
         jLabel112 = new javax.swing.JLabel();
         jLabel113 = new javax.swing.JLabel();
@@ -2188,68 +2185,53 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
 
         jLabel86.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         jLabel86.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel86.setText("Profile");
-        jPanel9.add(jLabel86, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 130, 50));
-
-        jLabel85.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel85.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel85.setText("Contact");
-        jPanel9.add(jLabel85, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, -1, -1));
+        jLabel86.setText("Thông tin");
+        jPanel9.add(jLabel86, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 190, 50));
 
         jLabel101.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/search.png"))); // NOI18N
         jPanel9.add(jLabel101, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, -1, -1));
 
         jLabel99.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel99.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel99.setText("All info");
-        jPanel9.add(jLabel99, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 60, -1));
-
-        jLabel100.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel100.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel100.setText("Personal");
-        jPanel9.add(jLabel100, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, -1, -1));
-
-        jLabel102.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel102.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel102.setText("Adress");
-        jPanel9.add(jLabel102, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, -1, -1));
+        jLabel99.setText("Chi tiết");
+        jPanel9.add(jLabel99, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 60, -1));
 
         lblHinhAnh_NhanVien.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblHinhAnh_NhanVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/avata_icon.png"))); // NOI18N
-        jPanel9.add(lblHinhAnh_NhanVien, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 210, 190));
+        jPanel9.add(lblHinhAnh_NhanVien, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 260, 230));
 
         jLabel104.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/share_Icon.png"))); // NOI18N
-        jPanel9.add(jLabel104, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 250, -1, -1));
+        jPanel9.add(jLabel104, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, -1, -1));
 
         jLabel105.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/heart_yellow.png"))); // NOI18N
-        jPanel9.add(jLabel105, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 170, 30, 20));
+        jPanel9.add(jLabel105, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, 20, 20));
 
         jLabel106.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/pin_icon.png"))); // NOI18N
-        jPanel9.add(jLabel106, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, -1, -1));
+        jPanel9.add(jLabel106, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, -1, -1));
 
         jLabel107.setBackground(new java.awt.Color(255, 255, 255));
         jLabel107.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLabel107.setForeground(new java.awt.Color(245, 205, 55));
         jLabel107.setText("Favorite");
-        jPanel9.add(jLabel107, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, -1, -1));
+        jPanel9.add(jLabel107, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, -1, -1));
 
-        jLabel108.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel108.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel108.setText("Manager");
-        jPanel9.add(jLabel108, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, 110, 60));
+        lblChucVu_NhanVien.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblChucVu_NhanVien.setForeground(new java.awt.Color(255, 255, 255));
+        lblChucVu_NhanVien.setText("Manager");
+        jPanel9.add(lblChucVu_NhanVien, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, 180, 60));
 
         jLabel109.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel109.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel109.setText("Role:");
+        jLabel109.setText("Vai trò:");
         jPanel9.add(jLabel109, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, -1, -1));
 
         jPanel56.setOpaque(false);
         jPanel56.setBackground(new java.awt.Color(34, 57, 57));
 
-        jLabel110.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel110.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel110.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/idea.png"))); // NOI18N
-        jLabel110.setText(" Nguyen Phuoc Tai");
+        lblTen_NhanVien.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblTen_NhanVien.setForeground(new java.awt.Color(255, 255, 255));
+        lblTen_NhanVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/idea.png"))); // NOI18N
+        lblTen_NhanVien.setText(" Nguyen Phuoc Tai");
 
         jLabel111.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel111.setForeground(new java.awt.Color(255, 255, 255));
@@ -2269,7 +2251,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
                 .addContainerGap()
                 .addGroup(jPanel56Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel56Layout.createSequentialGroup()
-                        .addComponent(jLabel110)
+                        .addComponent(lblTen_NhanVien)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel56Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2282,7 +2264,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
             jPanel56Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel56Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(jLabel110)
+                .addComponent(lblTen_NhanVien)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel56Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel112)
@@ -3586,11 +3568,20 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_tblDanhSach_NhanVienMouseClicked
 
     private void btnThem_NhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem_NhanVienActionPerformed
-            saveAnh();
+        if (check_NhanVien()) {
+            return;
+        }
+        saveAnh_NhanVien();
         insertNhanVien();
     }//GEN-LAST:event_btnThem_NhanVienActionPerformed
 
     private void btnSua_NhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSua_NhanVienActionPerformed
+        if (check_MatKhau_NhanVien()) {
+            return;
+        }
+        n++;
+        write_Image_UpdatedData_NV();
+        UpdateAnh_NhanVien();
         updateNhanVien();
     }//GEN-LAST:event_btnSua_NhanVienActionPerformed
 
@@ -3973,17 +3964,13 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     private javax.swing.JComboBox<String> cbx_Nam_ThongKe;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel100;
     private javax.swing.JLabel jLabel101;
-    private javax.swing.JLabel jLabel102;
     private javax.swing.JLabel jLabel104;
     private javax.swing.JLabel jLabel105;
     private javax.swing.JLabel jLabel106;
     private javax.swing.JLabel jLabel107;
-    private javax.swing.JLabel jLabel108;
     private javax.swing.JLabel jLabel109;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel110;
     private javax.swing.JLabel jLabel111;
     private javax.swing.JLabel jLabel112;
     private javax.swing.JLabel jLabel113;
@@ -4134,7 +4121,6 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel82;
     private javax.swing.JLabel jLabel83;
     private javax.swing.JLabel jLabel84;
-    private javax.swing.JLabel jLabel85;
     private javax.swing.JLabel jLabel86;
     private javax.swing.JLabel jLabel87;
     private javax.swing.JLabel jLabel88;
@@ -4245,9 +4231,11 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JLabel lblChucVu_NhanVien;
     private javax.swing.JLabel lblClock;
     private javax.swing.JLabel lblHinhAnh_ChuyenDe;
     private javax.swing.JLabel lblHinhAnh_NhanVien;
+    private javax.swing.JLabel lblTen_NhanVien;
     private javax.swing.JLabel lblTimKiem_HocVien;
     private javax.swing.JPanel main;
     private javax.swing.JPanel pnlDashboard;
@@ -4359,7 +4347,6 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
             graphics.setColor(getForeground());
             graphics.drawRoundRect(0, 0, 0, 0, arcs.width, arcs.height); //paint border
         }
-
     }
 
 // ROUNDED TEXTFIELD
@@ -4392,7 +4379,33 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     }
 
     JFileChooser filenChooser_NhanVien = new JFileChooser();
-    
+    //Quản lý Nhân Viên - Hải
+    NhanVienDAO nvDAO = new NhanVienDAO();
+    NhanVien nvNormal = new NhanVien();
+    int row_NhanVien = -1; //Hàng được chọn hiện tại trên bảng nhân viên
+    int n;
+    String role;
+
+    private void load_Image_UpdatedData_NV() {
+        try {
+            nvNormal.loadFile();
+        } catch (Exception e) {
+            e.printStackTrace();
+            MsgBox.alert(this, "Error: " + e.getMessage());
+        }
+        n = nvNormal.getNumber();
+    }
+
+    private void write_Image_UpdatedData_NV() {
+        nvNormal.setNumber(n);
+        try {
+            nvNormal.writeFile();
+        } catch (Exception e) {
+            e.printStackTrace();
+            MsgBox.alert(this, "Error: " + e.getMessage());
+        }
+    }
+
     void f_chonAnh_NhanVien() {
         if (filenChooser_NhanVien.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             File file = filenChooser_NhanVien.getSelectedFile();
@@ -4404,7 +4417,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         }
     }
 
-    void saveAnh(){
+    void saveAnh_NhanVien() {
         File fileAnh = new File(lblHinhAnh_NhanVien.getToolTipText());
         XImage.save(fileAnh);
         File newF = new File("logos", fileAnh.getName());
@@ -4424,7 +4437,28 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         //set lại tên file trên label tool tip
         lblHinhAnh_NhanVien.setToolTipText(fileRenamed);
     }
-    
+
+    void UpdateAnh_NhanVien() {
+        File fileAnh = new File(lblHinhAnh_NhanVien.getToolTipText());
+        XImage.save(fileAnh);
+        File newF = new File("logos", fileAnh.getName());
+        String tenFile = newF.getName();
+        String duoiFile = null;
+        if (tenFile.endsWith(".png")) {
+            duoiFile = ".png";
+        } else if (tenFile.endsWith(".jpg")) {
+            duoiFile = ".jpg";
+        }
+        //Tên file mới + đuôi file
+        String newFileName = txtMaNV_NhanVien.getText() + n + duoiFile;
+//            Đổi tên file
+        String fileRenamed = tenFile.replace(tenFile, newFileName);
+        //Rename lại file trong thư mục logos
+        boolean renamedSuccess = newF.renameTo(new File("logos", fileRenamed));
+        //set lại tên file trên label tool tip
+        lblHinhAnh_NhanVien.setToolTipText(fileRenamed);
+    }
+
     void docAnh_NhanVien(NhanVien nv) {
         ImageIcon iconTam1 = XImage.read(nv.getHinh());
         Image img1 = iconTam1.getImage();
@@ -4463,47 +4497,65 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     }
 
     boolean check_NhanVien() {
-        boolean kiemTra = true;
-        //Kiểm tra rỗng
-        if (txtMaNV_NhanVien.getText().equals("") && String.valueOf(txtMatKhau_NhanVien.getPassword()).equals("")
-                && String.valueOf(txtXacNhanMK_NhanVien.getPassword()).equals("") && txtHoTen_NhanVien.getText().equals("")) {
-            MsgBox.alert(this, "Vui lòng nhập đầy đủ thông tin nhân viên");
-            return kiemTra = false;
-        } else if (txtMaNV_NhanVien.getText().equals("")) {
-            MsgBox.alert(this, "Vui lòng nhập mã nhân viên");
-            return kiemTra = false;
-        } else if (String.valueOf(txtMatKhau_NhanVien.getPassword()).equals("")) {
-            MsgBox.alert(this, "Vui lòng nhập mật khẩu");
-            return kiemTra = false;
-        } else if (String.valueOf(txtXacNhanMK_NhanVien.getPassword()).equals("")) {
-            MsgBox.alert(this, "Vui lòng nhập mật khẩu xác nhận");
-            return kiemTra = false;
+        boolean kiemTra = false;
+        if (checkNull_NhanVien()) {
+            return kiemTra = true;
         }
+        if (check_TrungMaID_NhanVien()) {
+            return kiemTra = true;
+        }
+        if (check_MatKhau_NhanVien()) {
+            return kiemTra = true;
+        }
+        return kiemTra;
+    }
 
+    boolean check_MatKhau_NhanVien() {
+        //Kiểm tra mật khẩu
+        String matKhau = String.valueOf(txtMatKhau_NhanVien.getPassword());
+        String xacNhanMK = String.valueOf(txtXacNhanMK_NhanVien.getPassword());
+        if (matKhau.length() <= 5) {
+            MsgBox.alert(this, "Mật khẩu phải ít nhất 6 kí tự");
+            return true;
+        }
+        if (!xacNhanMK.equals(matKhau)) {
+            MsgBox.alert(this, "Mật khẩu không trùng khớp");
+            return true;
+        } else if (xacNhanMK.length() <= 5) {
+            MsgBox.alert(this, "Mật khẩu phải ít nhất 6 kí tự");
+            return true;
+        }
+        return false;
+    }
+
+    boolean check_TrungMaID_NhanVien() {
         //Kiểm tra trùng mã
         String maNV = txtMaNV_NhanVien.getText();
         NhanVien maNV_TimKiem = nvDAO.selectID(maNV);
         if (maNV_TimKiem != null) {
             MsgBox.alert(this, "Mã nhân viên đã tồn tại");
-            return kiemTra = false;
+            return true;
         }
-        //Kiểm tra mật khẩu
-        String matKhau = String.valueOf(txtMatKhau_NhanVien.getPassword());
-        String xacNhanMK = String.valueOf(txtXacNhanMK_NhanVien.getPassword());
+        return false;
+    }
 
-        if (matKhau.length() <= 5) {
-            MsgBox.alert(this, "Mật khẩu phải ít nhất 6 kí tự");
-            return kiemTra = false;
+    boolean checkNull_NhanVien() {
+        //Kiểm tra rỗng
+        if (txtMaNV_NhanVien.getText().equals("") && String.valueOf(txtMatKhau_NhanVien.getPassword()).equals("")
+                && String.valueOf(txtXacNhanMK_NhanVien.getPassword()).equals("") && txtHoTen_NhanVien.getText().equals("")) {
+            MsgBox.alert(this, "Vui lòng nhập đầy đủ thông tin nhân viên");
+            return true;
+        } else if (txtMaNV_NhanVien.getText().equals("")) {
+            MsgBox.alert(this, "Vui lòng nhập mã nhân viên");
+            return true;
+        } else if (String.valueOf(txtMatKhau_NhanVien.getPassword()).equals("")) {
+            MsgBox.alert(this, "Vui lòng nhập mật khẩu");
+            return true;
+        } else if (String.valueOf(txtXacNhanMK_NhanVien.getPassword()).equals("")) {
+            MsgBox.alert(this, "Vui lòng nhập mật khẩu xác nhận");
+            return true;
         }
-
-        if (!xacNhanMK.equals(matKhau)) {
-            MsgBox.alert(this, "Mật khẩu không trùng khớp");
-            return kiemTra = false;
-        } else if (xacNhanMK.length() <= 5) {
-            MsgBox.alert(this, "Mật khẩu phải ít nhất 6 kí tự");
-            return kiemTra = false;
-        }
-        return kiemTra;
+        return false;
     }
 
     void setFormNhanVien(NhanVien nv) {
@@ -4513,6 +4565,13 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         txtXacNhanMK_NhanVien.setText(nv.getMatKhau());
         rdoTruongPhong_NhanVien.setSelected(nv.isVaiTro());
         rdoNhanVien_NhanVien.setSelected(!nv.isVaiTro());
+        if(rdoTruongPhong_NhanVien.isSelected()){
+            role = "Trưởng phòng";
+        }else{
+            role = "Nhân viên";
+        }
+        lblTen_NhanVien.setText(nv.getHoTen());
+        lblChucVu_NhanVien.setText(role);
         if (nv.getHinh() != null) {
             docAnh_NhanVien(nv);
         } else {
@@ -4520,8 +4579,6 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
             lblHinhAnh_NhanVien.setIcon(icon1);
         }
     }
-
-    
 
     void clearFormNhanVien() { //btnMoi_NhanVien
         NhanVien nv = new NhanVien();
@@ -4549,9 +4606,6 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     }
 
     void insertNhanVien() { //btnThemNhanVien
-        if (!check_NhanVien()) {
-            return;
-        }
         NhanVien nv = getFormNhanVien();
         String xacNhanMK = new String(txtXacNhanMK_NhanVien.getPassword());
         if (!xacNhanMK.equals(nv.getMatKhau())) {
@@ -4569,9 +4623,6 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     }
 
     void updateNhanVien() {
-        if (!check_NhanVien()) {
-            return;
-        }
         NhanVien nv = getFormNhanVien();
         String xacNhanMK = new String(txtXacNhanMK_NhanVien.getPassword());
         if (!xacNhanMK.equals(nv.getMatKhau())) {
@@ -4678,9 +4729,6 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
             File file = filenChooser.getSelectedFile();
             XImage.save(file);
 
-//            System.out.println(file.getAbsoluteFile());
-//               System.out.println(file.getAbsolutePath()); 
-//                           System.out.println(file.getPath()); 
             ImageIcon iconTam = new ImageIcon(file.getAbsolutePath());
             Image img = iconTam.getImage();
             ImageIcon icon = new ImageIcon(img.getScaledInstance(lblHinhAnh_ChuyenDe.getWidth(), lblHinhAnh_ChuyenDe.getHeight(), Image.SCALE_SMOOTH));
@@ -4688,6 +4736,14 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
             lblHinhAnh_ChuyenDe.setIcon(icon);
             lblHinhAnh_ChuyenDe.setToolTipText(file.getName());
         }
+    }
+
+    void docAnh_ChuyenDe(ChuyenDe cd) {
+        ImageIcon iconTam1 = XImage.read(cd.getHinh());
+        Image img1 = iconTam1.getImage();
+        ImageIcon icon1 = new ImageIcon(img1.getScaledInstance(lblHinhAnh_ChuyenDe.getWidth(), lblHinhAnh_ChuyenDe.getHeight(), Image.SCALE_SMOOTH));
+        lblHinhAnh_ChuyenDe.setIcon(icon1);
+        lblHinhAnh_ChuyenDe.setToolTipText(cd.getHinh());
     }
 
     static public void fillTableChuyenDe() {
@@ -4721,7 +4777,8 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         txtThoiGian_ChuyenDe.setText(String.valueOf(cd.getThoiLuong()));
         lblHinhAnh_ChuyenDe.setToolTipText(cd.getHinh());
         if (cd.getHinh() != null) {
-            lblHinhAnh_ChuyenDe.setIcon(XImage.read(cd.getHinh()));
+//            lblHinhAnh_ChuyenDe.setIcon(XImage.read(cd.getHinh()));
+            docAnh_ChuyenDe(cd);
         }
         txtMoTa_ChuyenDe.setText(cd.getMoTa());
     }

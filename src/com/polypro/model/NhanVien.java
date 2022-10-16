@@ -4,21 +4,36 @@
  */
 package com.polypro.model;
 
-public class NhanVien {
+import com.polypro.utils.XFile;
+import java.io.Serializable;
+
+public class NhanVien implements Serializable {
+
     private String maNV;
     private String matKhau;
     private String hoTen;
     private boolean vaiTro = false;
     private String hinh;
-
+    private int number;
+    private String path = "src\\com\\polypro\\data\\DataUpdateAnh_NhanVien.txt";
+    
     public NhanVien() {
     }
 
-    public NhanVien(String maNV, String matKhau, String hoTen, String hinh) {
+    public NhanVien(String maNV, String matKhau, String hoTen, String hinh, int number) {
         this.maNV = maNV;
         this.matKhau = matKhau;
         this.hoTen = hoTen;
         this.hinh = hinh;
+        this.number = number;
+    }
+    
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
     }
 
     @Override
@@ -57,12 +72,20 @@ public class NhanVien {
     public void setVaiTro(boolean vaiTro) {
         this.vaiTro = vaiTro;
     }
-    
+
     public String getHinh() {
         return hinh;
     }
 
     public void setHinh(String hinh) {
         this.hinh = hinh;
+    }
+
+    public void loadFile() throws Exception {
+        number = XFile.readInt(path);
+    }
+
+    public void writeFile() throws Exception {
+        XFile.writeInt(path, number);
     }
 }
