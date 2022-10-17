@@ -3706,7 +3706,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     private void tblDanhSach_NguoiHocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDanhSach_NguoiHocMouseClicked
         if (evt.getClickCount() == 2) {
             this.row_NguoiHoc = tblDanhSach_NguoiHoc.getSelectedRow();
-            this.edit_NguoiHoc2();
+            this.edit_NguoiHoc();
         }
     }//GEN-LAST:event_tblDanhSach_NguoiHocMouseClicked
 
@@ -5036,6 +5036,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
             KhoaHoc khoaHoc = (KhoaHoc) cboKhoaHoc_HocVien.getSelectedItem();
 
             String keyword = txtTimKiem_HocVien.getText();
+            if(!keyword.equals("")){              
             List<NguoiHoc> list = nhdao.selectNotInCourse(khoaHoc.getMaKH(), keyword);
             for (NguoiHoc nh : list) {
                 Object[] row = {
@@ -5044,6 +5045,8 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
                 };
                 modelNguoiHoc.addRow(row);
             }
+            }
+          
             //this.fillTableHocVien();
         } catch (Exception e) {
             e.printStackTrace();
@@ -5246,6 +5249,9 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     public void setModelTableNguoiHoc_NguoiHoc() {
         DefaultTableModel modelNguoiHoc = new DefaultTableModel(new Object[][]{}, new Object[]{"Mã NH", "Họ Tên", "Ngày Sinh", "Giới Tính", "Điện Thoại", "Email", "GhiChu", "MaNV", "NgayDK"});
         tblDanhSach_NguoiHoc.setModel(modelNguoiHoc);
+        //an nut sua va xoa
+        btnSua_NguoiHoc.setEnabled(false);
+        btnXoa_NguoiHoc.setEnabled(false);
     }
 
     void fillTableNguoiHoc_NguoiHoc() {
@@ -5314,7 +5320,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     void updateStatus_NguoiHoc() {
         boolean edit = (this.row_NguoiHoc >= 0);
         boolean first = (this.row_NguoiHoc == 0);
-        boolean last = (this.row_NguoiHoc == tblDanhSach_NguoiHoc.getRowCount());
+        boolean last = (this.row_NguoiHoc == tblDanhSach_NguoiHoc.getRowCount()-1);
         txtMaNguoiHoc_NguoiHoc.setEditable(!edit);
         btnThem_NguoiHoc.setEnabled(!edit);
         btnSua_NguoiHoc.setEnabled(edit);
@@ -5326,35 +5332,6 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
 
     }
 
-    void updateStatus_NguoiHoc2() {
-        boolean edit = (this.row_NguoiHoc >= 0);
-        boolean first = (this.row_NguoiHoc == 0);
-        boolean last = (this.row_NguoiHoc == tblDanhSach_NguoiHoc.getRowCount());
-        txtMaNguoiHoc_NguoiHoc.setEditable(!edit);
-        btnThem_NguoiHoc.setEnabled(!edit);
-        btnSua_NguoiHoc.setEnabled(edit);
-        btnXoa_NguoiHoc.setEnabled(edit);
-        btnFirst_NguoiHoc.setEnabled(edit && !first);
-        btnPre_NguoiHoc.setEnabled(edit && !first);
-        btnNext_NguoiHoc.setEnabled(edit && !last);
-        btnLast_NguoiHoc.setEnabled(edit && !last);
-
-    }
-
-    void updateStatus_NguoiHoc3() {
-        boolean edit = (this.row_NguoiHoc >= 0);
-        boolean first = (this.row_NguoiHoc == 0);
-        boolean last = (this.row_NguoiHoc == tblDanhSach_NguoiHoc.getRowCount());
-        txtMaNguoiHoc_NguoiHoc.setEditable(!edit);
-        btnThem_NguoiHoc.setEnabled(edit);
-        btnSua_NguoiHoc.setEnabled(!edit);
-        btnXoa_NguoiHoc.setEnabled(!edit);
-        btnFirst_NguoiHoc.setEnabled(edit && !first);
-        btnPre_NguoiHoc.setEnabled(edit && !first);
-        btnNext_NguoiHoc.setEnabled(edit && !last);
-        btnLast_NguoiHoc.setEnabled(edit && !last);
-
-    }
 
     void clearFormNguoiHoc() { //btnMoi_NhanVien
         txtMaNguoiHoc_NguoiHoc.setText("");
@@ -5367,14 +5344,6 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
 
         this.row_NguoiHoc = -1;
         this.updateStatus_NguoiHoc();
-
-//        btnThem_NguoiHoc.setEnabled(true);
-//        btnSua_NguoiHoc.setEnabled(false);
-//        btnXoa_NguoiHoc.setEnabled(false);
-//        btnFirst_NguoiHoc.setEnabled(false);
-//        btnPre_NguoiHoc.setEnabled(false);
-//        btnNext_NguoiHoc.setEnabled(false);
-//        btnLast_NguoiHoc.setEnabled(false);
     }
 
     void insert_NguoiHoc() {
@@ -5430,13 +5399,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         this.updateStatus_NguoiHoc();
     }
 
-    void edit_NguoiHoc2() {
-        String maNH = (String) tblDanhSach_NguoiHoc.getValueAt(this.row_NguoiHoc, 0);
-        NguoiHoc nh = nhdao.selectID(maNH);
-        this.setForm_NguoiHoc(nh);
-        tbpNguoiHoc.setSelectedIndex(1);
-        this.updateStatus_NguoiHoc2();
-    }
+
 
     void tim_NguoiHoc() {
         this.fillTableNguoiHoc_NguoiHoc();
@@ -5498,17 +5461,17 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
             Date ngay = XDate.toDate(txtNgaySinh_NguoiHoc.getText(), "yyyy-MM-dd");
         } catch (Exception e) {
             MsgBox.alert(this, "Vui lòng nhập đúng định dạng ngày yyyy-MM-dd");
+            return false;
         }
-        List<NguoiHoc> list = nhdao.select();
-        for (int i = 0; i < list.size(); i++) {
-            if (isUpdate_nguoiHoc) {
-            } else {
-                if (txtMaNguoiHoc_NguoiHoc.getText().equalsIgnoreCase(list.get(i).getMaNH())) {
-                    MsgBox.alert(this, "Trùng Mã Người Học");
-                    return false;
-                }
-            }
+        if(!isUpdate_nguoiHoc){
+           NguoiHoc nh = nhdao.selectID(txtMaNguoiHoc_NguoiHoc.getText());
+        if(nh!=null){
+            MsgBox.alert(this, "Trùng Mã Người Học");
+            return false;
+        } 
         }
+        
+
         return true;
     }
 
