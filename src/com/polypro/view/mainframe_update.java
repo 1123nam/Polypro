@@ -34,6 +34,8 @@ import java.awt.geom.RoundRectangle2D;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -44,6 +46,7 @@ import java.util.logging.Logger;
 import javaswingdev.GradientDropdownMenu;
 import javaswingdev.MenuEvent;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -60,6 +63,7 @@ import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
+import org.jdesktop.animation.timing.Animator;
 
 public class mainframe_update extends javax.swing.JFrame implements Runnable {
 
@@ -76,6 +80,8 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         //luồng chạy đồng hồ
         Thread t1 = new Thread(this);
         t1.start();
+        btnSua_NhanVien.setEnabled(false);
+        btnXoa_NhanVien.setEnabled(false);
         lblClock.setEnabled(false);
         Image icon = Toolkit.getDefaultToolkit().getImage("src\\com\\polypro\\view\\icon\\fpt-32px.png");
         this.setIconImage(icon);
@@ -472,7 +478,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         jLabel99 = new javax.swing.JLabel();
         lblHinhAnh_NhanVien = new javax.swing.JLabel();
         jLabel104 = new javax.swing.JLabel();
-        jLabel105 = new javax.swing.JLabel();
+        lblRate_NhanVien = new javax.swing.JLabel();
         jLabel106 = new javax.swing.JLabel();
         jLabel107 = new javax.swing.JLabel();
         lblChucVu_NhanVien = new javax.swing.JLabel();
@@ -481,9 +487,8 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         lblTen_NhanVien = new javax.swing.JLabel();
         jLabel111 = new javax.swing.JLabel();
         jLabel112 = new javax.swing.JLabel();
-        jLabel113 = new javax.swing.JLabel();
         jPanel57 = new RoundedPanel(50);
-        jLabel114 = new javax.swing.JLabel();
+        lblIndex_NhanVien = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         pnlQLNguoiHoc = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
@@ -1966,7 +1971,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
                 .addGroup(jPanel52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel52Layout.createSequentialGroup()
                         .addComponent(jLabel16)
-                        .addGap(12, 12, 12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel52Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(rdoTruongPhong_NhanVien)
                             .addComponent(rdoNhanVien_NhanVien)))
@@ -2189,7 +2194,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         jPanel9.add(jLabel86, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 190, 50));
 
         jLabel101.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/search.png"))); // NOI18N
-        jPanel9.add(jLabel101, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, -1, -1));
+        jPanel9.add(jLabel101, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, -1, -1));
 
         jLabel99.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel99.setForeground(new java.awt.Color(255, 255, 255));
@@ -2198,22 +2203,32 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
 
         lblHinhAnh_NhanVien.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblHinhAnh_NhanVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/avata_icon.png"))); // NOI18N
-        jPanel9.add(lblHinhAnh_NhanVien, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 260, 230));
+        jPanel9.add(lblHinhAnh_NhanVien, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 260, 220));
 
         jLabel104.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/share_Icon.png"))); // NOI18N
-        jPanel9.add(jLabel104, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, -1, -1));
+        jPanel9.add(jLabel104, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, -1, -1));
 
-        jLabel105.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/heart_yellow.png"))); // NOI18N
-        jPanel9.add(jLabel105, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, 20, 20));
+        lblRate_NhanVien.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblRate_NhanVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/star.png"))); // NOI18N
+        lblRate_NhanVien.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        lblRate_NhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblRate_NhanVienMouseClicked(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                lblRate_NhanVienMouseReleased(evt);
+            }
+        });
+        jPanel9.add(lblRate_NhanVien, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, 40, 40));
 
         jLabel106.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/pin_icon.png"))); // NOI18N
-        jPanel9.add(jLabel106, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, -1, -1));
+        jPanel9.add(jLabel106, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 146, 20, 30));
 
         jLabel107.setBackground(new java.awt.Color(255, 255, 255));
         jLabel107.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLabel107.setForeground(new java.awt.Color(245, 205, 55));
-        jLabel107.setText("Favorite");
-        jPanel9.add(jLabel107, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, -1, -1));
+        jLabel107.setText("Rate");
+        jPanel9.add(jLabel107, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, -1, 20));
 
         lblChucVu_NhanVien.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblChucVu_NhanVien.setForeground(new java.awt.Color(255, 255, 255));
@@ -2274,32 +2289,29 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
 
         jPanel9.add(jPanel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 300, 120));
 
-        jLabel113.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/back_24.png"))); // NOI18N
-        jPanel9.add(jLabel113, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 554, 40, 40));
-
         jPanel57.setOpaque(false);
         jPanel57.setBackground(new java.awt.Color(71, 102, 102));
 
-        jLabel114.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel114.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel114.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel114.setText("-   2  +");
+        lblIndex_NhanVien.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblIndex_NhanVien.setForeground(new java.awt.Color(255, 255, 255));
+        lblIndex_NhanVien.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIndex_NhanVien.setText(" 2");
 
         javax.swing.GroupLayout jPanel57Layout = new javax.swing.GroupLayout(jPanel57);
         jPanel57.setLayout(jPanel57Layout);
         jPanel57Layout.setHorizontalGroup(
             jPanel57Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel57Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel114, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel57Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblIndex_NhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel57Layout.setVerticalGroup(
             jPanel57Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel57Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel114, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(jPanel57Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblIndex_NhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel9.add(jPanel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 550, 110, 50));
@@ -3563,7 +3575,11 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         if (evt.getClickCount() == 2) {
             this.row_NhanVien = tblDanhSach_NhanVien.getSelectedRow();
             this.editNhanVien();
+            this.btnSua_NhanVien.setEnabled(true);
+            this.btnXoa_NhanVien.setEnabled(true);
             this.txtMaNV_NhanVien.setEditable(false);
+            this.index_NhanVien = row_NhanVien + 1;
+            lblIndex_NhanVien.setText(String.valueOf(index_NhanVien));
         }
     }//GEN-LAST:event_tblDanhSach_NhanVienMouseClicked
 
@@ -3858,8 +3874,37 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
 
     private void btnUpHinhAnh_NhanVienMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpHinhAnh_NhanVienMouseExited
         btnUpHinhAnh_NhanVien.setBackground(new Color(221, 198, 198));
-        btnUpHinhAnh_NhanVien.setBackground(new Color(221, 198, 198));
     }//GEN-LAST:event_btnUpHinhAnh_NhanVienMouseExited
+
+    private void lblRate_NhanVienMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRate_NhanVienMouseReleased
+//        if (lblRate_NhanVien.getToolTipText() == null) {
+////            for (int i = 1; i <= 7; i++) {
+////                iconRate_NhanVien = new ImageIcon(this.getClass().getResource("icon/star-A"+i+".png"));
+////                lblRate_NhanVien.setIcon(iconRate_NhanVien);
+////            }
+////            iconRate_NhanVien = new ImageIcon(this.getClass().getResource("icon/star-A7.png"));
+////            lblRate_NhanVien.setIcon(iconRate_NhanVien);
+//            Kensoft animate = new Kensoft();
+//            animate.jLabelYUp(500, 80, 5, 1, lblRate_NhanVien);
+//            lblRate_NhanVien.setToolTipText("DANG-CO-ANH");
+//        } else {
+//            iconRate_NhanVien = new ImageIcon("src/com/polypro/view/icon/star.png");
+//            lblRate_NhanVien.setIcon(iconRate_NhanVien);
+//            lblRate_NhanVien.setToolTipText(null);
+//        }
+    }//GEN-LAST:event_lblRate_NhanVienMouseReleased
+
+    private void lblRate_NhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRate_NhanVienMouseClicked
+        if (lblRate_NhanVien.getToolTipText() == null) {
+            iconRate_NhanVien = new ImageIcon(this.getClass().getResource("icon/star-A7.png"));
+            lblRate_NhanVien.setIcon(iconRate_NhanVien);
+            lblRate_NhanVien.setToolTipText("DANG-CO-ANH");
+        } else {
+            iconRate_NhanVien = new ImageIcon("src/com/polypro/view/icon/star.png");
+            lblRate_NhanVien.setIcon(iconRate_NhanVien);
+            lblRate_NhanVien.setToolTipText(null);
+        }
+    }//GEN-LAST:event_lblRate_NhanVienMouseClicked
 
     /**
      * @param args the command line arguments
@@ -3966,15 +4011,12 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel101;
     private javax.swing.JLabel jLabel104;
-    private javax.swing.JLabel jLabel105;
     private javax.swing.JLabel jLabel106;
     private javax.swing.JLabel jLabel107;
     private javax.swing.JLabel jLabel109;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel111;
     private javax.swing.JLabel jLabel112;
-    private javax.swing.JLabel jLabel113;
-    private javax.swing.JLabel jLabel114;
     private javax.swing.JLabel jLabel117;
     private javax.swing.JLabel jLabel118;
     private javax.swing.JLabel jLabel119;
@@ -4235,6 +4277,8 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel lblClock;
     private javax.swing.JLabel lblHinhAnh_ChuyenDe;
     private javax.swing.JLabel lblHinhAnh_NhanVien;
+    private javax.swing.JLabel lblIndex_NhanVien;
+    private javax.swing.JLabel lblRate_NhanVien;
     private javax.swing.JLabel lblTen_NhanVien;
     private javax.swing.JLabel lblTimKiem_HocVien;
     private javax.swing.JPanel main;
@@ -4385,6 +4429,8 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     int row_NhanVien = -1; //Hàng được chọn hiện tại trên bảng nhân viên
     int n;
     String role;
+    int index_NhanVien;
+    ImageIcon iconRate_NhanVien;
 
     private void load_Image_UpdatedData_NV() {
         try {
@@ -4565,9 +4611,9 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         txtXacNhanMK_NhanVien.setText(nv.getMatKhau());
         rdoTruongPhong_NhanVien.setSelected(nv.isVaiTro());
         rdoNhanVien_NhanVien.setSelected(!nv.isVaiTro());
-        if(rdoTruongPhong_NhanVien.isSelected()){
+        if (rdoTruongPhong_NhanVien.isSelected()) {
             role = "Trưởng phòng";
-        }else{
+        } else {
             role = "Nhân viên";
         }
         lblTen_NhanVien.setText(nv.getHoTen());
@@ -4662,6 +4708,8 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
 
     void first_NhanVien() {//btnFirst_NhanVien
         this.row_NhanVien = 0;
+        this.index_NhanVien = row_NhanVien + 1;
+        lblIndex_NhanVien.setText(String.valueOf(index_NhanVien));
         this.editNhanVien();
     }
 
@@ -4669,11 +4717,9 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         if (this.row_NhanVien > 0) {
             this.row_NhanVien--;
             this.editNhanVien();
+            this.index_NhanVien = row_NhanVien + 1;
+            lblIndex_NhanVien.setText(String.valueOf(index_NhanVien));
         }
-//        else if(this.row_NhanVien == 0){
-//            this.row_NhanVien = tblDanhSach_NhanVien.getRowCount() - 1;
-//            this.editNhanVien();
-//        }
     }
 
     void next_NhanVien() {//btnNext_NhanVien
@@ -4684,10 +4730,14 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
             this.row_NhanVien = 0;
             this.editNhanVien();
         }
+        this.index_NhanVien = row_NhanVien + 1;
+        lblIndex_NhanVien.setText(String.valueOf(index_NhanVien));
     }
 
     void last_NhanVien() {//btnLast_NhanVien
         this.row_NhanVien = tblDanhSach_NhanVien.getRowCount() - 1;
+        this.index_NhanVien = tblDanhSach_NhanVien.getRowCount();
+        lblIndex_NhanVien.setText(String.valueOf(index_NhanVien));
         this.editNhanVien();
     }
 
@@ -5036,17 +5086,17 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
             KhoaHoc khoaHoc = (KhoaHoc) cboKhoaHoc_HocVien.getSelectedItem();
 
             String keyword = txtTimKiem_HocVien.getText();
-            if(!keyword.equals("")){              
-            List<NguoiHoc> list = nhdao.selectNotInCourse(khoaHoc.getMaKH(), keyword);
-            for (NguoiHoc nh : list) {
-                Object[] row = {
-                    nh.getMaNH(), nh.getHoTen(), nh.getNgaySinh(), nh.isGioiTinh() ? "Nam" : "Nữ",
-                    nh.getDienThoai(), nh.getEmail()
-                };
-                modelNguoiHoc.addRow(row);
+            if (!keyword.equals("")) {
+                List<NguoiHoc> list = nhdao.selectNotInCourse(khoaHoc.getMaKH(), keyword);
+                for (NguoiHoc nh : list) {
+                    Object[] row = {
+                        nh.getMaNH(), nh.getHoTen(), nh.getNgaySinh(), nh.isGioiTinh() ? "Nam" : "Nữ",
+                        nh.getDienThoai(), nh.getEmail()
+                    };
+                    modelNguoiHoc.addRow(row);
+                }
             }
-            }
-          
+
             //this.fillTableHocVien();
         } catch (Exception e) {
             e.printStackTrace();
@@ -5320,7 +5370,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     void updateStatus_NguoiHoc() {
         boolean edit = (this.row_NguoiHoc >= 0);
         boolean first = (this.row_NguoiHoc == 0);
-        boolean last = (this.row_NguoiHoc == tblDanhSach_NguoiHoc.getRowCount()-1);
+        boolean last = (this.row_NguoiHoc == tblDanhSach_NguoiHoc.getRowCount() - 1);
         txtMaNguoiHoc_NguoiHoc.setEditable(!edit);
         btnThem_NguoiHoc.setEnabled(!edit);
         btnSua_NguoiHoc.setEnabled(edit);
@@ -5331,7 +5381,6 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         btnLast_NguoiHoc.setEnabled(edit && !last);
 
     }
-
 
     void clearFormNguoiHoc() { //btnMoi_NhanVien
         txtMaNguoiHoc_NguoiHoc.setText("");
@@ -5399,8 +5448,6 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         this.updateStatus_NguoiHoc();
     }
 
-
-
     void tim_NguoiHoc() {
         this.fillTableNguoiHoc_NguoiHoc();
         this.clearFormNguoiHoc();
@@ -5463,14 +5510,13 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
             MsgBox.alert(this, "Vui lòng nhập đúng định dạng ngày yyyy-MM-dd");
             return false;
         }
-        if(!isUpdate_nguoiHoc){
-           NguoiHoc nh = nhdao.selectID(txtMaNguoiHoc_NguoiHoc.getText());
-        if(nh!=null){
-            MsgBox.alert(this, "Trùng Mã Người Học");
-            return false;
-        } 
+        if (!isUpdate_nguoiHoc) {
+            NguoiHoc nh = nhdao.selectID(txtMaNguoiHoc_NguoiHoc.getText());
+            if (nh != null) {
+                MsgBox.alert(this, "Trùng Mã Người Học");
+                return false;
+            }
         }
-        
 
         return true;
     }
