@@ -4799,7 +4799,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     static public void fillTableChuyenDe() {
         //DefaultTableModel model = (DefaultTableModel) tblChuyenDe.getModel();
         modelChuyenDe.setRowCount(0);
-
+         System.out.println("có file");
         try {
             List<ChuyenDe> list;
 
@@ -4815,6 +4815,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
                     cd.getHinh()
                 };
                 modelChuyenDe.addRow(row);
+                System.out.println("có file r");
             }
         } catch (Exception e) {
         }
@@ -4827,8 +4828,8 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         txtThoiGian_ChuyenDe.setText(String.valueOf(cd.getThoiLuong()));
         lblHinhAnh_ChuyenDe.setToolTipText(cd.getHinh());
         if (cd.getHinh() != null) {
-//            lblHinhAnh_ChuyenDe.setIcon(XImage.read(cd.getHinh()));
-            docAnh_ChuyenDe(cd);
+        lblHinhAnh_ChuyenDe.setIcon(XImage.read(cd.getHinh()));
+          
         }
         txtMoTa_ChuyenDe.setText(cd.getMoTa());
     }
@@ -4870,7 +4871,8 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
 
         if (modelCD.getHinh() == null) {
             MsgBox.alert(this, "Hình Không Được Để Trống");
-        } else {
+            return;
+        } 
             try {
                 chuyenDeDAO.insert(modelCD);
                 this.fillTableChuyenDe();
@@ -4878,7 +4880,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
             } catch (Exception e) {
                 MsgBox.alert(this, "Thêm mới thất bại!");
             }
-        }
+        
 
     }
 
@@ -4963,6 +4965,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         txtHocPhi_ChuyenDe.setText("");
         txtMoTa_ChuyenDe.setText("");
         lblHinhAnh_ChuyenDe.setIcon(null);
+        lblHinhAnh_ChuyenDe.setToolTipText(null);
         row_ChuyenDe = -1;
         updateStatusChuyenDe();
     }
