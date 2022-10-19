@@ -36,6 +36,7 @@ public class Login extends javax.swing.JFrame {
 
     public Login() {
         initComponents();
+        this.requestFocus();
         this.setLocationRelativeTo(null);
         txtMaNhanVien.setBackground(new java.awt.Color(0, 0, 0, 1));
         txtMatKhau.setBackground(new java.awt.Color(0, 0, 0, 1));
@@ -45,15 +46,14 @@ public class Login extends javax.swing.JFrame {
     }
 
     private void setInterface() {
-        txtMatKhau.requestFocus();
 
-        lblLogin.requestFocus();
+      
         txtMatKhau.setEchoChar((char) 0);
        
     }
 
     public void changeIcon() {
-        icon = new ImageIcon("src//com/polypro/view/icon/decor_1.png");
+        icon = new ImageIcon("icon/decor_1.png");
         setIconImage(icon.getImage());
     }
 
@@ -64,13 +64,12 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         pnlRight = new javax.swing.JPanel();
-        viewPass = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtMaNhanVien = new javax.swing.JTextField();
-        lblLogin = new javax.swing.JLabel();
         txtMatKhau = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -87,18 +86,6 @@ public class Login extends javax.swing.JFrame {
 
         pnlRight.setBackground(new java.awt.Color(255, 255, 255));
         pnlRight.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        viewPass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/show.png"))); // NOI18N
-        viewPass.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 153, 153)));
-        viewPass.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                viewPassMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                viewPassMouseReleased(evt);
-            }
-        });
-        pnlRight.add(viewPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 230, 40, 50));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/user.png"))); // NOI18N
         pnlRight.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
@@ -119,29 +106,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
         pnlRight.add(txtMaNhanVien, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 297, 52));
-
-        lblLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/button_login_1.png"))); // NOI18N
-        lblLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblLogin.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblLoginMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblLoginMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblLoginMouseExited(evt);
-            }
-        });
-        lblLogin.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                lblLoginKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                lblLoginKeyTyped(evt);
-            }
-        });
-        pnlRight.add(lblLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, 160, -1));
 
         txtMatKhau.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
         txtMatKhau.setForeground(new java.awt.Color(204, 204, 204));
@@ -168,12 +132,23 @@ public class Login extends javax.swing.JFrame {
                 txtMatKhauKeyReleased(evt);
             }
         });
-        pnlRight.add(txtMatKhau, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 260, 50));
+        pnlRight.add(txtMatKhau, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 300, 50));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 40)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(40, 146, 161));
         jLabel4.setText("ĐĂNG NHẬP");
         pnlRight.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, -1, -1));
+
+        jButton1.setBackground(new java.awt.Color(40, 146, 161));
+        jButton1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("LOG IN");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        pnlRight.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, 300, 50));
 
         getContentPane().add(pnlRight, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, 440, 470));
 
@@ -226,27 +201,6 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtMatKhauFocusLost
 
-    private void viewPassMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewPassMousePressed
-        String view = String.valueOf(txtMatKhau.getPassword()).trim();
-        if (view.isEmpty() || view.equalsIgnoreCase("Password")) {
-            return;
-        }
-        txtMatKhau.setEchoChar((char) 0);
-        txtMatKhau.setFont(new Font("Arial", Font.PLAIN, 18));
-        viewPass.setIcon(new ImageIcon("src//com/polypro/view/icon/dontshow.png"));
-
-    }//GEN-LAST:event_viewPassMousePressed
-
-    private void viewPassMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewPassMouseReleased
-        String view = String.valueOf(txtMatKhau.getPassword()).trim();
-        if (view.isEmpty() || view.equalsIgnoreCase("Mật khẩu")) {
-            return;
-        }
-        txtMatKhau.setEchoChar('\uf06c');
-        txtMatKhau.setFont(new Font("Caribi", Font.PLAIN, 16));
-        viewPass.setIcon(new ImageIcon("src//com/polypro/view/icon/show.png"));
-    }//GEN-LAST:event_viewPassMouseReleased
-
     private void txtMatKhauKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMatKhauKeyReleased
         String pass = new String(txtMatKhau.getPassword());
         if (!pass.isEmpty()) {
@@ -268,28 +222,6 @@ public class Login extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txtMatKhauKeyReleased
 
-    private void lblLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLoginMouseClicked
-        if (checkInput()) {
-            login();
-        }
-    }//GEN-LAST:event_lblLoginMouseClicked
-
-    private void lblLoginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLoginMouseEntered
-        lblLogin.setIcon(new ImageIcon("src//com/polypro/view/icon/button_login_2.png"));
-    }//GEN-LAST:event_lblLoginMouseEntered
-
-    private void lblLoginMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLoginMouseExited
-        lblLogin.setIcon(new ImageIcon("src//com/polypro/view/icon/button_login_1.png"));
-    }//GEN-LAST:event_lblLoginMouseExited
-
-    private void lblLoginKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lblLoginKeyTyped
-
-    }//GEN-LAST:event_lblLoginKeyTyped
-
-    private void lblLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lblLoginKeyPressed
-
-    }//GEN-LAST:event_lblLoginKeyPressed
-
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         boolean isExit = MsgBox.confirm(this, "Bạn có chắc chắn muốn thoát khỏi chương trình ?");
         if (!isExit) {
@@ -306,6 +238,12 @@ public class Login extends javax.swing.JFrame {
     private void txtMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMatKhauActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMatKhauActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (checkInput()) {
+            login();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -351,15 +289,14 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel lblLogin;
     private javax.swing.JPanel pnlRight;
     private javax.swing.JTextField txtMaNhanVien;
     private javax.swing.JPasswordField txtMatKhau;
-    private javax.swing.JLabel viewPass;
     // End of variables declaration//GEN-END:variables
 
     private boolean checkInput() {
