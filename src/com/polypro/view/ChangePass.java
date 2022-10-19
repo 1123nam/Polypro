@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -30,6 +31,8 @@ public class ChangePass extends javax.swing.JFrame {
         initComponents();
         changeIcon();
         this.setLocationRelativeTo(null);
+        txtMaNhanVien.setText(Auth.user.getMaNV());
+        txtMaNhanVien.setEditable(false);
 //        this.setTitle("CHANGE PASSWORD");
 //        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 //        txtMatkhauMoi.setEchoChar((char) 0);
@@ -62,6 +65,11 @@ public class ChangePass extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlSignup.setBackground(new java.awt.Color(255, 255, 255));
@@ -295,6 +303,19 @@ public class ChangePass extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMatkhauCuFocusGained
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        String[] languages = {"Trở về ", "Thoát"};
+        int options = JOptionPane.showOptionDialog(this, "Bạn có muốn quay về Trang chủ ?", "Hệ thống đào tạo ", 0, JOptionPane.QUESTION_MESSAGE, null, languages, "Trở về Trang Chủ");
+        if (options == 0) {
+            new mainframe_update().setVisible(true);
+            this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+          this.dispose();
+        } else if (options != 1 && options != 0) {
+            this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        }
+
+    }//GEN-LAST:event_formWindowClosing
+
     /**
      * @param args the command line arguments
      */
@@ -361,22 +382,21 @@ public class ChangePass extends javax.swing.JFrame {
             MsgBox.alert(this, "Vui lòng xác nhận lại mật khẩu !");
             return;
         }
-       
+
         try {
-           if (!maNhanVien.equalsIgnoreCase(Auth.user.getMaNV())) {
-            MsgBox.alert(this, "Tên đăng nhập không đúng. Vui lòng kiểm tra lại !");
-        } else if (!matKhauCu.equalsIgnoreCase(Auth.user.getMatKhau())) {
-            MsgBox.alert(this, "Tên đăng nhập không đúng. Vui lòng kiểm tra lại !");
-        } else {
-            Auth.user.setMatKhau(matKhauMoi);
-            nhanVienDAO.update(Auth.user);
-            MsgBox.alert(this, "Thay đổi mật khẩu thành công ! ");
-        }
+            if (!maNhanVien.equalsIgnoreCase(Auth.user.getMaNV())) {
+                MsgBox.alert(this, "Tên đăng nhập không đúng. Vui lòng kiểm tra lại !");
+            } else if (!matKhauCu.equalsIgnoreCase(Auth.user.getMatKhau())) {
+                MsgBox.alert(this, "Tên đăng nhập không đúng. Vui lòng kiểm tra lại !");
+            } else {
+                Auth.user.setMatKhau(matKhauMoi);
+                nhanVienDAO.update(Auth.user);
+                MsgBox.alert(this, "Thay đổi mật khẩu thành công ! ");
+            }
         } catch (Exception e) {
             e.printStackTrace();
-                  
+
         }
-        
 
     }
 
@@ -401,7 +421,7 @@ public class ChangePass extends javax.swing.JFrame {
         if (xacNhanMK.equals("")) {
             sb.append("Vui lòng xác nhận mật khẩu");
         }
-       
+
         if (sb.length() > 0) {
             MsgBox.alert(this, sb.toString());
             isNotNull = false;

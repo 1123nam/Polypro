@@ -929,6 +929,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         btnSua_ChuyenDe.setForeground(new java.awt.Color(0, 204, 255));
         btnSua_ChuyenDe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/update.png"))); // NOI18N
         btnSua_ChuyenDe.setText("Sửa");
+        btnSua_ChuyenDe.setEnabled(false);
         btnSua_ChuyenDe.setMargin(new java.awt.Insets(2, 1, 2, 1));
         btnSua_ChuyenDe.setMaximumSize(new java.awt.Dimension(150, 50));
         btnSua_ChuyenDe.setPreferredSize(new java.awt.Dimension(100, 50));
@@ -945,6 +946,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         btnXoa_ChuyenDe.setForeground(new java.awt.Color(0, 204, 255));
         btnXoa_ChuyenDe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/delete.png"))); // NOI18N
         btnXoa_ChuyenDe.setText("Xóa");
+        btnXoa_ChuyenDe.setEnabled(false);
         btnXoa_ChuyenDe.setMargin(new java.awt.Insets(2, 1, 2, 1));
         btnXoa_ChuyenDe.setMaximumSize(new java.awt.Dimension(150, 50));
         btnXoa_ChuyenDe.setPreferredSize(new java.awt.Dimension(100, 50));
@@ -1693,14 +1695,14 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
             DanhSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DanhSachLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1346, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1342, Short.MAX_VALUE)
                 .addContainerGap())
         );
         DanhSachLayout.setVerticalGroup(
             DanhSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DanhSachLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 673, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -3325,7 +3327,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
                 .addComponent(jLabel182)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel183)
-                .addContainerGap(483, Short.MAX_VALUE))
+                .addContainerGap(465, Short.MAX_VALUE))
         );
 
         main.add(pnlHuongDanSuDung, "card_HuongDanSuDung");
@@ -3587,7 +3589,11 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         if (check_NhanVien()) {
             return;
         }
-        saveAnh_NhanVien();
+        System.out.println(lblHinhAnh_NhanVien.getToolTipText());
+        if (lblHinhAnh_NhanVien.getToolTipText() != null) {
+            saveAnh_NhanVien();
+        }
+
         insertNhanVien();
     }//GEN-LAST:event_btnThem_NhanVienActionPerformed
 
@@ -3597,7 +3603,9 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         }
         n++;
         write_Image_UpdatedData_NV();
+        if(lblHinhAnh_NhanVien.getToolTipText() != null){
         UpdateAnh_NhanVien();
+        }
         updateNhanVien();
     }//GEN-LAST:event_btnSua_NhanVienActionPerformed
 
@@ -4531,7 +4539,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
                 model.addRow(row); //Thêm một hàng vào Jtable nhân viên
             }
         } catch (Exception e) {
-//            MsgBox.alert(this, "Lỗi truy vấn dữ liệu!");
+            MsgBox.alert(this, "Lỗi truy vấn dữ liệu!");
             System.out.println(e);
         }
     }
@@ -4799,7 +4807,6 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     static public void fillTableChuyenDe() {
         //DefaultTableModel model = (DefaultTableModel) tblChuyenDe.getModel();
         modelChuyenDe.setRowCount(0);
-         System.out.println("có file");
         try {
             List<ChuyenDe> list;
 
@@ -4815,7 +4822,6 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
                     cd.getHinh()
                 };
                 modelChuyenDe.addRow(row);
-                System.out.println("có file r");
             }
         } catch (Exception e) {
         }
@@ -4828,8 +4834,8 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         txtThoiGian_ChuyenDe.setText(String.valueOf(cd.getThoiLuong()));
         lblHinhAnh_ChuyenDe.setToolTipText(cd.getHinh());
         if (cd.getHinh() != null) {
-        lblHinhAnh_ChuyenDe.setIcon(XImage.read(cd.getHinh()));
-          
+            lblHinhAnh_ChuyenDe.setIcon(XImage.read(cd.getHinh()));
+
         }
         txtMoTa_ChuyenDe.setText(cd.getMoTa());
     }
@@ -4872,15 +4878,14 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         if (modelCD.getHinh() == null) {
             MsgBox.alert(this, "Hình Không Được Để Trống");
             return;
-        } 
-            try {
-                chuyenDeDAO.insert(modelCD);
-                this.fillTableChuyenDe();
-                MsgBox.alert(this, "Thêm mới thành công!");
-            } catch (Exception e) {
-                MsgBox.alert(this, "Thêm mới thất bại!");
-            }
-        
+        }
+        try {
+            chuyenDeDAO.insert(modelCD);
+            this.fillTableChuyenDe();
+            MsgBox.alert(this, "Thêm mới thành công!");
+        } catch (Exception e) {
+            MsgBox.alert(this, "Thêm mới thất bại!");
+        }
 
     }
 
@@ -4924,6 +4929,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         btnThem_ChuyenDe.setEnabled(!edit);
         btnSua_ChuyenDe.setEnabled(edit);
         btnXoa_ChuyenDe.setEnabled(edit);
+        txtMoTa_ChuyenDe.setEnabled(true);
         btnFirst_ChuyenDe.setEnabled(edit && !first);
         btnPre_ChuyenDe.setEnabled(edit && !first);
         btnNext_ChuyenDe.setEnabled(edit && !last);
@@ -5337,8 +5343,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
             }
 
         } catch (Exception e) {
-//            MsgBox.alert(this, "Lỗi truy vấn dữ liệu!");
-            System.out.println(e);
+            MsgBox.alert(this, "Lỗi truy vấn dữ liệu!");
         }
 
     }
@@ -5530,7 +5535,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
 
     private void changePass() {
         new ChangePass().setVisible(true);
-        this.dispose();
+        this.hide();
     }
 
     private void login() {
@@ -5560,7 +5565,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
                 model.addElement(cd);
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e);
+         e.printStackTrace();
         }
         this.fillTable_KhoaHoc();
     }
@@ -5684,7 +5689,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         txtNgayKG_KhoaHoc.setText("");
         txtNgayTao_KhoaHoc.setText(XDate.toString(XDate.now(), "yyyy-MM-dd"));
         txtGhiChu_KhoaHoc.setText("");
-        txtGhiChu_KhoaHoc.setEditable(true);
+        txtGhiChu_KhoaHoc.setEnabled(true);
         txtNguoiTao_KhoaHoc.setText(Auth.user.getMaNV());
         txtNguoiTao_KhoaHoc.setEditable(false);
 
@@ -5803,7 +5808,6 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
         int colunm = table.getColumnCount() - 1;
-        System.out.println(colunm);
         for (int i = 0; i <= colunm; i++) {
             table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
         }
