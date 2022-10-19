@@ -15,7 +15,7 @@ public class NhanVien implements Serializable {
     private boolean vaiTro = false;
     private String hinh;
     private int number;
-    private String path = "src\\com\\polypro\\data\\DataUpdateAnh_NhanVien.txt";
+    private String path = "DataUpdateAnh_NhanVien.txt";
     
     public NhanVien() {
     }
@@ -83,6 +83,7 @@ public class NhanVien implements Serializable {
 
     public void loadFile() throws Exception {
         number = XFile.readInt(path);
+        System.out.println(number);
     }
 
     public void writeFile() throws Exception {

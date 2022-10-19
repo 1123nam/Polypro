@@ -31,7 +31,7 @@ public class ChangePass extends javax.swing.JFrame {
         initComponents();
         changeIcon();
         this.setLocationRelativeTo(null);
-        txtMaNhanVien.setText(Auth.user.getMaNV());
+//        txtMaNhanVien.setText(Auth.user.getMaNV());
         txtMaNhanVien.setEditable(false);
 //        this.setTitle("CHANGE PASSWORD");
 //        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);

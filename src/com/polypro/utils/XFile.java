@@ -5,6 +5,7 @@
  */
 package com.polypro.utils;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -16,10 +17,16 @@ import java.io.ObjectOutputStream;
  */
 public class XFile {
     public static int readInt(String path) throws Exception{
-            FileInputStream fis = new FileInputStream(path);
-            int n = fis.read();
+        File file = new File(path);
+        System.out.println(file);
+           int n= 0;
+            if(file.isFile()){
+            FileInputStream fis = new FileInputStream(file);
+             n  = fis.read();
             fis.close();
-            return n;
+            }
+            return n;   
+           
     }
     
     public static void writeInt(String path, int number) throws Exception{

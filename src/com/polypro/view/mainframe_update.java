@@ -3589,7 +3589,6 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         if (check_NhanVien()) {
             return;
         }
-        System.out.println(lblHinhAnh_NhanVien.getToolTipText());
         if (lblHinhAnh_NhanVien.getToolTipText() != null) {
             saveAnh_NhanVien();
         }
