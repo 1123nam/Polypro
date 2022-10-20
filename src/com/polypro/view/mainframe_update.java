@@ -3907,7 +3907,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
             lblRate_NhanVien.setIcon(iconRate_NhanVien);
             lblRate_NhanVien.setToolTipText("DANG-CO-ANH");
         } else {
-            iconRate_NhanVien = new ImageIcon("src/com/polypro/view/icon/star.png");
+            iconRate_NhanVien = new ImageIcon(this.getClass().getResource("icon/star.png"));
             lblRate_NhanVien.setIcon(iconRate_NhanVien);
             lblRate_NhanVien.setToolTipText(null);
         }
