@@ -241,7 +241,7 @@ public class ChangePass extends javax.swing.JFrame {
         }
         txtXacNhanMatkhauMoi.setEchoChar((char) 0);
         txtXacNhanMatkhauMoi.setFont(new Font("Arial", Font.PLAIN, 18));
-        viewConfirmPass.setIcon(new ImageIcon("src//com/polypro/view/icon/dontshow.png"));
+        viewConfirmPass.setIcon(new ImageIcon(this.getClass().getResource("icon/dontshow.png")));
     }//GEN-LAST:event_viewConfirmPassMousePressed
 
     private void viewConfirmPassMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewConfirmPassMouseReleased
@@ -251,7 +251,7 @@ public class ChangePass extends javax.swing.JFrame {
         }
         txtXacNhanMatkhauMoi.setEchoChar('\uf06c');
         txtXacNhanMatkhauMoi.setFont(new Font("Caribi", Font.PLAIN, 16));
-        viewConfirmPass.setIcon(new ImageIcon("src//com/polypro/view/icon/show.png"));
+        viewConfirmPass.setIcon(new ImageIcon(this.getClass().getResource("icon/show.png")));
     }//GEN-LAST:event_viewConfirmPassMouseReleased
 
     private void viewNewPassMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewNewPassMousePressed
@@ -261,7 +261,7 @@ public class ChangePass extends javax.swing.JFrame {
         }
         txtMatkhauMoi.setEchoChar((char) 0);
         txtMatkhauMoi.setFont(new Font("Arial", Font.PLAIN, 18));
-        viewNewPass.setIcon(new ImageIcon("src//com/polypro/view/icon/dontshow.png"));
+        viewNewPass.setIcon(new ImageIcon(this.getClass().getResource("icon/dontshow.png")));
     }//GEN-LAST:event_viewNewPassMousePressed
 
     private void viewNewPassMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewNewPassMouseReleased
@@ -271,7 +271,7 @@ public class ChangePass extends javax.swing.JFrame {
         }
         txtMatkhauMoi.setEchoChar('\uf06c');
         txtMatkhauMoi.setFont(new Font("Caribi", Font.PLAIN, 16));
-        viewNewPass.setIcon(new ImageIcon("src//com/polypro/view/icon/show.png"));
+        viewNewPass.setIcon(new ImageIcon(this.getClass().getResource("icon/show.png")));
     }//GEN-LAST:event_viewNewPassMouseReleased
 
     private void txtMaNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaNhanVienActionPerformed
