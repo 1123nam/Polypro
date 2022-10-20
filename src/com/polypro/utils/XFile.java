@@ -18,7 +18,6 @@ import java.io.ObjectOutputStream;
 public class XFile {
     public static int readInt(String path) throws Exception{
         File file = new File(path);
-        System.out.println(file);
            int n= 0;
             if(file.isFile()){
             FileInputStream fis = new FileInputStream(file);

@@ -45,6 +45,7 @@ public class KhoaHocDAO extends EduSysDAO<KhoaHoc, Integer> {
                     model.getNgayKG(),
                     model.getGhiChu(),
                     model.getMaNV(),
+                    model.getNgayTao(),
                     model.getMaKH());
         } catch (SQLException e) {
         }

@@ -83,7 +83,6 @@ public class NhanVien implements Serializable {
 
     public void loadFile() throws Exception {
         number = XFile.readInt(path);
-        System.out.println(number);
     }
 
     public void writeFile() throws Exception {

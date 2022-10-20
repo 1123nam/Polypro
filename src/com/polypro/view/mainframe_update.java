@@ -89,16 +89,16 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     }
 
     private void initAllTable() {
-        initTable(tblDanhSach_ChuyenDe);
-        initTable(tblDanhSach_NguoiHoc);
-        initTable(tblDanhSach_NhanVien);
-        initTable(tblKhoaHoc_KhoaHoc);
-        initTable(tblHocVien_HocVien);
-        initTable(tbl_BangDiem_Thongke);
-        initTable(tbl_DiemChuyenDe_ThongKe);
-        initTable(tbl_DoanhThu);
-        initTable(tblNguoiHoc_HocVien);
-        initTable(tbl_NguoiHoc_ThongKe);
+        this.initTable(tblDanhSach_ChuyenDe);
+        this.initTable(tblDanhSach_NguoiHoc);
+        this.initTable(tblDanhSach_NhanVien);
+        this.initTable(tblKhoaHoc_KhoaHoc);
+        this.initTable(tblHocVien_HocVien);
+        this.initTable(tbl_BangDiem_Thongke);
+        this.initTable(tbl_DiemChuyenDe_ThongKe);
+        this.initTable(tbl_DoanhThu);
+        this.initTable(tblNguoiHoc_HocVien);
+        this.initTable(tbl_NguoiHoc_ThongKe);
     }
 
     public void initloadData() {
@@ -106,31 +106,39 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         this.setColumn_NhanVien();
         this.fillTableNhanVien();
 
-// set model cho bản
-        setModelTableChuyenDe();
-        setModelTableHocVien_HocVien();
-        setModelTableNguoiHoc_HocVien();
-        setModelTableNguoiHoc_NguoiHoc();
+// set model cho bảng
+        this.setModelTableChuyenDe();
+        this.setModelTableHocVien_HocVien();
+        this.setModelTableNguoiHoc_HocVien();
+        this.setModelTableNguoiHoc_NguoiHoc();
 // load data chuyen de
         fillTableChuyenDe();
         //load data lên combo box
         fillComboBoxChuyenDe();
 
         //Thống kê 
-        fillComBoxKhoaHoc_ThongKe();
-        fillTalbleBangDiem_ThongKe();
-        fillTableNguoiHoc_ThongKe();
-        fillComBoxNam_ThongKe();
-        fillTableDoanhThu_ThongKe();
-        fillTableDiemChuyenDe_ThongKe();
+        this.fillComBoxKhoaHoc_ThongKe();
+        this.fillComBoxKhoaHoc_ThongKe();
+        this.fillTalbleBangDiem_ThongKe();
+        this.fillTableNguoiHoc_ThongKe();
+        this.fillComBoxNam_ThongKe();
+        this.fillTableDoanhThu_ThongKe();
+        this.fillTableDiemChuyenDe_ThongKe();
         this.selectTab(0);
         if (!Auth.isManager()) {
             tabs_DoanhThu.remove(3);
         }
 
         //load dữ liệu của Khóa học
-        fillComboBoxChuyenDe_KhoaHoc();
-        setModelTableKhoaHoc_KhoaHoc();
+        this.fillComboBoxChuyenDe_KhoaHoc();
+        this.setModelTableKhoaHoc_KhoaHoc();
+        this.fillTable_KhoaHoc();
+
+        //load dữ liệu cho bảng người học 
+        this.fillTableNguoiHoc_NguoiHoc();
+        this.fillTableNguoiHoc();
+        //load dữ liệu cho bảng học viên
+        this.fillTableHocVien();
     }
 
     public void initMenu() {
@@ -198,7 +206,6 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
                             cardLayout.show(main, "cardThongKe");
                             break;
                         case "Đổi Mật Khẩu": {
-                            new ChangePass().setVisible(true);
                             changePass();
                         }
                         break;
@@ -256,39 +263,26 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         jPanel36 = new RoundedPanel(100);
         jLabel50 = new javax.swing.JLabel();
         jLabel44 = new javax.swing.JLabel();
-        jLabel57 = new javax.swing.JLabel();
-        jLabel58 = new javax.swing.JLabel();
-        jLabel59 = new javax.swing.JLabel();
         jPanel32 = new RoundedPanel(20);
         jPanel32.setOpaque(false);
         jPanel37 = new RoundedPanel(100);
         jPanel37.setOpaque(false);
         jLabel52 = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
-        jLabel60 = new javax.swing.JLabel();
-        jLabel61 = new javax.swing.JLabel();
-        jLabel62 = new javax.swing.JLabel();
         jPanel33 = new RoundedPanel(20);
         jPanel33.setOpaque(false);
         jPanel38 = new RoundedPanel(100);
         jPanel38.setOpaque(false);
         jLabel53 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
-        jLabel63 = new javax.swing.JLabel();
-        jLabel64 = new javax.swing.JLabel();
-        jLabel65 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
         jPanel39 = new javax.swing.JPanel();
         jLabel55 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         jLabel46 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel47 = new javax.swing.JLabel();
         jLabel54 = new javax.swing.JLabel();
         jLabel56 = new javax.swing.JLabel();
-        jLabel48 = new javax.swing.JLabel();
-        jLabel49 = new javax.swing.JLabel();
         jLabel51 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         pnlQLChuyenDe = new javax.swing.JPanel();
@@ -631,7 +625,6 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         jLabel3 = new javax.swing.JLabel();
         lblClock = new javax.swing.JLabel();
         pnlDashboard = new javax.swing.JPanel();
-        btnMenubar_showhide = new javax.swing.JButton();
         pnlLogout = new javax.swing.JPanel();
         btnLogout = new javax.swing.JButton();
         pnlExit = new javax.swing.JPanel();
@@ -684,25 +677,10 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
 
         jPanel31.add(jPanel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 32, -1, -1));
 
-        jLabel44.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel44.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel44.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel44.setText("Quản lí thông tin ");
-        jPanel31.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 127, 250, 25));
-
-        jLabel57.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel57.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel57.setText("Bla bla");
-        jPanel31.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 230, 28));
-
-        jLabel58.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel58.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel58.setText("Bla bla");
-        jPanel31.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 148, 226, 30));
-
-        jLabel59.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel59.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel59.setText("Bla bla");
-        jPanel31.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 230, 28));
+        jPanel31.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 250, 25));
 
         jPanel30.add(jPanel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 250, 250));
 
@@ -721,29 +699,11 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         jPanel32.add(jPanel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(83, 34, -1, -1));
 
         jLabel42.setBackground(new java.awt.Color(26, 72, 86));
-        jLabel42.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel42.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel42.setForeground(new java.awt.Color(26, 72, 86));
         jLabel42.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel42.setText("Nhanh chóng và tiện lợi");
-        jPanel32.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 132, 254, -1));
-
-        jLabel60.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel60.setForeground(new java.awt.Color(26, 72, 86));
-        jLabel60.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel60.setText("Bla bla");
-        jPanel32.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 148, 226, 30));
-
-        jLabel61.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel61.setForeground(new java.awt.Color(26, 72, 86));
-        jLabel61.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel61.setText("Bla bla");
-        jPanel32.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 230, 28));
-
-        jLabel62.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel62.setForeground(new java.awt.Color(26, 72, 86));
-        jLabel62.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel62.setText("Bla bla");
-        jPanel32.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 230, 28));
+        jPanel32.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 254, -1));
 
         jPanel30.add(jPanel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, 250, 250));
 
@@ -761,25 +721,10 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
 
         jPanel33.add(jPanel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(86, 37, -1, -1));
 
-        jLabel43.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel43.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel43.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel43.setText("Kiểm kê doanh số");
-        jPanel33.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 135, 226, 25));
-
-        jLabel63.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel63.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel63.setText("Bla bla");
-        jPanel33.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 226, -1));
-
-        jLabel64.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel64.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel64.setText("Bla bla");
-        jPanel33.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 230, 20));
-
-        jLabel65.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel65.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel65.setText("Bla bla");
-        jPanel33.add(jLabel65, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 230, 20));
+        jPanel33.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 226, 25));
 
         jPanel30.add(jPanel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 120, 250, 250));
 
@@ -816,37 +761,14 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         jLabel46.setText("& hiệu quả");
         jPanel39.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 280, 60));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(26, 72, 86));
-        jLabel1.setText("Đi tìm hiểu cấu trúc của gấu trúc");
-        jPanel39.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 350, 40));
-
-        jLabel47.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jLabel47.setForeground(new java.awt.Color(26, 72, 86));
-        jLabel47.setText("Hai đôi chân bắt chéo một pha cắt kéo rất lắc léo");
-        jPanel39.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 350, 40));
-
         jLabel54.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/flower_2.png"))); // NOI18N
         jPanel39.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, -1, -1));
 
         jLabel56.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/flower_1.png"))); // NOI18N
         jPanel39.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 110, -1, -1));
 
-        jLabel48.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jLabel48.setForeground(new java.awt.Color(26, 72, 86));
-        jLabel48.setText("Anh em cột chèo đi lộn mèo");
-        jPanel39.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 350, 40));
-
-        jLabel49.setBackground(new java.awt.Color(26, 72, 86));
-        jLabel49.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel49.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel49.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel49.setText("Watch Now");
-        jLabel49.setOpaque(true);
-        jPanel39.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 160, 50));
-
         jLabel51.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/bg_decord.png"))); // NOI18N
-        jPanel39.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, -230, 400, 600));
+        jPanel39.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, -230, 470, 600));
 
         pnlRoot.add(jPanel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 450, 1000, 310));
 
@@ -891,11 +813,11 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1370, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1752, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 826, Short.MAX_VALUE)
         );
 
         tbpChuyenDe.addTab("   Danh sách   ", jPanel1);
@@ -1220,7 +1142,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         );
         jPanel18Layout.setVerticalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 647, Short.MAX_VALUE)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 766, Short.MAX_VALUE)
         );
 
         tab_QLKH.addTab("   Danh Sách   ", jPanel18);
@@ -1695,14 +1617,14 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
             DanhSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DanhSachLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1342, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1728, Short.MAX_VALUE)
                 .addContainerGap())
         );
         DanhSachLayout.setVerticalGroup(
             DanhSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DanhSachLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 673, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 802, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -2356,7 +2278,6 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
 
         txtTimKiem_NguoiHoc.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         txtTimKiem_NguoiHoc.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtTimKiem_NguoiHoc.setText("Search...");
         txtTimKiem_NguoiHoc.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtTimKiem_NguoiHocMouseClicked(evt);
@@ -2365,6 +2286,11 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         txtTimKiem_NguoiHoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTimKiem_NguoiHocActionPerformed(evt);
+            }
+        });
+        txtTimKiem_NguoiHoc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTimKiem_NguoiHocKeyReleased(evt);
             }
         });
         jPanel12.add(txtTimKiem_NguoiHoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 800, 50));
@@ -2408,11 +2334,11 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1370, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1752, Short.MAX_VALUE)
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 657, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 776, Short.MAX_VALUE)
         );
 
         jPanel10.add(jPanel13, java.awt.BorderLayout.CENTER);
@@ -2772,6 +2698,11 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
 
         cboKhoaHoc_HocVien.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         cboKhoaHoc_HocVien.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboKhoaHoc_HocVien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboKhoaHoc_HocVienActionPerformed(evt);
+            }
+        });
 
         cboChuyenDe_HocVien.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         cboChuyenDe_HocVien.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -2913,7 +2844,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         lblTimKiem_HocVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/search.png"))); // NOI18N
         lblTimKiem_HocVien.setText("Tìm kiếm");
         lblTimKiem_HocVien.setOpaque(true);
-        jPanel26.add(lblTimKiem_HocVien, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 0, 200, 50));
+        jPanel26.add(lblTimKiem_HocVien, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 0, 170, 50));
 
         txtTimKiem_HocVien.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         txtTimKiem_HocVien.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -2927,7 +2858,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
                 txtTimKiem_HocVienKeyReleased(evt);
             }
         });
-        jPanel26.add(txtTimKiem_HocVien, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1190, 50));
+        jPanel26.add(txtTimKiem_HocVien, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 1150, 50));
 
         jPanel25.add(jPanel26, java.awt.BorderLayout.PAGE_START);
 
@@ -2965,9 +2896,9 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         jPanel28Layout.setHorizontalGroup(
             jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel28Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(1440, Short.MAX_VALUE)
                 .addComponent(btnAdd_HocVien, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
+                .addGap(40, 40, 40))
         );
         jPanel28Layout.setVerticalGroup(
             jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3039,11 +2970,11 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         jPanel84.setLayout(jPanel84Layout);
         jPanel84Layout.setHorizontalGroup(
             jPanel84Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 1370, Short.MAX_VALUE)
+            .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 1752, Short.MAX_VALUE)
         );
         jPanel84Layout.setVerticalGroup(
             jPanel84Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
+            .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 781, Short.MAX_VALUE)
         );
 
         jPanel79.add(jPanel84, java.awt.BorderLayout.CENTER);
@@ -3077,11 +3008,11 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         jPanel80.setLayout(jPanel80Layout);
         jPanel80Layout.setHorizontalGroup(
             jPanel80Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 1370, Short.MAX_VALUE)
+            .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 1752, Short.MAX_VALUE)
         );
         jPanel80Layout.setVerticalGroup(
             jPanel80Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE)
+            .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 826, Short.MAX_VALUE)
         );
 
         tabs_DoanhThu.addTab("   Người Học   ", jPanel80);
@@ -3113,11 +3044,11 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         jPanel81.setLayout(jPanel81Layout);
         jPanel81Layout.setHorizontalGroup(
             jPanel81Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 1370, Short.MAX_VALUE)
+            .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 1752, Short.MAX_VALUE)
         );
         jPanel81Layout.setVerticalGroup(
             jPanel81Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE)
+            .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 826, Short.MAX_VALUE)
         );
 
         tabs_DoanhThu.addTab("   Điểm Chuyên Đề   ", jPanel81);
@@ -3145,7 +3076,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         jPanel85.setLayout(jPanel85Layout);
         jPanel85Layout.setHorizontalGroup(
             jPanel85Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1370, Short.MAX_VALUE)
+            .addGap(0, 1752, Short.MAX_VALUE)
             .addGroup(jPanel85Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel85Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -3194,11 +3125,11 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         jPanel86.setLayout(jPanel86Layout);
         jPanel86Layout.setHorizontalGroup(
             jPanel86Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 1370, Short.MAX_VALUE)
+            .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 1752, Short.MAX_VALUE)
         );
         jPanel86Layout.setVerticalGroup(
             jPanel86Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
+            .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 781, Short.MAX_VALUE)
         );
 
         jPanel82.add(jPanel86, java.awt.BorderLayout.CENTER);
@@ -3308,7 +3239,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
                     .addComponent(jLabel179)
                     .addComponent(jLabel177)
                     .addComponent(jLabel178))
-                .addContainerGap(431, Short.MAX_VALUE))
+                .addContainerGap(813, Short.MAX_VALUE))
         );
         pnlHuongDanSuDungLayout.setVerticalGroup(
             pnlHuongDanSuDungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3327,7 +3258,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
                 .addComponent(jLabel182)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel183)
-                .addContainerGap(465, Short.MAX_VALUE))
+                .addContainerGap(606, Short.MAX_VALUE))
         );
 
         main.add(pnlHuongDanSuDung, "card_HuongDanSuDung");
@@ -3357,18 +3288,6 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         pnlDashboard.setBackground(new java.awt.Color(67, 73, 97));
         pnlDashboard.setPreferredSize(new java.awt.Dimension(50, 600));
         pnlDashboard.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
-
-        btnMenubar_showhide.setBackground(new java.awt.Color(245, 145, 146));
-        btnMenubar_showhide.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/menu.png"))); // NOI18N
-        btnMenubar_showhide.setToolTipText("Menu");
-        btnMenubar_showhide.setAlignmentY(2.0F);
-        btnMenubar_showhide.setBorder(null);
-        btnMenubar_showhide.setBorderPainted(false);
-        btnMenubar_showhide.setContentAreaFilled(false);
-        btnMenubar_showhide.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnMenubar_showhide.setFocusPainted(false);
-        btnMenubar_showhide.setPreferredSize(new java.awt.Dimension(60, 50));
-        pnlDashboard.add(btnMenubar_showhide);
 
         pnlLogout.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -3602,8 +3521,8 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         }
         n++;
         write_Image_UpdatedData_NV();
-        if(lblHinhAnh_NhanVien.getToolTipText() != null){
-        UpdateAnh_NhanVien();
+        if (lblHinhAnh_NhanVien.getToolTipText() != null) {
+            UpdateAnh_NhanVien();
         }
         updateNhanVien();
     }//GEN-LAST:event_btnSua_NhanVienActionPerformed
@@ -3792,7 +3711,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_btnStudentActionPerformed
 
     private void btnGuideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuideActionPerformed
-        // TODO add your handling code here:
+        cardLayout.show(main, "card_GioiThieu");
     }//GEN-LAST:event_btnGuideActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
@@ -3913,6 +3832,14 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         }
     }//GEN-LAST:event_lblRate_NhanVienMouseClicked
 
+    private void txtTimKiem_NguoiHocKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKiem_NguoiHocKeyReleased
+        this.fillTableNguoiHoc_NguoiHoc();
+    }//GEN-LAST:event_txtTimKiem_NguoiHocKeyReleased
+
+    private void cboKhoaHoc_HocVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboKhoaHoc_HocVienActionPerformed
+        this.fillTableNguoiHoc();
+    }//GEN-LAST:event_cboKhoaHoc_HocVienActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3979,7 +3906,6 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton btnLast_NhanVien;
     private javax.swing.JButton btnLearner;
     private javax.swing.JButton btnLogout;
-    private javax.swing.JButton btnMenubar_showhide;
     private javax.swing.JButton btnMoi_ChuyenDe;
     private javax.swing.JButton btnMoi_KhoaHoc;
     private javax.swing.JButton btnMoi_NhanVien;
@@ -4014,7 +3940,6 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     private javax.swing.JComboBox<String> cboKhoaHoc_HocVien;
     private javax.swing.JComboBox<String> cbx_KhoaHoc_ThongKe;
     private javax.swing.JComboBox<String> cbx_Nam_ThongKe;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel101;
     private javax.swing.JLabel jLabel104;
@@ -4128,9 +4053,6 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
-    private javax.swing.JLabel jLabel47;
-    private javax.swing.JLabel jLabel48;
-    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
@@ -4139,16 +4061,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
-    private javax.swing.JLabel jLabel57;
-    private javax.swing.JLabel jLabel58;
-    private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel60;
-    private javax.swing.JLabel jLabel61;
-    private javax.swing.JLabel jLabel62;
-    private javax.swing.JLabel jLabel63;
-    private javax.swing.JLabel jLabel64;
-    private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel66;
     private javax.swing.JLabel jLabel67;
     private javax.swing.JLabel jLabel68;
@@ -5092,17 +5005,23 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
 
         try {
             KhoaHoc khoaHoc = (KhoaHoc) cboKhoaHoc_HocVien.getSelectedItem();
-
+            List<NguoiHoc> list = null;
             String keyword = txtTimKiem_HocVien.getText();
-            if (!keyword.equals("")) {
-                List<NguoiHoc> list = nhdao.selectNotInCourse(khoaHoc.getMaKH(), keyword);
-                for (NguoiHoc nh : list) {
-                    Object[] row = {
-                        nh.getMaNH(), nh.getHoTen(), nh.getNgaySinh(), nh.isGioiTinh() ? "Nam" : "Nữ",
-                        nh.getDienThoai(), nh.getEmail()
-                    };
-                    modelNguoiHoc.addRow(row);
-                }
+            if (khoaHoc != null) {
+
+                list = nhdao.selectNotInCourse(khoaHoc.getMaKH(), keyword);
+            }
+            if (khoaHoc == null) {
+                list = nhdao.select();
+            }
+            //     List<NguoiHoc> list = nhdao.selectNotInCourse(khoaHoc.getMaKH(), keyword);
+            for (NguoiHoc nh : list) {
+                Object[] row = {
+                    nh.getMaNH(), nh.getHoTen(), nh.getNgaySinh(), nh.isGioiTinh() ? "Nam" : "Nữ",
+                    nh.getDienThoai(), nh.getEmail()
+                };
+                modelNguoiHoc.addRow(row);
+
             }
 
             //this.fillTableHocVien();
@@ -5113,15 +5032,22 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
 
     void addHocVien() {
         KhoaHoc khoaHoc = (KhoaHoc) cboKhoaHoc_HocVien.getSelectedItem();
-        for (int row : tblNguoiHoc_HocVien.getSelectedRows()) {
-            HocVien hv = new HocVien();
-            hv.setMaKH(khoaHoc.getMaKH());
-            hv.setDiem(-1.0);
-            hv.setMaNH((String) tblNguoiHoc_HocVien.getValueAt(row, 0));
-            hvdao.insert(hv);
+        if (khoaHoc != null) {
+            for (int row : tblNguoiHoc_HocVien.getSelectedRows()) {
+                HocVien hv = new HocVien();
+                hv.setMaKH(khoaHoc.getMaKH());
+                hv.setDiem(-1.0);
+                hv.setMaNH((String) tblNguoiHoc_HocVien.getValueAt(row, 0));
+                hvdao.insert(hv);
+            }
+            this.fillTableHocVien();
+
+            this.tabs.setSelectedIndex(0);
+        } else {
+            MsgBox.alert(this, "Chuyên đề chưa có khóa học. Vui lòng tạo khóa học trước khi thêm học viên");
+
         }
-        this.fillTableHocVien();
-        this.tabs.setSelectedIndex(0);
+
     }
 
     void removeHocVien() {
@@ -5322,24 +5248,24 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
 
         try {
             String keyword = txtTimKiem_NguoiHoc.getText();
-            if (keyword != null) {
+//            if (keyword != null) {
 
-                List<NguoiHoc> list = nhdao.selectByKeyword(keyword);
-                //List<NguoiHoc> list = nhdao.select();          
-                for (NguoiHoc nh : list) {
-                    Object[] row = {
-                        nh.getMaNH(),
-                        nh.getHoTen(),
-                        nh.getNgaySinh(),
-                        nh.isGioiTinh() ? "Nam" : "Nữ",
-                        nh.getDienThoai(),
-                        nh.getEmail(),
-                        nh.getGhiChu(),
-                        nh.getMaNV(),
-                        nh.getNgayDK()};
-                    model.addRow(row);
-                }
+            List<NguoiHoc> list = nhdao.selectByKeyword(keyword);
+            //List<NguoiHoc> list = nhdao.select();          
+            for (NguoiHoc nh : list) {
+                Object[] row = {
+                    nh.getMaNH(),
+                    nh.getHoTen(),
+                    nh.getNgaySinh(),
+                    nh.isGioiTinh() ? "Nam" : "Nữ",
+                    nh.getDienThoai(),
+                    nh.getEmail(),
+                    nh.getGhiChu(),
+                    nh.getMaNV(),
+                    nh.getNgayDK()};
+                model.addRow(row);
             }
+//            }
 
         } catch (Exception e) {
             MsgBox.alert(this, "Lỗi truy vấn dữ liệu!");
@@ -5406,9 +5332,9 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         NguoiHoc nv = getForm_NguoiHoc();
         try {
             nhdao.insert(nv);
-            this.fillTableNguoiHoc();
+            this.fillTableNguoiHoc_NguoiHoc();
             this.clearFormNguoiHoc();
-            MsgBox.alert(this, "Thêm mới thanh cong!");
+            MsgBox.alert(this, "Thêm mới thành công!");
         } catch (Exception e) {
             MsgBox.alert(this, "Thêm mới thất bại!");
             e.printStackTrace();
@@ -5420,10 +5346,10 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         NguoiHoc nv = getForm_NguoiHoc();
         try {
             nhdao.update(nv);
-            MsgBox.alert(this, "Cap Nhat Thanh Congi!");
+            MsgBox.alert(this, "Cập nnhật thành công!");
             this.fillTableNguoiHoc();
         } catch (Exception e) {
-            MsgBox.alert(this, "Cap Nhat thất bại!");
+            MsgBox.alert(this, "Cập nhật thất bại!");
             e.printStackTrace();
         }
     }
@@ -5436,7 +5362,8 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
             if (MsgBox.confirm(this, "Bạn thực sự muốn xóa người học này?")) {
                 try {
                     nhdao.delete(maNH);
-                    this.fillTableNguoiHoc();
+//                    this.fillTableNguoiHoc();
+                    this.fillTableNguoiHoc_NguoiHoc();
                     this.clearFormNguoiHoc();
                     MsgBox.alert(this, "Xóa thành công!");
                 } catch (Exception e) {
@@ -5530,11 +5457,12 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
 
     public void selectTab(int index) {
         tabs_DoanhThu.setSelectedIndex(index);
+
     }
 
     private void changePass() {
         new ChangePass().setVisible(true);
-        this.hide();
+        this.dispose();
     }
 
     private void login() {
@@ -5564,7 +5492,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
                 model.addElement(cd);
             }
         } catch (Exception e) {
-         e.printStackTrace();
+            e.printStackTrace();
         }
         this.fillTable_KhoaHoc();
     }
@@ -5590,7 +5518,6 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         txtTenCD_KhoaHoc.setEditable(false);
         txtThoiLuong_KhoaHoc.setEditable(false);
         txtHocPhi_KhoaHoc.setEditable(false);
-        txtGhiChu_KhoaHoc.setEditable(false);
         txtNgayTao_KhoaHoc.setEditable(false);
     }
 
@@ -5607,8 +5534,8 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
             this.fillTable_KhoaHoc();
             this.row_khoaHoc = -1;
             tabs.setSelectedIndex(1);
-            this.updateStatus_KhoaHoc();
             Enabled_KhoaHoc();
+            this.updateStatus_KhoaHoc();
         }
 
     }
@@ -5621,7 +5548,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         btnThem_KhoaHoc.setEnabled(!edit);
         btnSua_KhoaHoc.setEnabled(edit);
         btnXoa_KhoaHoc.setEnabled(edit);
-        txtGhiChu_KhoaHoc.setEditable(!edit);
+        txtGhiChu_KhoaHoc.setEditable(edit);
 
         //Directional state
         btnFrist_KhoaHoc.setEnabled(edit && !first);
@@ -5635,6 +5562,7 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         try {
             khDao_kh.insert(kh);
             this.fillTable_KhoaHoc();
+            clearForm_KhoaHoc();
             MsgBox.alert(this, "Thêm khóa học thành công!");
         } catch (Exception e) {
             e.printStackTrace();
@@ -5647,27 +5575,29 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         try {
             khDao_kh.update(kh);
             this.fillTable_KhoaHoc();
+            clearForm_KhoaHoc();
             MsgBox.alert(this, "Cập nhật thông tin khóa học thành công!");
         } catch (Exception e) {
             e.printStackTrace();
-            MsgBox.alert(this, "Cập nhật thông tin khóa học không thành công!");
+            MsgBox.alert(this, "Cập nhật thông tin khóa học thất bại!");
         }
     }
 
     void delete_KhoaHoc() {
-        if (Auth.isManager()) {
-            MsgBox.alert(this, "Bạn không được phép xóa nhân viên!");
+        if (!Auth.isManager()) {
+            MsgBox.alert(this, "Bạn không được phép khóa học!");
         } else {
             int index = tblKhoaHoc_KhoaHoc.getSelectedRow();
 
             int id = Integer.parseInt(tblKhoaHoc_KhoaHoc.getValueAt(index, 0).toString());
-            if (MsgBox.confirm(this, "Bạn có muốn xóa nhân viên này không?")) {
+            if (MsgBox.confirm(this, "Bạn có muốn xóa khóa học này không?")) {
                 try {
                     khDao_kh.delete(id);
                     this.fillTable_KhoaHoc();
-                    MsgBox.alert(this, "Xoá thành công!!");
+                    this.clearForm_KhoaHoc();
+                    MsgBox.alert(this, "Xoá khóa học thành công");
                 } catch (Exception e) {
-                    MsgBox.alert(this, "Xoá không thành công!!");
+                    MsgBox.alert(this, "Xoá khóa học thất bại");
                 }
             }
         }
@@ -5688,11 +5618,9 @@ public class mainframe_update extends javax.swing.JFrame implements Runnable {
         txtNgayKG_KhoaHoc.setText("");
         txtNgayTao_KhoaHoc.setText(XDate.toString(XDate.now(), "yyyy-MM-dd"));
         txtGhiChu_KhoaHoc.setText("");
-        txtGhiChu_KhoaHoc.setEditable(true);
         txtNguoiTao_KhoaHoc.setText(Auth.user.getMaNV());
         txtNguoiTao_KhoaHoc.setEditable(false);
-
-        this.row_khoaHoc = -1;
+        this.row_khoaHoc = tblKhoaHoc_KhoaHoc.getSelectedRow();
         this.updateStatus_KhoaHoc();
     }
 

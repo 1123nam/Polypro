@@ -8,8 +8,11 @@ package com.polypro.view;
 import com.polypro.DAO.NhanVienDAO;
 import com.polypro.utils.Auth;
 import com.polypro.utils.MsgBox;
+//import com.sun.glass.events.KeyEvent;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.HeadlessException;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -31,15 +34,13 @@ public class ChangePass extends javax.swing.JFrame {
         initComponents();
         changeIcon();
         this.setLocationRelativeTo(null);
-//        txtMaNhanVien.setText(Auth.user.getMaNV());
+        txtMaNhanVien.setText(Auth.user.getMaNV());
         txtMaNhanVien.setEditable(false);
-//        this.setTitle("CHANGE PASSWORD");
-//        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-//        txtMatkhauMoi.setEchoChar((char) 0);
-//        txtXacNhanMatkhauMoi.setEchoChar((char) 0);
+        this.requestFocus();
     }
 
     public void changeIcon() {
+
         icon = new ImageIcon("src//com/polypro/view/icon/update.png");
         setIconImage(icon.getImage());
     }
@@ -61,7 +62,7 @@ public class ChangePass extends javax.swing.JFrame {
         viewNewPass = new javax.swing.JLabel();
         viewConfirmPass = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        lblChange = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -133,6 +134,11 @@ public class ChangePass extends javax.swing.JFrame {
         txtXacNhanMatkhauMoi.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtXacNhanMatkhauMoiFocusGained(evt);
+            }
+        });
+        txtXacNhanMatkhauMoi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtXacNhanMatkhauMoiKeyPressed(evt);
             }
         });
 
@@ -207,21 +213,18 @@ public class ChangePass extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(40, 146, 161));
         jLabel11.setText("ĐỔI MẬT KHẨU");
-        pnlSignup.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, -1, -1));
+        pnlSignup.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, -1, -1));
 
-        lblChange.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/polypro/view/icon/button_change.png"))); // NOI18N
-        lblChange.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblChangeMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblChangeMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblChangeMouseExited(evt);
+        jButton1.setBackground(new java.awt.Color(40, 146, 161));
+        jButton1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Đổi mật khẩu");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
-        pnlSignup.add(lblChange, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 540, 180, 70));
+        pnlSignup.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 540, 290, 50));
 
         getContentPane().add(pnlSignup, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 0, 460, 630));
 
@@ -271,20 +274,6 @@ public class ChangePass extends javax.swing.JFrame {
         viewNewPass.setIcon(new ImageIcon("src//com/polypro/view/icon/show.png"));
     }//GEN-LAST:event_viewNewPassMouseReleased
 
-    private void lblChangeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblChangeMouseEntered
-        lblChange.setIcon(new ImageIcon("src//com/polypro/view/icon/button_change_hover.png"));
-    }//GEN-LAST:event_lblChangeMouseEntered
-
-    private void lblChangeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblChangeMouseExited
-        lblChange.setIcon(new ImageIcon("src//com/polypro/view/icon/button_change.png"));
-    }//GEN-LAST:event_lblChangeMouseExited
-
-    private void lblChangeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblChangeMouseClicked
-        if (checkNull()) {
-            changePassword();
-        }
-    }//GEN-LAST:event_lblChangeMouseClicked
-
     private void txtMaNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaNhanVienActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMaNhanVienActionPerformed
@@ -304,17 +293,40 @@ public class ChangePass extends javax.swing.JFrame {
     }//GEN-LAST:event_txtMatkhauCuFocusGained
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        String[] languages = {"Trở về ", "Thoát"};
-        int options = JOptionPane.showOptionDialog(this, "Bạn có muốn quay về Trang chủ ?", "Hệ thống đào tạo ", 0, JOptionPane.QUESTION_MESSAGE, null, languages, "Trở về Trang Chủ");
+        returnHome();
+
+    }//GEN-LAST:event_formWindowClosing
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:  if (checkNull()) {
+        if (checkNull()) {
+            changePassword();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtXacNhanMatkhauMoiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtXacNhanMatkhauMoiKeyPressed
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            if (checkNull()) {
+                changePassword();
+            }
+        }
+    }//GEN-LAST:event_txtXacNhanMatkhauMoiKeyPressed
+
+    private void returnHome() throws HeadlessException {
+        String[] languages = {"Có, Trở về", "Không, Thoát"};
+        int options = JOptionPane.showOptionDialog(this, "Bạn có muốn quay về Trang chủ ?", "Hệ thống đào tạo ", 0, JOptionPane.QUESTION_MESSAGE, null, languages, "Có, Trở về");
+
+        System.out.println(options);
         if (options == 0) {
             new mainframe_update().setVisible(true);
             this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-          this.dispose();
-        } else if (options != 1 && options != 0) {
+            this.dispose();
+        } else if (options == -1) {
             this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        } else {
+          this.dispose();
         }
-
-    }//GEN-LAST:event_formWindowClosing
+    }
 
     /**
      * @param args the command line arguments
@@ -353,6 +365,7 @@ public class ChangePass extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel14;
@@ -360,7 +373,6 @@ public class ChangePass extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel lblChange;
     private javax.swing.JPanel pnlSignup;
     private javax.swing.JTextField txtMaNhanVien;
     private javax.swing.JPasswordField txtMatkhauCu;
@@ -379,22 +391,24 @@ public class ChangePass extends javax.swing.JFrame {
         String xacNhanMK = String.valueOf(txtXacNhanMatkhauMoi.getPassword());
 
         if (!xacNhanMK.equals(matKhauMoi)) {
-            MsgBox.alert(this, "Vui lòng xác nhận lại mật khẩu !");
+            MsgBox.alert(this, "Vui lòng xác nhận lại mật khẩu ");
             return;
         }
 
         try {
             if (!maNhanVien.equalsIgnoreCase(Auth.user.getMaNV())) {
-                MsgBox.alert(this, "Tên đăng nhập không đúng. Vui lòng kiểm tra lại !");
+                MsgBox.alert(this, "Tên đăng nhập không đúng. Vui lòng kiểm tra lại ");
             } else if (!matKhauCu.equalsIgnoreCase(Auth.user.getMatKhau())) {
-                MsgBox.alert(this, "Tên đăng nhập không đúng. Vui lòng kiểm tra lại !");
+                MsgBox.alert(this, "Mật khẩu không đúng. Vui lòng kiểm tra lại ");
             } else {
                 Auth.user.setMatKhau(matKhauMoi);
                 nhanVienDAO.update(Auth.user);
-                MsgBox.alert(this, "Thay đổi mật khẩu thành công ! ");
+                MsgBox.alert(this, "Thay đổi mật khẩu thành công ");
+                returnHome();
             }
         } catch (Exception e) {
             e.printStackTrace();
+            MsgBox.alert(this, "Thay đổi mật khẩu thất bại. Vui lòng thử lại sau ");
 
         }
 

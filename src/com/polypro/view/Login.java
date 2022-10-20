@@ -36,20 +36,17 @@ public class Login extends javax.swing.JFrame {
 
     public Login() {
         initComponents();
-        this.requestFocus();
         this.setLocationRelativeTo(null);
         txtMaNhanVien.setBackground(new java.awt.Color(0, 0, 0, 1));
         txtMatKhau.setBackground(new java.awt.Color(0, 0, 0, 1));
         this.setTitle("LOGIN");
         changeIcon();
         setInterface();
+        btnLogin.requestFocus();
     }
 
     private void setInterface() {
-
-      
         txtMatKhau.setEchoChar((char) 0);
-       
     }
 
     public void changeIcon() {
@@ -69,7 +66,7 @@ public class Login extends javax.swing.JFrame {
         txtMaNhanVien = new javax.swing.JTextField();
         txtMatKhau = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -139,16 +136,16 @@ public class Login extends javax.swing.JFrame {
         jLabel4.setText("ĐĂNG NHẬP");
         pnlRight.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(40, 146, 161));
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("LOG IN");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnLogin.setBackground(new java.awt.Color(40, 146, 161));
+        btnLogin.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogin.setText("LOG IN");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnLoginActionPerformed(evt);
             }
         });
-        pnlRight.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, 300, 50));
+        pnlRight.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, 300, 50));
 
         getContentPane().add(pnlRight, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, 440, 470));
 
@@ -239,11 +236,11 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMatKhauActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         if (checkInput()) {
             login();
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -289,7 +286,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
